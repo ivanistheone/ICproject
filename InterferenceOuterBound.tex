@@ -1,0 +1,252 @@
+\documentclass[aps,11pt,twoside,letterpaper]{revtex4}
+
+
+%MARK STUFF
+
+%\documentclass[smallextended]{svjour3}%
+\pdfoutput=1
+\usepackage{graphics,amsmath,amsfonts,amscd,revsymb,latexsym,
+enumerate,multirow,epsfig}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}%
+\usepackage{fullpage}
+\setcounter{MaxMatrixCols}{30}
+%TCIDATA{OutputFilter=latex2.dll}
+%TCIDATA{Version=5.50.0.2953}
+%TCIDATA{LastRevised=Monday, July 20, 2009 02:05:40}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{BibliographyScheme=BibTeX}
+%BeginMSIPreambleData
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+%EndMSIPreambleData
+\providecommand{\U}[1]{\protect\rule{.1in}{.1in}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+\usepackage{amsfonts, amssymb, amsmath, amsthm, latexsym}   %, amscd, alltt, setspace, bbm}
+\usepackage{epic,eepic}
+%\RequirePackage[verbose,
+%                letterpaper,
+%                top=3cm,
+%               left=2cm,
+%               right=5cm,
+%                bottom=3cm,
+%               ]{geometry}
+%\usepackage{hyperref}
+
+
+%\usepackage{graphicx}
+%\usepackage{xcolor}
+%\usepackage{pstricks}               % for figures
+%\input{Qcircuit.tex}        % for little circuit diagrams
+
+
+\renewcommand{\familydefault}{ppl}
+\renewcommand{\baselinestretch}{1.0}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{header.tex}  % header with all macros and Quantum shortcuts
+
+
+
+
+
+
+\begin{document}
+
+
+\title{{\Large Notes on interference channel outer bounds} }
+\date{\today} 
+\author{Ivan Savov}
+%     \email{}
+\affiliation{ School of Computer Science, McGill University, Montreal, Quebec, H3A 2A7, Canada }
+
+
+
+\begin{abstract}
+    title says it all
+\end{abstract}
+
+\parskip .75ex             % spacing between paragraphs
+\maketitle
+
+
+\section{Introduction}
+
+
+    \begin{definition}[Interference channel]
+        A two party interference channel $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$ 
+        is general model for communication networks with two inputs, two outputs and a probability transistion
+        matrix $p(y_1,y_2|x_1,x_2)$.
+    \end{definition}
+    
+    \begin{definition}[Achievable rate pair]
+        We say that a rate $(R_1,R_2)$ is achievable for a channel $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$
+        if there exists a code for $n$ uses of the channel where the messages taken from respective sets $\{1,2,\ldots,2^{nR_1} \}$ and
+         $\{1,2,\ldots,2^{nR_2} \}$ are transmitted with vanishing error probability.
+    \end{definition}
+    
+    
+    \begin{definition}[Capacity]
+        The capacity region $\cC$ of is the closure of the set of achievable rates $(R_1,R_2)$.
+    \end{definition}
+
+
+\section{Relation to multiple access and broadcast channels}
+
+    We can think of the IC as either two multiple access channels or
+    two two broadcast channels.
+    
+    It is therefore important to review briefly the known capacity results
+    for these simpler channels.
+
+
+\subsection{Multiple access}
+    
+    Let's say that using random coding to achieve the 
+    multiple access rate $(R_1,R_2)$ to receiver Rx1.
+    If you can also use random coding to acieve 
+    rates $(R'_1,R'_2)$ for  multiple access communication to Rx2, 
+    and if $R'_1 > R_1$ and $R'_2 > R_2$, then you can
+    achieve the IC task at rate  $(R_1,R_2)$.
+    
+    Note however that the decomposition of the IC in terms of
+    two multiple access channels is too restrictive,  since in fact
+    Rx2 doesn't need to learn $M_2$ at all. 
+    Sure it can be useful side informaiton, but it is not a requirement.
+    
+    A more direct generalization of MACs would be multiple multiple-access channels (MMAC)
+    will be to require both messages $M_1$ and $M_2$ to be decodable
+    at both receivers.
+    The notion of interference will be then be much more interesting.
+    In fact the code used for the Tx1-Rx1 communication will have to also
+    be easily decodable at Rx2? Is it the same code? Surely with random
+    coding it works, but what about more general inner-outer codes?
+    
+    I wonder if there are no relations to network coding which we can do
+    at this very low level of information theory. 
+
+    The difference between the IC and the MMAC is that we guarantee
+    that an extra ressource of "cross communication" is available.
+    Wouldn't it be best to represent rates then as 4-tuples?
+    \be
+    \left( \begin{array}{cc}
+    R_{11}     &    R_{12}    \\
+    R_{21}     &    R_{22}    
+     \end{array} \right)
+    \ee
+    
+    The IC problem is basically a promise about $R_{11}$ and $R_{22}$,
+    and no statement about the cross rates.
+    
+    Are the cross rates not useful? 
+    These extra rates could be used to convert some other information 
+    and I feel they should be taken into account in general.
+    
+    
+
+
+
+
+\subsection{Broadcast}
+
+    Both only depend on marginals $p(y_1|x_1x_2)$ and $p(y_2|x_1x_2)$ since 
+    if we manage to get both decoding errors low then we manage to get the
+    error of the AND of the two events also. \comment{more details needed...}
+
+    If a rate pair is impossible for a broadcast sub
+    
+\section{Naive outer bound}
+    
+    Both broadcast channels and multiple access channel are special cases of the interference channel.
+    In particular we can think of the interference channel as two separate multiple access channels.
+    
+    We know that the region defined by
+    \bea \label{eqn:naive-bound}
+        R_1     &\leq&    I(X_1;Y_2|X_2) \\
+        R_2     &\leq&    I(X_2;Y_2|X_1)
+    \eea
+    contains the capacity region $\cC$.
+    
+    This corresponds to a very loose rectangular bound on the true capacity region.
+    
+
+
+\section{Literature review}
+
+    
+    \cite{Ahlswede1974}
+    
+    
+    \cite{Sato77}
+    
+
+
+    
+\section{Sato bound}
+    
+    We can describe a more precises outer bound to the capacity region by spcifying
+    an inequality on the sum rate $R_1+R_2$. This was done by Sato [Sato77].
+    
+    The outer bound becomes:
+    \bea \label{eqn:sato-outer-bound}
+        R_1             &\leq&    I(X_1;Y_2|X_2) \\
+        R_2             &\leq&    I(X_2;Y_2|X_1) \\
+        R_1+R_2    &\leq&    I(X_1X_2;Y_1Y_2) 
+    \eea
+    
+    \begin{proof}
+        b
+    \end{proof}
+
+
+
+\section{Carleial}
+
+    A further development concerning an outer bound was obtained by Carleilal [Carleilal83].
+    
+    Consider the two random variables $Z_1,Z_2$ such that 
+    \bea
+        Y_1 &\textrm{ is a degraded version of }& Z_1 \\
+        Y_2 &\textrm{ is a degraded version of }& Z_2 \\        
+        Y_2 &\textrm{ is a degraded version of }& (X_1,Z_1) \\        
+        Y_1 &\textrm{ is a degraded version of }& (X_2,Z_2) 
+    \eea
+    
+    then we have the following outer bound
+    \bea \label{eqn:carleial-outer-bound}
+        R_1             &\leq&    I(X_1;Y_2|X_2) \\
+        R_2             &\leq&    I(X_2;Y_2|X_1) \\
+        R_1+R_2     &\leq&    I(X_1X_2;Z_1) \\
+        R_1+R_2     &\leq&    I(X_1X_2;Z_2) 
+    \eea
+
+
+
+
+\bibliographystyle{unsrt}
+\bibliography{interferenceChannel}
+
+
+
+
+
+
+\end{document}
+
+
