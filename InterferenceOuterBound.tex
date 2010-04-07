@@ -65,6 +65,18 @@ enumerate,multirow,epsfig}
 
 
 
+% CONDITIONAL COMPILATION %%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{ifthen}
+
+% this document has two versions WITHPROOFS is
+% intended for Hayden team research group -- without proofs
+% is intended for the shorter project version whose page length is bounded above by 8
+\newboolean{WITHPROOFS}
+\setboolean{WITHPROOFS}{true} % boolvar=true or false
+
+
+
+
 
 
 \begin{document}
@@ -74,11 +86,11 @@ enumerate,multirow,epsfig}
 \date{\today} 
 \author{Ivan Savov}
 %     \email{}
-\affiliation{ School of Computer Science, McGill University, Montreal, Quebec, H3A 2A7, Canada }
+%\affiliation{ School of Computer Science, McGill University, Montreal, Quebec, H3A 2A7, Canada }
+\affiliation{ECSE 612 (multiuser communications) project, McGill University}
+\keywords{interference channel, quantum Shannon theory, outer bounds}\date{\today }
 
-
-%%% DODO 
-% 1/ COPY affiliatrio FROM LEVSKI 
+%%% TODO
 % 2/  copy ifdef from multipary mutual independence paper....
 
 
@@ -95,10 +107,33 @@ enumerate,multirow,epsfig}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-    blah blah...
+    The interference channel is a communication network where two transmitters try to send
+    information to two receivers using a shared medium. 
+    This communication scenario is one of the most general possible in multiuser information
+    theory; it includes the multiple access channel (MAC) and the broadcast channel (BC)
+    as special cases.
+    
+    The interference channel is an excellent model for many practical communication scenarios
+    where medium contention is a issue. This is why obtaining an expression for the capacity region
+    $\mathcal{C}$ was a central in the 70 ties and more recently.
+    %
+    Despite the practical importance of the problem, there are very few results about 
+    discrete memoryless interference channels (DMIC) to date.
+    Even the special case of Gaussian channels there the capacity region is not known.
+    % only have for degraded, high interference 
+    % the most important case: low / medium interference the capacity is not known...
+    
 
-
-    \subsection{Definitions}
+    Recently, quantum information theory ...
+    
+    This paper will try to review classic results on the interference channel and
+    define the problem in the quantum setting.
+    Specifically we will try to focus on the 
+    
+    
+    
+    
+ \section{Preliminaries}
 
         \begin{definition}[Interference network]
             A two party interference network $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$ 
@@ -128,7 +163,13 @@ enumerate,multirow,epsfig}
             The capacity region $\cC$ of is the closure of the set of achievable rates $(R_1,R_2)$.
         \end{definition}
 
-        
+
+        \begin{definition}[Degraded channel]
+            Let $Y \sim p_y(y|x_1,x_2)$ and $Z \sim p_z(z|x_1,x_2)$ be two conditional distributions.
+            We say Y is a \emph{degraded version} of Z ...
+            copy from \cite{Carleial83} II A.
+        \end{definition}
+
 
     \subsection{Relation to multiple access and broadcast channels}
 
@@ -179,6 +220,16 @@ enumerate,multirow,epsfig}
             Are the cross rates not useful? 
             These extra rates could be used to convert some other information 
             and I feel they should be taken into account in general.
+            (entanglement between receivers?)
+            
+            
+            Another generalization that we will not be considered here is
+            when the two inputs sources $X_1,X_2$ can be correlated.
+            To study this problem we must also be familiar with Slepian-Wolf
+            coding of correlated sources. In general the joint source-channel coding
+            is a very interesting problem that remains...
+            \comment{What can I say more precisely?}
+            
             
         \paragraph{Broadcast}
 
@@ -233,7 +284,7 @@ enumerate,multirow,epsfig}
     \subsection{Sato bound}
         
         We can describe a more precises outer bound to the capacity region by spcifying
-        an inequality on the sum rate $R_1+R_2$. This was done by Sato [Sato77].
+        an inequality on the sum rate $R_1+R_2$. This was done by Sato \cite{Sato1978}.
         
         The outer bound becomes:
         \bea \label{eqn:sato-outer-bound}
@@ -242,15 +293,25 @@ enumerate,multirow,epsfig}
             R_1+R_2    &\leq&    I(X_1X_2;Y_1Y_2) 
         \eea
         
+        
+        
+        \ifthenelse {\boolean{WITHPROOFS}} 
+        {
         \begin{proof}
             b
         \end{proof}
+        }
+        {
+        \begin{proof}
+            Proof available in extended version of this document.
+        \end{proof}
+        }
 
 
 
     \subsection{Carleial}
 
-        A further development concerning an outer bound was obtained by Carleilal [Carleilal83].
+        A further development concerning an outer bound was obtained by Carleilal \cite{Carleial83}.
         
         Consider the two random variables $Z_1,Z_2$ such that 
         \bea
@@ -260,13 +321,49 @@ enumerate,multirow,epsfig}
             Y_1 &\textrm{ is a degraded version of }& (X_2,Z_2) 
         \eea
         
+        If we think of $Z_1,Z_2$ as the outputs of the channel, we can interpret the above
+        conditions as the following. 
+        Knowing the input and output of the other person's communication we can recover our own signal.
+        %
+        If we manage to decode our message correctly, then I can also simulate the output that the other
+        person has received -- i.e. I have a joint decoder on $(Y_1,Y_2)$.
+        
+        
         then we have the following outer bound
         \bea \label{eqn:carleial-outer-bound}
-            R_1             &\leq&    I(X_1;Y_2|X_2) \\
+            R_1             &\leq&    I(X_1;Y_1|X_2) \\
             R_2             &\leq&    I(X_2;Y_2|X_1) \\
-            R_1+R_2     &\leq&    I(X_1X_2;Z_1) \\
-            R_1+R_2     &\leq&    I(X_1X_2;Z_2) 
+            R_1+R_2     &\leq&   \min\!\left\{ I(X_1X_2;Z_1), I(X_1X_2;Z_2) \right\}             
+            %R_1+R_2     &\leq&   I(X_1X_2;Z_1) \\
+            %R_1+R_2     &\leq&    I(X_1X_2;Z_2) 
         \eea
+        
+        
+        
+    \subsection{Nair - El Gamal outer bound}
+       
+        \comment{is this useful?}
+        
+        In a recent paper \cite{Nair2006}, Nair and El Gamal give the following outer bound on the BC
+        with independent messages $M_1,M_2$ encoded into $U,V$ respectively,
+        which are later \emph{jointly encoded} into an input symbol $X$ for the BC.
+        
+        \bea \label{eqn:nair-outer-bound}
+            R_1             &\leq&    I(U;Y_1) \\
+            R_2             &\leq&    I(V;Y_2) \\
+            R_1+R_2     &\leq&   I(U;Y_1) + I(V;Y_2 | U) \\
+            R_1+R_2     &\leq&   I(V;Y_2) + I(U;Y_1 | V) 
+        \eea        
+        for some choice of input distribution $p(u,v,x)=p(u,v)p(x|u,v)$. 
+        
+        The region defined above is an outer bound on the BC, which
+        involves joint encoding of the two sources $U,V$.
+        If we are dealing with the IC, we have a more restrictive scenario
+        since $U \to X_1$ and $V \to X_2$, i.e. we don't have joint encoding
+        of the two sources.
+        
+        It follows that the above region is also an outer bound on the IC cap region.
+        
 
 
 
@@ -294,7 +391,8 @@ enumerate,multirow,epsfig}
 
     states...
 
-\bibliographystyle{unsrt}
+%\bibliographystyle{unsrt}
+\bibliographystyle{alpha}
 \bibliography{interferenceChannel}
 
 
