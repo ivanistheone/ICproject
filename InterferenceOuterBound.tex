@@ -1,4 +1,4 @@
-\documentclass[aps,11pt,twoside,letterpaper]{revtex4}
+\documentclass[aps,11pt,twoside,letterpaper]{article}
 
 
 %MARK STUFF
@@ -84,22 +84,24 @@ enumerate,multirow,epsfig}
 
 \title{{\Large Outer bounds on the quantum interference channel} }
 \date{\today} 
-\author{Ivan Savov}
+\author{Ivan Savov \\
+    ECSE 612 (multiuser communications) project, McGill University}
+
 %     \email{}
 %\affiliation{ School of Computer Science, McGill University, Montreal, Quebec, H3A 2A7, Canada }
-\affiliation{ECSE 612 (multiuser communications) project, McGill University}
-\keywords{interference channel, quantum Shannon theory, outer bounds}\date{\today }
+%\adress{ECSE 612 (multiuser communications) project, McGill University}
+%\keywords{interference channel, quantum Shannon theory, outer bounds}\date{\today }
 
 %%% TODO
 % 2/  copy ifdef from multipary mutual independence paper....
 
 
+\parskip .75ex             % spacing between paragraphs
+\maketitle
+
 \begin{abstract}
     title says it all
 \end{abstract}
-
-\parskip .75ex             % spacing between paragraphs
-\maketitle
 
 
 \section{Introduction}
@@ -249,12 +251,101 @@ enumerate,multirow,epsfig}
 
     \subsection{Early papers}
 
-        \cite{Ahlswede1974}
-        \cite{Sato77}
+        \paragraph{Ahlswede 1978: The capacity region of a channel with two senders and two receivers}
+        One of the earliest papers to appear on the topic of interference channels is by Rudolf Ahlswede \cite{Ahlswede1974}.
+        While the notions of entropy and mutual information were already well established by those days, the author prefers
+        to use the definitions of entropic quantities from first principles:
+        \be
+            R_1(p,q,Y_1) = 
+                \sum_{x_1, x_2, y_1} 
+                    p(x_1)p(x_2)p(y_1|x_1,x_2) 
+                    \log \frac{ p(y_1|x_1,x_2) }{ \sum_{x_1} p(x_1)p(y_1|x_1,x_2) } 
+            = I(X_1;Y_1|X_2).
+        \ee
+
+        The paper defines three communication problems that can be studied on the
+        interference network $p(y_1,y_2|x_1,x_2)$. 
+
+        \begin{itemize}
+            \item   The {\bf mariginal $Y_1$-MAC channel} where two inputs $X_1$ and $X_2$ 
+                    encode independent messages  $M_1,M_2$ at rates $R_1,R_2$, which 
+                    must be decoded  at $Y_1$. 
+                    The relevant probability distribution is $\sum_{y_2} p(y_1,y_2|x_1,x_2)$.
+                    Ahlswede calls this the $(p,T_{21},I)$ \emph{communication situaiton}.
+
+            \item   The {\bf IC} problem which we have defined above. In Ahlswede nomenclature
+                    this is a  $(p,T_{22},I)$ comunication situation.
+
+            \item   Finally there is the {\bf multiple MAC} (MMAC)  problem, where 
+                    messages $M_1$ and $M_2$ are to be decoded at both receivers.
+                    This is called the  $(p,T_{22},II)$  problem in the paper.
+
+        \end{itemize}
+
+        The paper then proves the capacity of the $Y_1$-MAC problem.
+        \bea
+            R_1         &\leq&      I(X_1;Y_1|X_2), \\
+            R_2         &\leq&      I(X_2;Y_1|X_1), \\
+            R_1 +R_2    &\leq&      I(X_1X_2;Y_1) \qquad \textrm{for some $p(x_1)p(x_2)$ }.
+        \eea 
+
+        The author then uses the same argument to prove the capacity of the MMAC channel
+        when the two inputs $X_1$ and $X_2$ are allowed to be correlated.
+
+        \bea
+            R_1         &\leq&      \min\{ I(X_1;Y_1|X_2), I(X_1;Y_2|X_2) \}, \label{r1-in-mmac-thm}\\
+            R_2         &\leq&      \min\{ I(X_2;Y_1|X_1), I(X_2;Y_2|X_1) \}, \\
+            R_1 +R_2    &\leq&      \min\{ I(X_1X_2;Y_1), I(X_1X_2;Y_2) \} \qquad \textrm{for some $p(x_1,x_2)$ }.   \label{r12-in-mmac-thm}
+        \eea 
+
+        In the paper 
+        \comment{ Why need correlated sources? } \\
+        Let $\mathcal{R}_{p(x_1,x_2)}$ be the closure \comment{of the convex hull?} of rates $(R_1,R_2)$ which
+        satisfy equations  \eqref{r1-in-mmac-thm} through \eqref{r1-in-mmac-thm}.
+        And let $\mathcal{C}(p,T_{22},II)$ be the capacity of for the MMAC problem with correlated sources.
+        We want to show that $\mathcal{R}_{p(x_1,x_2)} = \mathcal{C}(p,T_{22},II)$.
+
+
+
+        \comment{ Is there an intuitive explanation why this is true? } \\
+        For the part $\mathcal{R}_{p(x_1,x_2)} \subseteq \mathcal{C}(p,T_{22},II)$ we have the following argument...
+        if you have some rates $R_1$ and $R_2$ that are feasibly for both the $Y_1$-MAC and the $Y_2$-MAC then
+        you must be able to do the MMAC problem too.
+        
+        The other direction $\mathcal{R}_{p(x_1,x_2)} \supseteq \mathcal{C}(p,T_{22},II)$  
+
+
+        \comment{ NOT CLEAR ... }
+
+        This problem is connected to correlated sources coding. Slepian-Wolf etc...
+
+
+        The author then makes a remark that knowing the capacity of the MMAC problem
+        does not help us to find the IC problem.
+        
+
+
+
+
+        \paragraph{Sato 77: Two-user communication channels} \\
+        The next paper, and perhaps the most important paper on the interference channel is
+        by Hiroshi Sato \cite{Sato77}.
+
+        The 
+        
+        three special relations to 
+
+        \paragraph{Cheng Motani Garg ?}
+
+        best inner bound
+
 
 
     \subsection{Outer bounds}
-   
+
+
+
+
 
     \subsection{Quantum communicaiton channels}
 
