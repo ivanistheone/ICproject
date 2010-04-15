@@ -1,14 +1,30 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{NEG07}
 
-\bibitem{Ahlswede1974}
+\bibitem[Ahl74]{Ahlswede1974}
 R.~Ahlswede.
 \newblock {The capacity region of a channel with two senders and two
   receivers}.
 \newblock {\em The Annals of Probability}, 2(5):805--814, 1974.
 
-\bibitem{Sato77}
+\bibitem[Car83]{Carleial83}
+A.~Carleial.
+\newblock {Outer bounds on the capacity of interference channels (Corresp.)}.
+\newblock {\em IEEE transactions on information theory}, 29(4):602--606, 1983.
+
+\bibitem[NEG07]{Nair2006}
+C.~Nair and A.~El~Gamal.
+\newblock {An outer bound to the capacity region of the broadcast channel}.
+\newblock {\em IEEE Transactions on Information Theory}, 53(1):350--355, 2007.
+
+\bibitem[Sat77]{Sato77}
 H.~Sato.
 \newblock {Two-user communication channels}.
 \newblock {\em IEEE transactions on information theory}, 23(3):295--304, 1977.
+
+\bibitem[Sat78]{Sato1978}
+H.~Sato.
+\newblock {An outer bound to the capacity region of broadcast channels
+  (Corresp.)}.
+\newblock {\em IEEE Transactions on Information Theory}, 24(3):374--377, 1978.
 
 \end{thebibliography}

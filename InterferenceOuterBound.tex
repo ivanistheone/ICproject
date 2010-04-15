@@ -1,6 +1,33 @@
 \documentclass[aps,11pt,twoside,letterpaper]{article}
 
 
+
+
+
+
+
+
+
+
+\usepackage{amsfonts, amssymb, amsmath, amsthm, latexsym}   %, amscd, alltt, setspace, bbm}
+\usepackage{epic,eepic}
+%\RequirePackage[verbose,
+%                letterpaper,
+%                top=3cm,
+%               left=2cm,
+%               right=5cm,
+%                bottom=3cm,
+%               ]{geometry}
+%\usepackage{hyperref}
+
+
+%\usepackage{graphicx}
+%\usepackage{xcolor}
+%\usepackage{pstricks}               % for figures
+%\input{Qcircuit.tex}        % for little circuit diagrams
+
+
+
 %MARK STUFF
 
 %\documentclass[smallextended]{svjour3}%
@@ -26,32 +53,50 @@ enumerate,multirow,epsfig}
 
 
 
+%%% MATH SETS %%%%%%%%%%%%%%
+\def \Tr{\textup{Tr}}
+\def \c{\mathbb{C}}
+\def \z{\mathbb{Z}}
+\def \r{\mathbb{R}}
+\def \n{\mathbb{N}}
+\def \p{\mathbb{P}}
+\def \q{\mathbb{Q}}
+\def\ph{\varphi}
+
+\def\E{\mathcal{E}}
+\def\cH{\mathcal{H}}
+\def\NN{\mathbb{N}}
+
+
+\newcommand{\rhot}{{\ensuremath{\tilde{\rho}}}}
+\newcommand{\sigmat}{{\ensuremath{\tilde{\sigma}}}}
+\newcommand{\taut}{{\ensuremath{\tilde{\tau}}}}
 
 
 
 
+\hfuzz5pt % Don't bother to report overfull boxes < 5pt
 
 
+%%% THEOREMS   %%%%%%%%%%%%%%
+\theoremstyle{plain}
+\newtheorem{Th}{Theorem}[section]
+\newtheorem{Lem}[Th]{Lemma}
+\newtheorem{Prop}[Th]{Proposition}
+\newtheorem{Cor}[Th]{Corollary}
+\theoremstyle{definition}
+\newtheorem{Ex}[Th]{Example}
+\newtheorem{Def}[Th]{Definition}
+\newtheorem{Rem}[Th]{Remark}
+\newtheorem{Quest}[Th]{Question}
+\newtheorem{prf}{Proof}
 
 
-
-
-\usepackage{amsfonts, amssymb, amsmath, amsthm, latexsym}   %, amscd, alltt, setspace, bbm}
-\usepackage{epic,eepic}
-%\RequirePackage[verbose,
-%                letterpaper,
-%                top=3cm,
-%               left=2cm,
-%               right=5cm,
-%                bottom=3cm,
-%               ]{geometry}
-%\usepackage{hyperref}
-
-
-%\usepackage{graphicx}
-%\usepackage{xcolor}
-%\usepackage{pstricks}               % for figures
-%\input{Qcircuit.tex}        % for little circuit diagrams
+%%% QUANTUM STUFF  %%%%%%%%%%%%%%
+\newcommand{\braOket}[3]{\left\langle #1\vert#2\vert#3 \right\rangle}
+\newcommand{\e}{  \ensuremath{\mathcal E} }
+\newcommand{\x}{  \ensuremath{\mathcal X} }
+\newcommand{\m}{  \ensuremath{\mathcal M} }
 
 
 \renewcommand{\familydefault}{ppl}
@@ -137,6 +182,7 @@ enumerate,multirow,epsfig}
     
  \section{Preliminaries}
 
+	
         \begin{definition}[Interference network]
             A two party interference network $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$ 
             is general model for communication networks with two inputs, two outputs and a probability transistion
@@ -173,6 +219,24 @@ enumerate,multirow,epsfig}
         \end{definition}
 
 
+
+
+            Both only depend on marginals $p(y_1|x_1x_2)$ and $p(y_2|x_1x_2)$ since 
+            if we manage to get both decoding errors low then we manage to get the
+            error of the AND of the two events also. \comment{more details needed...}
+
+        \begin{definition}[Independent channel]
+            Let $p(y_1|x_1,x_2)$ and $p(y_2|x_1,x_2)$ be the marginals of the associated
+            with some interference network $p(y_1,y_2|x_1,x_2)$.
+            We call the independent channel the interference network
+            \be
+                p_i(y_1,y_2|x_1,x_2) = p(y_1|x_1x_2)p(y_2|x_1x_2).
+            \ee
+        \end{definition}
+
+
+        
+
     \subsection{Relation to multiple access and broadcast channels}
 
         We can think of the IC as either two multiple access channels or
@@ -181,49 +245,32 @@ enumerate,multirow,epsfig}
         It is therefore important to review briefly the known capacity results
         for these simpler channels.
 
-        \paragraph{Multiple access}
+%       \paragraph{Multiple access}
+%
+%        \comment{CAN BE SKIPPED ... }
+%            Let's say that using random coding to achieve the 
+%            multiple access rate $(R_1,R_2)$ to receiver Rx1.
+%            If you can also use random coding to acieve 
+%            rates $(R'_1,R'_2)$ for  multiple access communication to Rx2, 
+%            and if $R'_1 > R_1$ and $R'_2 > R_2$, then you can
+%            achieve the IC task at rate  $(R_1,R_2)$.
+%            
+%            Note however that the decomposition of the IC in terms of
+%            two multiple access channels is too restrictive,  since in fact
+%            Rx2 doesn't need to learn $M_2$ at all. 
+%            Sure it can be useful side informaiton, but it is not a requirement.
+%            
+%            A more direct generalization of MACs would be multiple multiple-access channels (MMAC)
+%            will be to require both messages $M_1$ and $M_2$ to be decodable
+%            at both receivers.
+%            The notion of interference will be then be much more interesting.
+%            In fact the code used for the Tx1-Rx1 communication will have to also
+%            be easily decodable at Rx2? Is it the same code? Surely with random
+%            coding it works, but what about more general inner-outer codes?
+            
+%            I wonder if there are no relations to network coding which we can do
+%            at this very low level of information theory. 
 
-            Let's say that using random coding to achieve the 
-            multiple access rate $(R_1,R_2)$ to receiver Rx1.
-            If you can also use random coding to acieve 
-            rates $(R'_1,R'_2)$ for  multiple access communication to Rx2, 
-            and if $R'_1 > R_1$ and $R'_2 > R_2$, then you can
-            achieve the IC task at rate  $(R_1,R_2)$.
-            
-            Note however that the decomposition of the IC in terms of
-            two multiple access channels is too restrictive,  since in fact
-            Rx2 doesn't need to learn $M_2$ at all. 
-            Sure it can be useful side informaiton, but it is not a requirement.
-            
-            A more direct generalization of MACs would be multiple multiple-access channels (MMAC)
-            will be to require both messages $M_1$ and $M_2$ to be decodable
-            at both receivers.
-            The notion of interference will be then be much more interesting.
-            In fact the code used for the Tx1-Rx1 communication will have to also
-            be easily decodable at Rx2? Is it the same code? Surely with random
-            coding it works, but what about more general inner-outer codes?
-            
-            I wonder if there are no relations to network coding which we can do
-            at this very low level of information theory. 
-
-            The difference between the IC and the MMAC is that we guarantee
-            that an extra ressource of "cross communication" is available.
-            Wouldn't it be best to represent rates then as 4-tuples?
-            \be
-            \left( \begin{array}{cc}
-            R_{11}     &    R_{12}    \\
-            R_{21}     &    R_{22}    
-             \end{array} \right)
-            \ee
-            
-            The IC problem is basically a promise about $R_{11}$ and $R_{22}$,
-            and no statement about the cross rates.
-            
-            Are the cross rates not useful? 
-            These extra rates could be used to convert some other information 
-            and I feel they should be taken into account in general.
-            (entanglement between receivers?)
-            
             
             Another generalization that we will not be considered here is
             when the two inputs sources $X_1,X_2$ can be correlated.
@@ -233,14 +280,6 @@ enumerate,multirow,epsfig}
             \comment{What can I say more precisely?}
             
             
-        \paragraph{Broadcast}
-
-            Both only depend on marginals $p(y_1|x_1x_2)$ and $p(y_2|x_1x_2)$ since 
-            if we manage to get both decoding errors low then we manage to get the
-            error of the AND of the two events also. \comment{more details needed...}
-
-            If a rate pair is impossible for a broadcast sub
-           
 
 
 
@@ -327,7 +366,8 @@ enumerate,multirow,epsfig}
 
 
 
-        \paragraph{Sato 77: Two-user communication channels} \\
+        \paragraph{Sato 77: Two-user communication channels} \ \\
+
         The next paper, and perhaps the most important paper on the interference channel is
         by Hiroshi Sato \cite{Sato77}.
 
@@ -469,7 +509,30 @@ enumerate,multirow,epsfig}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Conclusion}
+\section{Discussion and conclusion}
+
+
+    \paragraph{Most general use of the interference network} 
+
+        The difference between the IC and the MMAC is that we guarantee
+        that an extra ressource of "cross communication" is available.
+        Wouldn't it be best to represent rates then as 4-tuples?
+        \be
+        \left( \begin{array}{cc}
+        R_{11}     &    R_{12}    \\
+        R_{21}     &    R_{22}    
+         \end{array} \right)
+        \ee
+        
+        The IC problem is basically a promise about $R_{11}$ and $R_{22}$,
+        and no statement about the cross rates.
+        
+        Are the cross rates not useful? 
+        These extra rates could be used to convert some other information 
+        and I feel they should be taken into account in general.
+        (entanglement between receivers?)
+
+
 
     open problems...
 
@@ -480,8 +543,584 @@ enumerate,multirow,epsfig}
 
 \section{Introduction to QIT}
 
-    states...
+	\section{Quantum information theory}
+	
+		The fundamental ideas of quantum information theory are analogous to those of classical information theory. 
+		In addition to the classical sources and channels, we simply introduce a new set of fundamental 
+		building blocks in our studies.
+		These \emph{quantum resources} governed by the laws of quantum mechanics can exhibit strange and non-intuitive
+		behaviour but can nevertheless be studied with the techniques of information theory.
+		% plug von Neumman entropy
+		
 
+		\bigskip
+		\subsection{Quantum states}
+			
+			The fundamental principles of quantum mechanics are simple enough to be explained in the space
+			available on the back of an envelope, but to truly understand the implications of these
+			principles takes years of training and effort.
+			We assume the reader is familiar with basic notions of quantum mechanics \cite{sakurai,NC04}. 
+			%For the sake of brevity, we will not attempt to restate them here for the sake of brevity and also because
+			%this has been done  better elsewhere .
+			This section will focus on specific notions and notation that are used in quantum information theory.
+			
+			We will denote quantum systems by uppercase roman letters like $A,B,R$ and the corresponding 
+			Hilbert spaces as $\cH^A, \cH^B, \cH^R$ with respective dimensions $d_A,d_B,d_R$.
+		    We denote pure states of the system $A$ by \emph{ket}s: $\ket{\ph}^A$
+		    and \emph{density matrices} as $\ph^A$.		% = \proj{\ph}^A$.
+			Because of the probabilistic interpretation of quantum mechanics, all kets have unit norm and all
+			density matrices are positive and with unit trace.
+		    We will refer to both kets and density matrices as \emph{states}.
+		    
+			We use the partial trace operator to model partial knowledge of a state.
+			Given a bipartite state $\rho^{AB}$ shared between Alice and Bob, we say that Alice holds in her lab
+			the reduced density matrix: $\rho^A = \Tr_B\rho^{AB}$, where $\Tr_B$ denotes a partial trace over 
+			Bob's degrees of freedom.
+			In general the state produced in this manner will be \emph{mixed} -- a classical probability distribution
+			over states.
+			
+			Conversely, any mixed state $\sigma^A \in$\footnote{Strictly speaking, we should say 
+			$\sigma^A \in D(\cH^A)$ where $D(\cH^A)$ is the set of density matrices over $\cH^A$. 
+			We will use this economy of notation consistently.}$\cH^A$
+			 can be \emph{purified} to a fictitious 
+			larger Hilbert space. 
+			That is, we imagine a corresponding pure state $\ket{\sigma}^{AR} \in \cH^A \otimes \cH^R$
+			such that taking the partial trace over the $R$ system gives the original state: 
+			$\Tr_R\left(\proj{\sigma}^{AR}\right)=\sigma^A$. 
+			The purification procedure is often referred to as escaping to the \emph{Church of the larger
+			Hilbert space} in literature.
+
+		
+		\bigskip			
+		\subsection{von Neumann entropy}
+		
+			Analogously to classical information theory, we quantify the information content of quantum systems 
+			by using an entropy function.
+			
+										\index{entropy!von-neumann-entropy@$H(A)_\rho$: von Neumann entropy}
+			\begin{definition}[von Neumann Entropy] 
+				Given the density matrix $\rho^A \in \cH^A$, the expression
+				\be
+					H(A)_\rho=-\Tr\left(\rho^A\log\rho^A\right)
+				\ee
+				is known as the \emph{von Neumann entropy} of the state $\rho^A$. 
+			\end{definition}
+			
+			Certain texts use the alternate notation $S(A)_\rho$ for the von Neumann entropy to distinguish it 
+			from the classical Shanon entropy, but we choose not to make this distinction here.
+			This overloading of notation is warranted since the von Neumann entropy is in fact the 
+			Shannon entropy of the eigenvalues of the state. 
+			Given the spectral decomposition of the state $\rho^A = \sum_i \lambda_i \proj{e_i}$, we 
+			can calculate $H(A)_\rho=-\Tr\left(\rho^A\log\rho^A\right) = - \sum_i \lambda_i \log \lambda_i$.
+			The von Neumann entropy of a pure state is zero, since it has only a single eigenvalue.
+			
+			For bipartite states $\rho^{AB}$ we can also define the quantum conditional entropy
+			\be
+				H(A|B)_\rho 	:= 		H(AB)_\rho - H(B)_\rho					\label{cond-entrpy} 
+			\ee
+			where $H(B)_\rho = -\Tr\left(\rho^B\log\rho^B\right)$ is the entropy of the reduced density matrix
+			$\rho^B = \Tr_A\!\left( \rho^{AB}\right)$. In the same fashion we can also define the 
+			quantum mutual information information
+			\be
+				I(A;B)_\rho 	:=		H(A)_\rho + H(B)_\rho - H(AB)_\rho 
+			\ee
+			and in the case of a tripartite system $\rho^{ABC}$ we define the conditional mutual information 
+			as 
+			\bea
+				I(A;B|C)_\rho 	&:=&	H(A|C)_\rho + H(B|C)_\rho - H(AB|C)_\rho \label{cond-mut-info} \\
+								&=&		H(AC)_\rho + H(BC)_\rho - H(ABC)_\rho - H(C)_\rho.
+			\eea
+			
+			\noindent It can be shown that $I(A;B|C)$ is strictly non negative for any state $\rho^{ABC}$.
+			The formula $I(A;B|C)\geq 0$ can also be written in the form
+			\be	\label{strong-subadditivity}
+				H(AC) + H(BC) 	\geq	H(C) + H(ABC).
+			\ee
+			This inequality, originally proved in \cite{LR73}, is called the \emph{strong subadditivity} of von Neumann 
+			entropy and forms an important building block of quantum information theory.
+			\index{strong subadditivity}
+			
+			
+			
+			
+			On the surface, it may appear to the reader that quantum information theory has nothing new to offer except 
+			a rewriting of the classical formulas in a new context.
+			This observation is highly misleading.
+			We present the following example to illustrate some of the new aspects of quantum information theory.
+			
+			\begin{example}	\label{example:EPR-pair}
+				Consider the $\Phi^{+}$\! Bell state 
+				\be
+					\ket{\Phi}^{AB} = \tfrac{1}{\sqrt{2}}(\ket{00}^{AB}+\ket{11}^{AB}).
+				\ee
+				%This state is also referred to as \emph{EPR state}. \comment{cite EPR paper?}
+				This state exhibits a form of quantum correlation called \emph{entanglement} that is fundamentally
+				different from classical correlation.
+				The associated density matrix is $\Phi^{AB} = \proj{\Phi}^{AB}$, which has
+				the reduced density matrices $\Phi^A = \Phi^B = \tfrac{1}{2}(\proj{0} + \proj{1})$.
+				% --  maximally mixed states.
+				
+				Next we calculate the entropy of the two subsystems $A$, $B$ and the system as a whole 
+				\be
+					H(A)_\Phi = 1, 	\qquad
+					H(B)_\Phi = 1, 	\qquad
+					H(AB)_\Phi = 0,
+				\ee
+				since $\Phi^A,\Phi^B$ are maximally mixed and $\ket{\Phi}^{AB}$ is pure.
+				Using these results, it is now simple to calculate the conditional entropy
+				\be	\label{cond-ent-can-be-neg}
+					H(A|B)	=	H(AB) - H(B)	= -1 \textup{ [bits]},
+				\ee
+				and the mutual information
+				\be	\label{mutual-inf-can-be-2}
+					I(A;B)	=	H(A)+H(B) - H(AB)	= 2 \textup{ [bits]}.
+				\ee
+			\end{example}
+			
+			Equation \eqref{cond-ent-can-be-neg} illustrates one of the key differences between classical information
+			theory and quantum information theory: the fact that conditional entropy can be negative.
+			How can we interpret negative values as uncertainties? Also, it is not immediately clear what we mean by
+			conditioning on a quantum system in the first place. These issues will be discussed in some detail in 
+			Section~\ref{section:state-merging} where we will give the conditional entropy an operational interpretation.
+			
+			In classical information theory, the mutual information between two binary sources attains its maximal value
+			of $1$ when the two sources are perfectly correlated. As we can see from equation 
+			\eqref{mutual-inf-can-be-2}, in the quantum world two qubits can be, in some sense,
+			\emph{more than perfectly correlated} and have mutual information as much as $2$ bits!
+			
+			
+
+
+
+		
+		% AUGUST 9th 
+		% methinks we don't need this section AT ALL !
+		% instrument is used only is this stupid technical proof... no need to introduce here 
+		% CPTP can be mentionned as a dinamical resource
+		\subsection{Quantum operations}	
+
+			Quantum operations are mappings that take quantum states as inputs and produce quantum
+			states as outputs. We usually denote them by calligraphic letters like $\E$ and $\cD$.
+			% and write
+			%\be
+			%	\rho \stackrel{\E}{\longrightarrow} \rho' \qquad {\rm or}	\qquad \E(\rho) = \rho'
+			%\ee
+			Unitary transformations are a type of quantum operation
+			\be
+				\E(\rho) = U \rho U^{\dag}
+			\ee
+			where $U$ is a unitary matrix.
+			In real life, however, no system is perfectly isolated from its environment $\rho_{\text{env}}$ 
+			and when we account for it we obtain the more general form of operation 
+			\be
+				\E(\rho) = \Tr_{\text{env}} U \left( \rho \otimes \rho_{\text{env}} \right) U^{\dag}
+			\ee
+			where the unitary operation now acts on the enlarged Hilbert space, but we trace out over the
+			environment degrees of freedom in the end. It turns out the environment system $\rho_{\text{env}}$
+			can be chosen as a fixed pure state, say $\rho_{\text{env}} = \proj{0}$, of a fixed dimension \cite{NC04}.
+
+			More generally, the laws of physics require all quantum operations to be:
+			trace preserving (TP), hermitian preserving and completely positive (CP).
+			Thus, another name for quantum operations is CPTP maps.
+			\index{CPTP@CPTP: completely positive trace preserving}
+									
+			%There is a theorem that says that every Quantum Operation can be
+			%modeled as a Unitary operation on some larger space (built by
+			%tensoring the $d$-dimensional input $\rho$ with some
+			%$d^2$-dimensional environment $\rho_{\rm env}$) the output state
+			%$\rho'$ is recovered by performing a partial trace. The unitary formalism can be summarized like
+			%so:
+			%\[ % Unitary Representation
+			%\Qcircuit @C=1em @R=.7em {
+			%     \lstick{\rho\ \ \ }        & \multigate{2}{U(d^3)}     & \qw & \rstick{\rho'} \qw\\
+			%     \lstick{\begin{array}{l}\ \\\rho_{\text{env} \ \ \Big\{}\end{array}} & \ghost{U(d^3)}    
+			%     & \qw & \multimeasure{1}{d^2\ \text{Tr}}\\
+			%     & \ghost{U(d^3)}        & \qw & \ghost{d^2\ \text{Tr}}
+			%}
+			%\]
+
+				
+			Measurements are the second fundamental class of quantum operations. 
+			They are our only means to relate the quantum world to classical variables we can observe.
+			A measurement operation $\E\!\!:\!\!\cH^A \to (\cH^A,\NN)$ acts on density matrices to produce a classical
+			output as well as a possibly modified quantum state.
+			It is modeled by a is a set of projection operators $\{M_i\}$, which are normalized 
+			$\sum_i M_i^\dag M_i = I$.
+			The probability of outcome $m$ occurring when the input system is $\rho$ is given by
+			\be
+				p(m)	=	\Tr\!\left( M_m^\dag \rho M_m \right).
+			\ee
+			The output quantum state associated with this outcome is
+			\be
+				 \rhot_m	=  \frac{M_m^\dag \rho M_m}{	\Tr\!\left( M_m^\dag \rho M_m \right)	}.
+			\ee
+
+			Quantum instruments are the most general operations allowed by the laws of quantum mechanics \cite{DL70}.
+			They can be thought of as hybrids between measurements and quantum operations.
+			An quantum instrument $\E_k$ is a collection of completely positive (CP) maps such that $\sum_k\!\E_k$ is 
+			trace preserving. When applied to any quantum state $\rho$, the different elements are applied
+			with probability $p_k = \Tr\ \E_k(\rho)$ resulting in a different normalized outcomes 
+			$\rhot_k=\frac{1}{p_k}\E_k(\rho)$.
+	
+			
+
+
+		\bigskip
+		\subsection{Quantum resources}	\label{subsection:quantum-resources}
+		
+					    %paradigm?
+			The current trend in quantum information theory is to look at communication tasks as inter-conversions
+			between clearly defined information resources. 
+			% wow this girl on the table is hot. Who is the guy? They don't seem too close. what eyes... what looks...
+			% should-I feel guilty if i want to sleep with her? --> naaah, Dobrinka and I are only friends
+			%   -->  'tis my genetic duty to have sex with as many pretty Bulgarian women as possible!
+			To render the resource picture generic, we always imagine a scenario in which two localized parties,
+			usually called Alice and Bob, want to perform a certain communication task.
+			Local computation will be regarded as free of cost in order to focus on the communication aspects 
+			of the task. 
+			
+			An example of a classical communication resource is the \emph{noiseless channel} from 
+			Alice to Bob, denoted $[c\to c]$. 
+			The symbol $[c \to c]$ represents the ability to send one bit of information from Alice to Bob.
+			A related classical resources is the \emph{noisy channel}, denoted $\{c\to c\}$ which is usually 
+			modeled as a mapping $\cN^{X \to Y}$, described by a conditional probability $p(Y=y|X=x)$ where
+			$X$ is the input variable sent by Alice and $Y$ the random variable received by Bob.
+			The noiseless channel $[c\to c]$ is, therefore, a special case of the general channel $\{c\to c\}$ 
+			with the identity mapping $\cN = \id^{X \to Y}$ from $X$ to $Y$.
+			Another classical resource denoted $[cc]$ represents a random bit shared between Alice and Bob.
+			
+			Quantum information theory introduces a new set of resources. 
+			In analogy to the classical case, we have the \emph{noiseless quantum channel} $[q \to q]$ which 
+			represents the ability to transfers one \emph{qubit}, a generic two dimensional quantum system, 
+			from Alice to Bob. \index{qubit}
+			A \emph{noisy quantum channel}, $\{q \to q\}$, is modeled by a mapping $\cN^{A \to B}$ 
+			which takes density matrices in $\cH^A$ to density matrices in $\cH^B$.
+			The mapping $\cN$ is a \emph{quantum operation}: a completely positive trace preserving (CPTP) 
+			operator \cite{NC04}.
+			\index{CPTP@CPTP: completely positive trace preserving}
+			
+			One key new resource of quantum information theory is the maximally entangled state shared between 
+			Alice and Bob 
+			\be
+				\ket{\Phi}^{AB} = \tfrac{1}{\sqrt{2}}(\ket{00}^{AB}+\ket{11}^{AB}),
+			\ee
+			which we denote $[qq]$.  
+			Note that, since local operations are allowed for free in our formalism, any state 
+			$\ket{\Phi'}^{AB} = U^A\! \otimes\!U^B \ket{\Phi}^{AB}$ where $U^A,U^B$ are local unitary operations
+			is equivalent to $\ket{\Phi}^{AB}$.
+			Entanglement is a fundamental quantum resource because it cannot be generated by local operations and
+			classical communication (LOCC). 
+			\index{LOCC@LOCC: local operations and classical communication}
+			The precise characterization of entanglement has been a great focal point of research in the last decade.
+			For an in depth review of the subject we refer the readers to the excellent papers \cite{VP98, HHHH}.
+			%multiparty plug ?			
+			
+			Entanglement forms a crucial building block for quantum information theory because it can be used 
+			to perform or assist with many communication tasks.
+			In particular, two of the first quantum protocols that ever appeared involve \emph{ebits}, 
+			or entangled bits.  \index{ebit}
+			The \emph{quantum teleportation} protocol \cite{teleportation} uses entanglement and two bits of classical
+			communication to send a quantum state from Alice to Bob
+			\be	\tag{TP}	\label{teleport}
+				[qq] + 2[c \to c]	\ \ \geq \ \ 	[q \to q],
+			\ee
+			while the \emph{superdense coding} protocol \cite{superdense} uses entanglement to send two classical
+			bits of information with only a single use of a quantum channel
+			\be	\tag{SC}	\label{superdense}
+				[qq] + [q \to q]	\ \ \geq \ \ 	2[c \to c].
+			\ee
+			The above \emph{resource inequalities} indicate that the resources on the left hand side can be 
+			used to simulate the resource on the right hand side.
+			\index{resource!inequality}
+
+			The two protocols \eqref{teleport} and \eqref{superdense} are only the tip of the iceberg: 
+			there are many more protocols and fundamental results in quantum information theory that can be 
+			written as resource inequalities.
+			In Section~\ref{section:family-of-protocols} we will introduce some of them and the relationships 
+			that exist between them.
+			
+			%\begin{table}[ht]
+			%	\begin{center}
+			%	\begin{tabular}{|r|l|}
+			%		\hline
+			%		Symbol				&	Meaning	\\
+			%		\hline
+			%		\hline
+			%		$[c\to c]$			&	noiseless bit channel.	\\
+			%		$\{c\to c\}$		&	noisy classical channel, described by a pdf $p(y|x)$ \\
+			%		$[cc]$				&	shared randomness  (1 rbit)	\\
+			%		$[qq]$				&	shared entanglement (1 ebit) \\
+			%		$[q \to q]$			&	noiseless quantum channel	\\
+			%		$\{q \to q\}$		&	noisy quantum channel given by a CPTP map $\cN$ \\
+			%		\hline
+			%	\end{tabular}
+			%	\end{center}
+			%\vspace{0.10cm}
+			%\TableCaptionOpt{Some resources of information theory.}{Some resources of information theory.}
+			%%\caption{Table of resources of information theory}
+			%\label{table:resources}
+			%\end{table}
+			
+			
+						
+			
+
+		\bigskip		
+		\subsection{Distance measures}		\label{subsection:distance-measures}
+
+
+			In order to describe the ``distance'' between two quantum states we use the notions of 
+			\emph{trace distance} and \emph{fidelity}.
+			\index{trace distance}
+		    The trace distance between quantum states $\sigma$ and $\rho$ is
+			\be
+				TD(\rho, \sigma) 	:= \|\rho-\sigma\|_1 = \mathrm{Tr}|\rho-\sigma|
+			\ee
+			where  $|X| = \sqrt{X^{\dagger}X}$.
+			
+			\index{fidelity}
+			The fidelity between two pure states is simply the square of their inner product
+			\be
+				F(\ket{\varphi}, \ket{\psi}) = \left\vert \braket{\varphi}{\psi} \right\vert^2.
+			\ee
+			
+			The most natural generalization of this notion to mixed states $\rho$, $\sigma$ is
+			the formula
+	    	\be
+	    		F(\rho, \sigma) = \mathrm{Tr}\left(\sqrt{\sqrt{\rho}\sigma\sqrt{\rho}}\right)^2.
+	    	\ee
+		    Two states that are very similar have fidelity close to 1 whereas states with little similarity 
+		    will have low fidelity.
+		    
+		    Note that some texts, (ex: \cite{NC04}) define the trace distance with an extra normalization factor
+			of $\tfrac{1}{2}$ and write the fidelity without the square. These differences of convention 
+			do not affect any of our findings but are important to point out to avoid confusion.
+		
+			%	We purify the density matrices $\rho$, $\sigma$ to $\ket{\Phi_\rho}$ and $\ket{\Phi_\sigma}$
+			%	respectively. Then we can define:
+			%	\be
+			%		F(\rho,\sigma) = \mathop{ \textrm{max}}_{\stackrel{\textrm{purifications} }
+			%													{ \ket{\Phi_\rho}, \ket{\Phi_\sigma}} } 
+			%						\{  \quad  | \braket{\Phi_\rho}{\Phi_\sigma} |^2  \quad \}
+			%	\ee 
+			
+			The trace distance and fidelity measures are related, that is if two states $\rho$ and $\sigma$
+			are close in one measure they are also close in the other \cite{Fuchs}. 
+			More precisely, the quantities $TD$ and $F$ satisfy the following inequalities
+			\begin{align}
+				1-\sqrt{F} \ \	&\leq \ \tfrac{1}{2}TD 	\ \leq \ \ \sqrt{1-F},	\\
+				1 - TD	   \ \ 	&\leq \ \ \ F 	\ \  	\ \leq \ \ 1 - \tfrac{TD^2}{4}.
+			\end{align}
+			Thus, if for certain states $F \geq 1-\epsilon$, then $TD \leq 2\sqrt{\epsilon}$. 
+			Also, if $TD \leq \epsilon$, then $F \geq 1 - \epsilon$.
+			
+						
+			
+			
+			
+		\bigskip				
+		\subsection{Ensemble and entanglement fidelity}	\label{subsection:ent-fid}
+		
+			\index{i.i.d.@i.i.d.: identical, independently distributed}
+			The concept of an identical, independently distributed (i.i.d.) source also exists in quantum information
+			theory. However, there are a number of ways we can adapt the concept to the quantum setting so some
+			clarifications are in order.
+			
+			An ensemble $\E=\{p_i, \ket{\psi_i} \}$ is a set of quantum states $\ket{\psi_i}$ which occur with 
+			probability $p_i$. 
+			One way to describe a quantum source is to specify the states $\ket{\psi_i}$ and the
+			corresponding probabilities $p_i$ associated with this source. 
+			Using this ensemble characterization we can specify what it means to successfully 
+			perform a communication protocol with that source.
+			Let $\cN^{A \to \widehat{A}}$ with input $\ket{\psi}^A \in \cH^A$ and output 
+			$\sigma^{\widehat{A}} \in \cH^{\widehat{A}}$ be the quantum operation associated with the protocol:
+			\be
+				\cN(\proj{\psi}) = \sigma^{\widehat{A}}.
+			\ee
+			To measure how faithfully the input state has been reproduced at the output we calculate the 
+			input-output fidelity $F(\ket{\psi}^A, \sigma^{\widehat{A}})$. 
+			In order to measure how faithfully the source as a whole is reproduced at the output, 
+			we have to average over the input-output fidelities of the ensemble
+			\be
+				\bar{F}\!\left(\E, \cN\right) :=	\sum_i	p_i F(\ket{\psi_i}, \sigma_i), 
+				\qquad \sigma_i = \cN(\proj{\psi_i}).
+			\ee
+			If we want the source to be preserved perfectly then we require $\bar{F}(\E, \cN)=~1$.
+			%which implies that each input is perfectly transmitted $\sigma_i = \proj{\psi_i}$.
+			In general, however, we will be content with approximate transmission where
+			\be \label{eqn:MixedFidDef}
+				\bar{F}\!\left(\E, \cN\right) \geq 1 - \epsilon
+			\ee
+			for arbitrary small $\epsilon$.
+			It turns out that this way of describing the source may not be practical or desirable since 
+			it requires a detailed knowledge of the inner workings of the source --- something that is 
+			often impossible to obtain even in theory.
+			
+			The better way to describe a quantum source is specify only the average density operator 
+			$\rho = \sum_i p_i \proj{\psi_i}$ for that source. 
+			This characterization could be obtained through \emph{state tomography} \cite{NC04} and 
+			does not presuppose any knowledge of the ensemble which generates $\rho$.
+			This description is more general because the results we obtain for the density matrix $\rho$ will hold
+			for \emph{all} ensembles $\{p_i, \ket{\psi_i} \}$ such that $\rho = \sum_i p_i \proj{\psi_i}$.
+			%	The quantum i.i.d. setting involves many copies of the density matrix which we characterize by
+			%	the tensor product $\rho^{\otimes n}=\rho\otimes\cdots\otimes\rho$.
+			
+			This also leads us to an alternative and simpler way of judging the success of a quantum protocol 
+			that relies on the idea of the \emph{Church of the larger Hilbert space}.
+			Let $\ket{\psi}^{AR}$ be a purification of $\rho^A$ to some reference system $R$. 
+			This reference system is entirely fiducial and does not participate in the protocol.
+			In the larger Hilbert space $\cH^A\otimes\cH^R$ the $\cN^{A \to \widehat{A}}$ operation acts as
+			\be
+				\cN^{A\to \widehat{A}}\!\!\otimes\!\id^R \!\left(\proj{\psi}^{AR} \right) = \sigma^{\widehat{A}R}.
+			\ee
+			
+			\noindent The operation is shown as a quantum circuit in Figure~\ref{fig:ent_fid}.
+%		    \begin{figure}[ht]   \begin{center}
+%		        \input{figures/figureEntFid.pst}             \end{center}
+%		        \FigureCaptionOpt{Quantum circuit illustrating the concept of entanglement fidelity.}{
+%			        			  A quantum circuit which shows $\cN$ acting on the $A$ system while
+%			        			  the reference, $R$, is left unperturbed.}
+%				%    \caption{ \footnotesize
+%				%        Diagram representing the $ABR$ correlations before and after the FQSW protocol.
+%				%        Alice manages to decouple completely from the reference $R$.
+%				%        The $\widehat{B}$ system is isomorphic to $AB$. }
+%		        \label{fig:ent_fid}
+%		    \end{figure}						
+			
+			For approximate transmission, we now require the fidelity between the pure input state $\ket{\psi}^{AR}$ 
+			and the possibly mixed output state $\sigma^{\widehat{A}R}$ to be high
+			\be	\label{eqn:EntFidDef}
+				F(\ket{\psi}^{AR}, \sigma^{\widehat{A}R}) 
+					= 		\bra{\psi^{AR}} \sigma^{\widehat{A}R} \ket{\psi^{AR}}
+					\geq 	1 - \epsilon.
+			\ee
+			Equation \eqref{eqn:EntFidDef} measures the \emph{entanglement fidelity} of the operation: 
+			%how well we can transfer part of a quantum state while preserving the purity of the global state.
+			how well the protocol manages to transfers the $R$-entanglement from the $A$ system to the $\widehat{A}$
+			system. \index{entanglement!fidelity}
+			It can be shown \cite{EntFid} that if the channel $\cN$ has high entanglement fidelity then the 
+			average fidelity  $\bar{F}(\E, \cN)$ will also be high for any ensemble $\E$ such that 
+			$\rho^A=\sum_i p_i \proj{\psi_i}$.
+			In other words, equation \eqref{eqn:EntFidDef} implies equation \eqref{eqn:MixedFidDef}.
+			The entanglement fidelity paradigm has the advantage that the input state to the protocol is
+			pure, which makes our analysis much simpler.
+			Also, in this paradigm we are certain that any correlations the $A$ system might have with other systems 
+			are preserved because of monogamy of entanglement.
+					
+			In the i.i.d. setting, we operate simultneously on $n$ copies of the same input state $\rho^A$. 
+			We denote the tensor product of all the input states by $\rho^{A^n} = \rho^A \otimes \cdots \otimes \rho^A$
+			($n$-copies). The quantum operation becomes $\cN^{A^n \to \widehat{A}^n}$ and the output state will be
+			$\sigma^{\widehat{A}^n}$. 
+			The entanglement fidelity 
+			\be	\label{eqn:EntFidDefIID}
+				F(\ket{\psi}^{A^nR^n}, \sigma^{\widehat{A}^nR^n}) 
+					= 		\bra{\psi^{A^nR^n}} \sigma^{\widehat{A}^nR^n} \ket{\psi^{A^nR^n}} 
+					\geq 	1 - \epsilon(n),
+			\ee	
+			is now a function of $n$, the \emph{block size} of the protocol. 
+			Thus, in the i.i.d. setting we say the protocol implemented by $\cN$ succeeds when $\epsilon(n) \to 0$ as 
+			$n \to \infty$. 
+			More formally, for any required precision $\epsilon_0$, there exists an $N(\epsilon)$ such that for all 
+			$n \geq N(\epsilon)$,  there exist $n$-dependent maps $\cN$ such that $\epsilon(n) < \epsilon_0$ in 
+			equation~\eqref{eqn:EntFidDefIID}.
+			
+			
+			
+			
+			
+
+
+\section{Compression}
+\subsection{On Shannon} If $X,X_1,X_2,\ldots X_n$ are iid ~ $p(x)$ for $x\in \mathcal{X}$ then compression to rate $R>H(p)$ is possible:
+\begin{eqnarray}
+\exists E_n:\x^n 		& \rightarrow & 		\m \qquad |\m| = 2^{nR} \\
+D_n:\m 			& \rightarrow &			\x^n \\
+\end{eqnarray}
+and $Pr\{X^n \neq Y^n\} \stackrel{n \to \infty}{\longrightarrow} 0$ where $Y^n = \left(D_n\circ E_n\right)X^n$.
+
+It is difficult to use the above error criterion in Quantum Mechanics therefore we will change it:
+\be
+Pr\{X^n \neq Y^n\} = Pr\{(X^n,X^n) \neq (X^n,Y^n) \} 
+\ee
+basically we are taking a copy of the variable.
+
+\comment{FIGURE 101: $X^n$ splits into two channels-- top left alone and bottom gets hit by E and D.}
+
+
+
+\subsection{Quantum Version of Error Criterion}
+Let $\rho^A$ be a density operator, $\ket{\psi_\rho}^{AR}$ a purification of $\rho$, $\eta$ a quantum channel. R stands for reference.
+
+\comment{FIGURE 102: State $\ket{\psi_\rho}$ splits into R (unchanged) and A. A gets hit by $\eta$.}
+
+Define the entanglement fidelity
+\be
+	F(\rho,\eta) = \braOket{\psi_\rho}{I_r\otimes\eta \psi_\rho}{\psi_\rho}
+\ee
+Note that $F(\rho,\eta)=1$ iff $I_r\otimes\eta \psi_\rho = \psi_\rho$.
+
+\begin{Ex}
+	Consider the density matrix associated with $(X,X)$ when $Pr\{X=1\}=Pr\{X=0\}=\frac{1}{2}$.
+	\be
+		\rho_x = \frac{1}{2} \left( \begin{array}{cc} 1&0\\0&1 \end{array} \right) = \frac{1}{2}\ket{0}\bra{0} 
+			   + \frac{1}{2}\ket{1}\bra{1} 
+	\ee 
+	\be
+		\rho_{xx} = \frac{1}{2}\ket{00}\bra{00} + \frac{1}{2}\ket{11}\bra{11} \neq \rho_x \otimes \rho_x
+	\ee
+\end{Ex}
+
+%
+%We say that a source iid  $\rho^{\otimes n}$ on $A^n$ can be compressed at rate $R$ if $\exists$ quantum channels
+%\begin{eqnarray}
+%E_n:A^n 	& \rightarrow & 		C \qquad dim(C) = 2^{nR} \\
+%D_n:C 	& \rightarrow &		A^n \\
+%\end{eqnarray}
+%and $Pr\{X^n \neq Y^n\} \stackrel{n \to \infty}{\longrightarrow} 1$.
+
+
+%\subsection{Typical Subspaces}
+%Suppose $\rho = \sum_j r_j \ket{j}\bra{j}$ (spectral decomposition), define the typical projector
+%\begin{eqnarray}
+%P_\epsilon^{(n)} 	&=&	\sum_{j^n \in T_\epsilon^{(n)}} \ket{j_1}\bra{j_1}^{A_1}\otimes \ket{j_2}\bra{j_2}^{A_2}\otimes \ldots \ket{j_n}\bra{j_n}^{A_n}  \\
+%									&=&	\sum_{j^n \in T_{\epsilon}^{(n)}} \ket{j^n}\bra{j^n}^{A^n} \qquad \textrm{$T_{\epsilon}^{(n)}$ is the typical sequences w.r.t $r$}
+%\end{eqnarray}
+%All the results that we proved for entropy-typical sequences are also true for frequency-typical sequences.
+
+%The \emph{Typical Subspace} is the support of $P^{(n)}_\epsilon$ or equivalently, 
+%\mbox{$\textup{SPAN} \{ \ket{j^n}, j^n \in T^{(n)}_\epsilon  \}$}.
+
+	\be 
+		\Tr\left[ \rho^{\otimes n} P^{(n)}_\epsilon \right] > 1 - \delta \qquad \forall \delta, \epsilon > 0, 
+		\textrm{and } n \textrm{ sufficiently large.}  			
+		\label{here_one}
+	\ee
+	\be
+		\textup{rank} P^{(n)}_\epsilon = | T^{(n)}_\epsilon |
+		\label{here_two}
+	\ee
+	\be
+		\forall \epsilon >0, \quad |T^{(n)}_\epsilon| \leq 2^{n[H(\rho)+\epsilon]} 
+		\label{here_three}
+	\ee
+	\be
+		\forall \epsilon, \delta >0, \quad |T^{(n)}_\epsilon| \geq (1-\delta)2^{n[H(\rho)-\epsilon]} 
+		\label{here_four}
+	\ee
+
+\begin{proof}
+The proof of (\ref{here_two}) is easy.\\
+For (\ref{here_three}) we note $H(\rho) = H(r)$ and use the Typical Sequence Theorem \ref{} \comment{From Punit's part}.
+The only thing one that is more interesting is (\ref{here_one}) for which we note:
+\bea
+\Tr\left[ \rho^{\otimes n} P^{(n)}_\epsilon \right] 	&=&	\sum_{j^n} \bra{j^n} \left(
+										\sum_{k^n} r_{k^n}\ket{k^n}\bra{k^n}  \right)
+										\sum_{l^n \in T^{(n)}_\epsilon} \ket{l^n}\bra{l^n}
+												\ket{j^n}
+\eea
+
+
+\end{proof}
 %\bibliographystyle{unsrt}
 \bibliographystyle{alpha}
 \bibliography{interferenceChannel}
