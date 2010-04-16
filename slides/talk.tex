@@ -133,7 +133,23 @@
 \def\E{\mathcal{E}}
 \def\cD{\mathcal{D}}
 \def\cH{\mathcal{H}}
+\def\cX{\mathcal{X}}
+\def\cY{\mathcal{Y}}
 \def\NN{\mathbb{N}}
+
+
+% CAPACITY FORMULAS
+\newcommand{\ICcap}{  \ensuremath{\mathcal C}_{IC} }
+\newcommand{\MACcap}{  \ensuremath{\mathcal C}_{MAC} }
+\newcommand{\MMACcap}{  \ensuremath{\mathcal C}_{MMAC} }
+\newcommand{\Qcap}{  \ensuremath{\mathcal Q} }
+\newcommand{\Ccap}{  \ensuremath{\mathcal C} }
+\newcommand{\CcapEA}{  \ensuremath{\mathcal C}_{EA} }
+\newcommand{\QcapEA}{  \ensuremath{\mathcal Q}_{EA} }
+
+
+
+
 
 
 \title[IC \& quantum]{ Quantum interference channels }
@@ -159,16 +175,127 @@ ECSE 612 Multiuser communications }
 
 
 
+\frame{
+	\frametitle{Overview}
+	\begin{enumerate}
+		\item Definitions
+		\item	Best bounds on the classical Interference Channel
+		\item	Intro to Quantum Information Theory
+		\item	Quantum MAC
+		\item	Quantum Interference Channel
+	\end{enumerate}
+
+}
+
 
 \frame{
-	\frametitle{quantum mechanics}
+	\frametitle{Definitions}
+	
+        \begin{definition}[Interference network]
+            A two party interference network $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$ 
+            is general model for communication networks with two inputs, two outputs and a probability transistion
+            matrix $p(y_1,y_2|x_1,x_2)$.
+        \end{definition}
+        
+
+        \begin{definition}[Interference channel]
+            A two party interference channel is a particular use of an interference network 
+            $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$ 
+            where messages $M_1,M_2$ are independently encoded into a codewords $X_1,X_2$ 
+            at rates $(R_1,R_2)$ with $Y_1,Y_2$ being the intended receiver.
+        \end{definition}
+}
+
+
+
+\frame{
+	\frametitle{Best inner bound}
+	
+	{\bf Han Kobayashi / Cheng Motani Garg inner bound}
+        \be	% don't need \operatorname{conv} since we have Q
+        		G_{HK}  = G_{CMG} =  \cup_{p(x_1|u_1)p(x_2|u_2)p(u_1)p(u_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Rcmg} } \}  \nonumber
+        \ee
+	\bea
+		R_1 		&\leq&	I(X_1;Y_1| U_2 Q) \nonumber \\
+		R_2 		&\leq&	I(X_2;Y_2| U_1 Q) \nonumber \\
+	R_1 + R_2	&\leq&	I(X_1U_2; Y_1|Q) + I (X_2; Y_2|U_1U_2Q) \nonumber \\
+	R_1 + R_2	&\leq&	I (X_1; Y_1|U_1U_2Q) + I (X_2U_1; Y_2|Q) \label{Rcmg}\\
+	R_1 + R_2	&\leq&	I (X_1U_2; Y_1|U_1Q) + I(X_2U_1; Y_2|U_2Q) \nonumber  \\
+	2R_1 + R_2	&\leq&	I (X_1U_2; Y_1|Q) + I (X_1; Y_1|U_1U_2Q) + I(X_2U_1;Y_2|U_2Q) \nonumber \\
+	R_1 + 2R_2	&\leq&	I (X_2; Y_2|U_1U_2Q) + I (X_2U_1; Y_2|Q) +  I (X_1U_2; Y_1|U_1Q) \nonumber 
+	\eea
+}
+
+\frame{
+	\frametitle{First outer bound}
+         \be
+        		G_{Naive}  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gnaive} } \} 
+        \ee
+        \bea \label{eqn:naive-bound}
+            R_1     &\leq&    I(X_1;Y_2|X_2) \nonumber \\
+            R_2     &\leq&    I(X_2;Y_2|X_1) \label{Gnaive}
+        \eea
+        
+        %Claim:  $\ICcap \subset G_{Naive}$. \\
+
+}
+
+
+\frame{
+	\frametitle{Sato outer bound}
+        \be
+        		G_{Sato}  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gsato} } \} 
+        \ee
+        \bea \label{eqn:sato-outer-bound}
+            R_1             &\leq&    I(X_1;Y_2|X_2)  \nonumber \\
+            R_2             &\leq&    I(X_2;Y_2|X_1)  \label{Gsato} \\
+            R_1+R_2    &\leq&    I(X_1X_2;Y_1Y_2) \nonumber 
+        \eea
+        
+
+}
+
+
+
+\frame{
+	\frametitle{Best outer bound}
+        Consider the two random variables $Z_1,Z_2$ such that 
+        \bea
+            Y_1 &\textrm{ is a degraded version of }& Z_1  \nonumber \\
+            Y_2 &\textrm{ is a degraded version of }& Z_2  \nonumber \\        
+            Y_2 &\textrm{ is a degraded version of }& (X_1,Z_1)  \nonumber \\        
+            Y_1 &\textrm{ is a degraded version of }& (X_2,Z_2)   \nonumber
+        \eea
+        \be
+        		G_{Carl}  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gcarl} } \} 
+        \ee
+        \bea
+            R_1             &\leq&    I(X_1;Y_1|X_2)  \nonumber \\
+            R_2             &\leq&    I(X_2;Y_2|X_1)   \label{Gcarl}\\
+            R_1+R_2     &\leq&   \min\!\left\{ I(X_1X_2;Z_1), I(X_1X_2;Z_2) \right\}             \nonumber 
+            %R_1+R_2     &\leq&   I(X_1X_2;Z_1) \\
+            %R_1+R_2     &\leq&    I(X_1X_2;Z_2) 
+        \eea
+
+}
+
+
+
+
+
+
+
+
+
+\frame{
+	\frametitle{Quantum mechanics}
 }
 
 
 
 
 \frame{
-	\frametitle{ popular view }
+	\frametitle{Popular view }
 
 	In films and books by self-proclaimed life coaches:
 	\begin{itemize}
@@ -185,13 +312,13 @@ ECSE 612 Multiuser communications }
 
 
 \frame{
-	\frametitle{science view}
+	\frametitle{Science view}
 
 	\begin{itemize}
-	\item quantum mechanics is linear algebra
+	\item quantum mechanics is linear algebra and probability
 	\pause 
 	\item replace bits$^{\tiny 01}$ with $\vec{\text{q}}$ubits
-	\item qubits live in a two dimensional complex vector space : \\
+	\item qubits live in a two dimensional complex vector space $\mcal{H}$: \\
 		\be 
 			\ket{x} = \alpha\ket{0} +\beta\ket{1} \ \ \ \ \ \ \ \   \alpha,\beta \in \c
 		\ee
@@ -199,24 +326,26 @@ ECSE 612 Multiuser communications }
 	\item don't be fooled by the $\ket{.}$ notation... \\
 		$\ket{\psi} \equiv \vec{\psi}$ it is just a neat notational trick for dot products...
 		
-	\item 	describe quantum systems with finite degrees of freedom like electron spin, and light polarization 
+	\item 	Good for systems with finite degrees of freedom like electron spin, and light polarization 
 
+	\item 	Another \emph{representation} exists for continuous systems via wave function
 	\end{itemize}
 }
 
 
 
 \frame{
-	\frametitle{quantum source}
+	\frametitle{Quantum source}
 
 	
 	\begin{itemize}
-		\item 	A quantum source is probabilistic mixture of qubits $\{ p(x), \ket{x} \}$
-		\item		Can be represented as a density matrix
+		\item 	A quantum source mixture of qubits $\{ p(x), \ket{\sigma_x}  \}$, where state
+				$\ket{\sigma_x}$ is produced by the source with probability $p(x)$.
+		\item		We represent it as a density matrix
 				\be
-					\rho = \sum p(x) \ketbra{x}
+					\rho = \sum_x p(x) \ketbra{\sigma_x}
 				\ee
-		\item		This way $H(\rho)$ models both  classical uncertainty $p(x)$
+		\item		Models both  classical uncertainty $p(x)$
 				(which quantum state did the source produce?) \\
 		\item		and quantum uncertainty (given that the sate produced 
 				was $\ket{x}$ the probability of finding $\ket{0}$ if measure is  $|\alpha|^2$)
@@ -224,60 +353,92 @@ ECSE 612 Multiuser communications }
 }
 
 
+
 \frame{
-	\frametitle{quantum channel}
+	\frametitle{Examples}
+
+	\begin{itemize}
+		\item 	Pure quantum state $\ket{x} = \alpha\ket{0} +\beta\ket{1}$ has a density matrix
+				\be
+					\rho_x = \ket{x}\bra{x} = \left[ \begin{array}{cc} |\alpha|^2 & \beta^*\alpha \\  \alpha^*\beta &|\beta|^2 \end{array} \right].
+				\ee
+		\item		Specific example $\ket{+} = \frac{1}{\sqrt{2}}\ket{0} + \frac{1}{\sqrt{2}}\ket{1}$ becomes
+				$\rho_{+} = \left[ \begin{array}{cc} \frac{1}{2} & \frac{1}{2} \\  \frac{1}{2} & \frac{1}{2} \end{array} \right].$
+				
+		\item		A mixed state $\rho =  \{ p(x), \ket{\sigma_x}  \}$ with $p(0)=\frac{1}{4}, \ket{\sigma_0}=\ket{0}$ and $p(1)=\frac{3}{4}, \ket{\sigma_1}=\ket{1}$
+				gives a density matrix:
+				\be
+					\rho = \frac{1}{4}\ket{0}\bra{0} + \frac{3}{4}\ket{1}\bra{1} = 
+						\frac{1}{4} \left[ \begin{array}{cc} 1 & 0 \\  0 & 0 \end{array} \right] + 
+						\frac{3}{4} \left[ \begin{array}{cc} 0 & 0 \\  0 & 1 \end{array} \right] =
+						\left[ \begin{array}{cc} \frac{1}{4} & 0 \\  0 & \frac{3}{4} \end{array} \right]. \nonumber
+				\ee
+		\item		Density matrices are positive and have unit trace 
+	\end{itemize}
+}
+
+
+\frame{
+	\frametitle{Quantum channel}
 	
 	\begin{itemize}
-		\item  A quantum channel takes states to states: $\mcal{N}\!(\rho) = \rho'$
+		\item  A quantum channel $\mcal{N} \colon \mcal{H}^A \to \mcal{H}^B$ takes states to states
+				\be
+					\mcal{N}\!(\sigma^A) = \rho^B
+				\ee
 %		\item All quantum phenomena are Unitary $	\E(\rho) = U \rho U^{\dag} $
 %			where $U$ is a unitary matrix ($U^\dag U=1$).
 %		\item More generally ... 
 %			\be
 %				\E(\rho) = \Tr_{\text{env}} U \left( \rho \otimes \rho_{\text{env}} \right) U^{\dag}
 %			\ee
-		\item Completely positive trace preserving (CPTP) maps 
+		\item Completely positive, trace preserving (CPTP) map \ \\ \ \\
+%		\item	 Noiseless Quantum Channel: $[q \to q]$
+%		\item	 Noisy channel: $\{ q \to q \}$ usually denoted $\mcal{N}$. 
+
+		\item Analogue of cond. probability of a classical channel $p(y|x)$
+		
 		\end{itemize}
 }
 
 
 
 \frame{
-	\frametitle{quantum channel}
+	\frametitle{Quantum channel}
 	\includegraphics[width=4.8in]{mark_diagrams/quantumCapacity.png}
 	
 }
 
 
 \frame{
-	\frametitle{encoding}
+	\frametitle{Encoding}
 	
 	We can use a quantum channel to send either classical or quantum data.
 
 
-	For classical data, the encoding operation will be $\E \colon \mcal{X} \to \c^2$,
+	For classical data, the encoding operation will be $\E \colon \mcal{X} \to \mcal{H}^A$,
 	\be
-		\E(x) = \ket{\sigma_x},
+		\E(x) = \ket{\sigma_x}^A
 	\ee
 	where $\ket{\sigma}_x$ is some predetermined set of ``signal states'' that will be send over the channel.
 	
 	
-	To encode some quantum data $\rho$ we can do any quantum operation $\E \colon \c^2 \to \c^2$,
+	To encode some quantum data $\rho$ we can do any quantum operation $\E \colon \mcal{H}^S \to \mcal{H}^A$,
 	\be
-		\E(\rho) = \sigma.
+		\E(\rho^S) = \sigma^A.
 	\ee
 
 }
 
 
 \frame{
-	\frametitle{decoding}
+	\frametitle{Decoding classical data}
 	
 %			 Measurements are type of quantum operation:
 %			\be
 %				\mcal{M}\colon \c^2 \to (\c^2,\NN),
 %			\ee
-			If we are sending classical data over the channel we will want to
-			extract the classical message from the received quantum state.
+			We want to extract the classical message from the received quantum state.
 			
 			Measurements  act on density matrices to produce a classical 
 			output as well as a possibly modified quantum state. \\
@@ -294,7 +455,7 @@ ECSE 612 Multiuser communications }
 			\be \nonumber
 			\Pr\{ \text{measure}\   x = 0\}  = \Tr \left(  
 				\left[ \begin{array}{cc} 1&0 \\  0 &0 \end{array} \right]
-				\left[ \begin{array}{cc} |\alpha|^2 &0 \\  0 &|\beta|^2 \end{array} \right]
+				\left[ \begin{array}{cc} |\alpha|^2 & \beta^*\alpha \\  \alpha^*\beta &|\beta|^2 \end{array} \right]
 				\left[ \begin{array}{cc} 1&0 \\  0 &0 \end{array} \right]
 				\right) = |\alpha|^2
 			\ee
@@ -311,7 +472,7 @@ ECSE 612 Multiuser communications }
 
 
 \frame{
-	\frametitle{quantum decoding critetion}
+	\frametitle{Decoding quantum data}
 	
             In the error criterion for classical information theory protocols is of the form 
             $P_e = Pr\{ M_1 \neq \hat{M}_1 \}$.
@@ -330,31 +491,6 @@ ECSE 612 Multiuser communications }
 	
 }
 
-\frame{
-	\frametitle{new quantum resources}
-	\begin{itemize}
-		\item	Quantum Bit (q-bit) 
-		\item	Shared maximally entangled pairs:  [q\,q] (e-bits)\\
-					ex: $\frac{1}{\sqrt{2}}(\ket{00}+\ket{11})$
-		\item e-bits have no analog in classical i
-		\item	Noiseless Quantum Channel: $[q \to q]$
-		\item	Noisy channel: $\{ q \to q \}$ usually denoted $\mcal{N}$. 
-	\end{itemize}
-	}	
-
-
-
-\frame{
-	\frametitle{quantum channels}
-	
-	\begin{itemize}
-		\item	 Noiseless Quantum Channel: $[q \to q]$
-		\item	 Noisy channel: $\{ q \to q \}$ usually denoted $\mcal{N}$. 
-	\end{itemize}
-	}	
-
-
-				
 %%%%%%%%%%%%
 %%%%%%%%%%%% SURVERY OF RESULTS IN QUANTUM INFORMATION 
 %%%%%%%%%%%%		
@@ -466,7 +602,13 @@ ECSE 612 Multiuser communications }
 
 
 \frame{
-	\frametitle{quantum information theory}
+	\frametitle{Quantum information theory}
+}	
+
+
+
+\frame{
+	\frametitle{Quantum information theory}
 	\begin{itemize}
 	\item Came from classical information theory
 	\item Replace Shannon entropy with von Neumann entropy
@@ -478,153 +620,188 @@ ECSE 612 Multiuser communications }
 			\end{Def}
 	\ \\
 	\ \\
-	\item 	\texttt{from classical import mutual\_information, Fano inequality, random\_coding,  channel\_capacity, compression, etc.. }
+	\item 	\texttt{from classical import mutual\_information, Fano\_inequality, random\_coding,  channel\_capacity, compression, etc.. }
 	\end{itemize}
 }	
 
 
 \begin{frame}
-	\frametitle{classical capacity of quantum channel}
-    
-    Holevo, Schumacher and Westmoreland found a formula
-    for the classical capacity of a quantum channel [H98,SW97].
+	\frametitle{Classical capacity of quantum channel}
+
+    Holevo, Schumacher and Westmoreland  found a multiletter formula
+    for the classical capacity  [H98,SW97].
 
 	\begin{Th}
 		The classical capacity of a quantum channel $\mcal{N}$ is
-		given by
+		given by  $\mcal{C}(\mcal{N}) = \frac{1}{n} \cup_{n=1}^\infty C^{(1)}(\mcal{N}^{\otimes n})$ 
+		where 
 		\be
-	       		C(\mcal{N}) = \max_\rho I(A;B) 
+	       		C^{(1)}(\mcal{N}) = \max_\rho I(A;B) 
 	    	\ee
 		where $\rho$ is the output state 
 		    \be
 		        \rho = \sum_x p(x) \ketbra{x}_A \otimes \mcal{N}\!({\sigma_x})_B.
 		    \ee
-		    and $\sigma_x$ are the input symbols.
+		    and $\{ p(x), \sigma_x\}$ is the input distribution.
 	    \end{Th}
-		
-		%\begin{itemize}
-		%	\item .
-		%	\item .
-		%\end{itemize}
-\end{frame}
-
-
-\begin{frame}
-	\frametitle{quantum capacity}
-    Lloyd, Shor and Devetak independently proved a formula for the quantum capacity
-    of a channels.
-    
-    \begin{Th}[LSD Theorem]
-    
-    Consider the input state $\rho^{AA'}$, half of which is sent
-    through the channel $\mcal{N}$ to obtain $w^{AB} = \mcal{N}^{A'\to B}(\rho^{AA'})$.
-    Define the quantity 
-    \be
-        Q^{(1)}(\mcal{N}) = \max_\rho  (S(B)_w - S(AB)_w).
-    \ee
-    The quantum capacity $Q$ of the channel $\mcal{N}$ is given by the regularization 
-    of the $Q^{(1)}$ quantity
-    \be
-        Q(\mcal{N}) = \lim_{n\to \infty} \frac{Q^{(1)}(\mcal{N}^{\otimes n} )}{n}.
-    \ee 
-    [L97, S00, D03]
-    \end{Th}
 
 \end{frame}
 
 
+
+%\begin{frame}
+%	\frametitle{quantum capacity}
+%    Lloyd, Shor and Devetak independently proved a formula for the quantum capacity
+%    of a channels.
+%    
+%    \begin{Th}[LSD Theorem]
+%    
+%    Consider the input state $\rho^{AA'}$, half of which is sent
+%    through the channel $\mcal{N}$ to obtain $w^{AB} = \mcal{N}^{A'\to B}(\rho^{AA'})$.
+%    Define the quantity 
+%    \be
+%        Q^{(1)}(\mcal{N}) = \max_\rho  (S(B)_w - S(AB)_w).
+%    \ee
+%    The quantum capacity $Q$ of the channel $\mcal{N}$ is given by the regularization 
+%    of the $Q^{(1)}$ quantity
+%    \be
+%        Q(\mcal{N}) = \lim_{n\to \infty} \frac{Q^{(1)}(\mcal{N}^{\otimes n} )}{n}.
+%    \ee 
+%    [L97, S00, D03]
+%    \end{Th}
+
+%\end{frame}
+
+
 \begin{frame}
-	\frametitle{limitations of these results}
+	\frametitle{Limitations of these results}
 	Not single letter ... 
          \includegraphics[height=1.6in]{mark_diagrams/notSingleLetter.png}
 \end{frame}
 
 
-%
-%\frame{
-%	\frametitle{my thesis}
-%	Abstract:
-%	\begin{quotation}
-%	We partially solve the multiparty distributed
-%	compression problem where multiple parties use quantum communication
-%	to faithfully transfer their shares of a state to a common receiver.
-%	We build a protocol for multiparty distributed compression based on the fully
-%	quantum Slepian-Wolf protocol and prove both inner and outer bounds on the
-%	achievable rate region. 
-%	\end{quotation}
-%}
 
-%
+\begin{frame}
+	\frametitle{Quantum multiple access channel}
 
-%
-
-
-
-
-
+		\begin{Def} The quantum multiple access channel (QMAC) is a map
+		\be
+			\mcal{M}^{A'B' \to C}
+		\ee
+		where systems $A'$ and $B'$ are the inputs and $C$ is the output.
+		\end{Def}    
+		\ \\
+		Three different capacities
+		\begin{itemize}
+			\item $\mcal{C}$: classical info
+			\item $\mcal{Q}$: quantum info
+			\item $\mcal{C}_E$  or $\mcal{Q}_E$: with additional resource \emph{entanglement}
+		\end{itemize}
+		
+		
+\end{frame}
 
 
+\begin{frame}
+	\frametitle{Classical capacity of QMAC }
 
-%
+		\begin{Th}[Winter 01]
+		The capacity of the quantum MAC $\mcal{M}$ to carry classical information is 
+		$\mcal{C}_{QMAC}(\mcal{M}) = \frac{1}{n} \cup_{n=1}^\infty \mcal{C}^{(1)}_{QMAC}(\mcal{M}^{\otimes n})$ where 
+	        \be
+	        		\mcal{C}^{(1)}_{QMAC}  = \operatorname{conv} \cup_{p(x_1)p(x_2)\sigma_x} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmac1} } \}  \label{region:G_MAC1}
+	        \ee
+	        \bea
+	            R_1         &\leq&      I(A;C|B)_\theta, \nonumber \\
+	            R_2         &\leq&      I(B;C|A)_\theta, \label{Gmac1} \\
+	            R_1 +R_2    &\leq&      I(AB;C)_\theta, \nonumber
+	        \eea 
+	        where mutual informations are calculated with respect to 
+		\be
+			\theta = \sum_x p(x_1)p(x_2) \ketbra{x_1}_A \otimes \ketbra{x_2}_B \otimes \mcal{M}\!({\sigma_{x_1}} \otimes \sigma_{x_2} )_C.
+		\ee
+		\end{Th}    
+		
+\end{frame}
+
 
 %
 %\begin{frame}
-%	\frametitle{resum\'e}
-%	\begin{itemize}
-%        \item Information theory can be generalized to analyze quantum information
-%       % \item Yields a rich theory, surprising conceptual simplicity
-%       \item Another way to think about quantum mechanics: \\
-%                information, correlations, decoupling , compression, transmission
-%        \item Very young field
-%        \item Lots of open problems
-%        \item Needs people from different backgrounds
-%	\end{itemize}
+%	\frametitle{Entanglement assisted capacity of QMAC}
+
+%		\begin{Th}[Hsieh, Devetak, Winter 05]
+%		The capacity of the quantum MAC $\mcal{M}$ to carry classical 
+%		information \emph{when an additional resource of entanglement is available is} 
+%	        \be
+%	        		\mcal{C}_{E}  = \operatorname{conv} \cup_{p(x_1)p(x_2)\sigma_x} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmac1} } \}  \label{region:G_MAC1}
+%	        \ee
+%	        \bea
+%	            R_1         &\leq&      I(A;C|B)_\theta, \nonumber \\
+%	            R_2         &\leq&      I(B;C|A)_\theta, \label{Gmac1} \\
+%	            R_1 +R_2    &\leq&      I(AB;C)_\theta, \nonumber
+%	        \eea 
+%	        where mutual informations are calculated with respect to 
+%		\be
+%			WRONG
+%			\theta = \sum_x p(x_1)p(x_2) \ketbra{x_1}_A \otimes \ketbra{x_2}_B \otimes \mcal{M}\!({\sigma_x})_C.
+%		\ee
+%		\end{Th}    
+%		
 %\end{frame}
 
-%
-%\begin{frame}
-%	\frametitle{What about the future?}
-%	\begin{itemize}
-%	\item We have not used the decoupling theorem to its full potential yet
-%	\item Could be used to show protocols for channels with memory
-%	\item Other types of channels
-%	\item Optimality?
-%	\item Explicit protocols (with high concentration)
-%	\end{itemize}
-%\end{frame}
-
-
-%\begin{frame}
-%	\frametitle{quantum information science}
-%	\begin{itemize}
-%	\item many branches dealing with specific aspects
-%        \item quantum crypto = \texttt{alice bob protocol key information quantum communication bit teleportation channel eve bits ...}
-%        \item non-locality = \texttt{ bell quantum local inequality correlations EPR ... }
-%        \item error correcting codes = \texttt{ qubit quantum gates error code computation operations ...}
-
-%        \item quantum algorithms = \texttt{ quantum algorithm computation computer complexity probability problem number search classical ... }
-%	\end{itemize}
-%\end{frame}
 
 
 
 
 \begin{frame}
-	\frametitle{the end}
+	\frametitle{Quantum interference channel}
+    
+	
+	\begin{Def}
+		The quantum interference channel is a map
+		\be
+			 \mathcal{N}^{A_{1}^{\prime}A_{2}^{\prime}\rightarrow B_{1}B_{2}}
+		\ee	
+	
+	\end{Def}
+	
+	
+    	Open problem. \\
+
+
+	can adapt some of the classical results...
+	
+\end{frame}
+
+
+
+\begin{frame}
+	\frametitle{Entanglement assisted}
+	\begin{center}
+         \includegraphics[height=2.7in]{mark_diagrams/interference-protocol.png}
+	\end{center}
+\end{frame}
+
+
+
+
+
+
+
+
+
+
+\begin{frame}
+	\frametitle{The end}
 	\begin{center}
 		\huge thanks for your attention!
 	\end{center}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{References}
-    \bibliographystyle{alpha}
-    \bibliography{thesis}
-\end{frame}
-
 
 
 \frame{
-	\frametitle{physicist's view}
+	\frametitle{Physicist's view}
 	
         \begin{itemize}
 %        	\item QM is useful
@@ -655,7 +832,7 @@ ECSE 612 Multiuser communications }
 }
 
 \frame{ 
-	\frametitle{physicist's view (continued)}
+	\frametitle{Physicist's view (continued)}
 	
 	\begin{itemize}
 	\item 	The power of the signal is a probability density\

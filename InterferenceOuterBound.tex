@@ -202,7 +202,8 @@ enumerate,multirow,epsfig}
         \begin{definition}[Interference channel]
             A two party interference channel is a particular use of an interference network 
             $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$ 
-            where a message $M_1$ is encoded into a codeword $X_1$ and is to be extracted at the receiver $Y_1$.
+            where messages $M_1,M_2$ are independently encoded into a codewords $X_1,X_2$ 
+            at rates $(R_1,R_2)$ with $Y_1,Y_2$ being the intended receiver.
         \end{definition}
 
         another version -- II
@@ -329,20 +330,26 @@ enumerate,multirow,epsfig}
 
         \end{itemize}
 
-        The paper then proves the capacity of the $Y_1$-MAC problem.
+        The paper then proves the capacity of the $Y_1$ \emph{MAC} problem.
+        \be
+        		G_{MAC_1}  = \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmac1} } \}  \label{region:G_MAC1}
+        \ee
         \bea
-            R_1         &\leq&      I(X_1;Y_1|X_2), \\
-            R_2         &\leq&      I(X_2;Y_1|X_1), \\
-            R_1 +R_2    &\leq&      I(X_1X_2;Y_1) \qquad \textrm{for some $p(x_1)p(x_2)$ }.
+            R_1         &\leq&      I(X_1;Y_1|X_2), \nonumber \\
+            R_2         &\leq&      I(X_2;Y_1|X_1), \label{Gmac1} \\
+            R_1 +R_2    &\leq&      I(X_1X_2;Y_1). \nonumber
         \eea 
 
         The author then uses the same argument to prove the capacity of the MMAC channel
         when the two inputs $X_1$ and $X_2$ are allowed to be correlated.
 
+        \be
+        		G_{MMAC}  = \operatorname{conv} \cup_{\mathbf{p(x_1,x_2)}} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmmac} } \} 
+        \ee
         \bea
-            R_1         &\leq&      \min\{ I(X_1;Y_1|X_2), I(X_1;Y_2|X_2) \}, \label{r1-in-mmac-thm}\\
-            R_2         &\leq&      \min\{ I(X_2;Y_1|X_1), I(X_2;Y_2|X_1) \}, \\
-            R_1 +R_2    &\leq&      \min\{ I(X_1X_2;Y_1), I(X_1X_2;Y_2) \} \qquad \textrm{for some $p(x_1,x_2)$ }.   \label{r12-in-mmac-thm}
+            R_1         &\leq&      \min\{ I(X_1;Y_1|X_2), I(X_1;Y_2|X_2) \}, \nonumber  \\
+            R_2         &\leq&      \min\{ I(X_2;Y_1|X_1), I(X_2;Y_2|X_1) \}, \label{Gmmac} \\
+            R_1 +R_2    &\leq&      \min\{ I(X_1X_2;Y_1), I(X_1X_2;Y_2) \} \nonumber %\qquad \textrm{for some $p(x_1,x_2)$ }.   \nonumber 
         \eea 
 
         In the paper 
@@ -383,13 +390,22 @@ enumerate,multirow,epsfig}
         
         three special relations to 
 
-        \paragraph{Cheng Motani Garg ?}
-
-        best inner bound
-
-
-
+        \paragraph{Han Kobayashi / Cheng Motani Garg inner bound}
+        \be
+        		G_{HK}  = \operatorname{conv} \cup_{\mathbf{p(x_1)p(x_2)}} \{ (R_1,R_2) | \text{ Eqn. \eqref{Rcmg} } \} 
+        \ee
+	\bea
+		R_1 		&\leq&	I(X_1;Y_1| U_2 Q) \nonumber \\
+		R_2 		&\leq&	I(X_2;Y_2| U_1 Q) \nonumber \\
+	R_1 + R_2	&\leq&	I(X_1U_2; Y_1|Q) + I (X_2; Y_2|U_1U_2Q) \nonumber \\
+	R_1 + R_2	&\leq&	I (X_1; Y_1|U_1U_2Q) + I (X_2U_1; Y_2|Q) \label{Rcmg}\\
+	R_1 + R_2	&\leq&	I (X_1U_2; Y_1|U_1Q) + I(X_2U_1; Y_2|U_2Q) \nonumber  \\
+	2R_1 + R_2	&\leq&	I (X_1U_2; Y_1|Q) + I (X_1; Y_1|U_1U_2Q) + I(X_2U_1;Y_2|U_2Q) \nonumber \\
+	R_1 + 2R_2	&\leq&	I (X_2; Y_2|U_1U_2Q) + I (X_2U_1; Y_2|Q) +  I (X_1U_2; Y_1|U_1Q) \nonumber 
+	\eea
+	
     \subsection{Outer bounds}
+
 
 
 
@@ -404,16 +420,37 @@ enumerate,multirow,epsfig}
 \section{Known outer bounds}
 
         
-    \subsection{Naive outer bound}
+    \subsection{Naive bound}
         
         Both broadcast channels and multiple access channel are special cases of the interference channel.
         In particular we can think of the interference channel as two separate multiple access channels.
         
         We know that the region defined by
+         \be
+        		G_{Naive}  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gnaive} } \} 
+        \ee
         \bea \label{eqn:naive-bound}
-            R_1     &\leq&    I(X_1;Y_2|X_2) \\
-            R_2     &\leq&    I(X_2;Y_2|X_1)
+            R_1     &\leq&    I(X_1;Y_2|X_2) \nonumber \\
+            R_2     &\leq&    I(X_2;Y_2|X_1) \label{Gnaive}
         \eea
+        
+        Claim:  $\ICcap \subset G_{Naive}$. \\
+        \begin{proof}
+            We know from equation \eqref{region:G_MAC1} the capacity region
+            for the reduced $Y_1$ MAC channel is $G_{MAC_1} $.
+            Similarly, we can define the $Y_2$-marginal MAC which will have capacity $G_{MAC_2}$.
+            
+            Now, for contradiction,  suppose we can achieve the rate pair $(R_1,R_2)$ for the interference channel
+            with 
+            \be
+            	R_1 >  I(X_1;Y_2|X_2).
+            \ee
+            Since the $Y_1$ MAC channel is a special case of the IC, this means that we should
+            be have a rate pair $(R_1,*) \in  G_{MAC_1} $ also with  $R_1 >  I(X_1;Y_2|X_2)$.
+            But that is impossible.
+            
+        \end{proof}        
+         
         contains the capacity region $\cC$.
         
         This corresponds to a very loose rectangular bound on the true capacity region.
@@ -426,10 +463,13 @@ enumerate,multirow,epsfig}
         an inequality on the sum rate $R_1+R_2$. This was done by Sato \cite{Sato1978}.
         
         The outer bound becomes:
+        \be
+        		G_{Sato}  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gsato} } \} 
+        \ee
         \bea \label{eqn:sato-outer-bound}
-            R_1             &\leq&    I(X_1;Y_2|X_2) \\
-            R_2             &\leq&    I(X_2;Y_2|X_1) \\
-            R_1+R_2    &\leq&    I(X_1X_2;Y_1Y_2) 
+            R_1             &\leq&    I(X_1;Y_2|X_2)  \nonumber \\
+            R_2             &\leq&    I(X_2;Y_2|X_1)  \label{Gsato} \\
+            R_1+R_2    &\leq&    I(X_1X_2;Y_1Y_2) \nonumber 
         \eea
         
         
@@ -469,10 +509,13 @@ enumerate,multirow,epsfig}
         
         
         then we have the following outer bound
-        \bea \label{eqn:carleial-outer-bound}
-            R_1             &\leq&    I(X_1;Y_1|X_2) \\
-            R_2             &\leq&    I(X_2;Y_2|X_1) \\
-            R_1+R_2     &\leq&   \min\!\left\{ I(X_1X_2;Z_1), I(X_1X_2;Z_2) \right\}             
+        \be
+        		G_{Carl}  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gcarl} } \} 
+        \ee
+        \bea
+            R_1             &\leq&    I(X_1;Y_1|X_2)  \nonumber \\
+            R_2             &\leq&    I(X_2;Y_2|X_1)   \label{Gcarl}\\
+            R_1+R_2     &\leq&   \min\!\left\{ I(X_1X_2;Z_1), I(X_1X_2;Z_2) \right\}             \nonumber 
             %R_1+R_2     &\leq&   I(X_1X_2;Z_1) \\
             %R_1+R_2     &\leq&    I(X_1X_2;Z_2) 
         \eea

@@ -1,20 +1,3 @@
-\begin{thebibliography}{Sha48}
-
-\bibitem[Hol98]{H98}
-A.~S. Holevo.
-\newblock The capacity of the quantum channel with general signal states.
-\newblock {\em IEEE Trans. Inf. Theory}, 44(1):269--273, 1998.
-\newblock arXiv:quant-ph/9611023.
-
-\bibitem[Sha48]{S48}
-C.~E. Shannon.
-\newblock A mathematical theory of communication.
-\newblock {\em Bell Sys. Tech. Journal}, 27:379--423,623--656, 1948.
-
-\bibitem[SW97]{SW97}
-B.~{Schumacher} and M.~D. {Westmoreland}.
-\newblock Sending classical information via noisy quantum channels.
-\newblock {\em Phys. Rev. A}, 56:131--138, 1997.
-\newblock doi:10.1103/PhysRevA.56.131.
+\begin{thebibliography}{}
 
 \end{thebibliography}
