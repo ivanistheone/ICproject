@@ -1,0 +1,61 @@
+
+
+This talk will introduce the basic problems of Quantum Information Theory and outline some of the important theoretical results that have been achieved so far. We will discuss compression of classical and quantum information, channel capacities and communication protocols. An effort will be made to cover both topics of historical significance as well as currently active areas of research. No particular background is required  for this talk except for basic knowledge of linear algebra.
+
+
+
+info theory
+info?
+
+classical information theory
+	compression
+	channel capacity
+
+quantum info basics
+"what are we talkin' bout"
+	q mechanics == matrix mechanics
+	qubit (physicist can tell you how diff to get |0> and |1> ONLY)
+	mixed states
+	operators
+	entanglement
+	
+
+results in QIT
+"we can do it quantum too"
+	teleportation / s.d. coding
+	compression 
+	classical chan. cap.
+	quantum capacity
+		I. Devetak, IEEE Trans. Inf. Theory 51, 44 (2005), 			arXiv:quant-ph/0304127. [4] S. Lloyd, Phys. Rev. A 55, 1613 		(1997). [5]P. W. Shor, lecture notes, MSRI Workshop on 			Quantum Computation, 2002. Available online at		http://www.msri.org/publications/ln/msri/2002/
+
+
+quantum informaiton science
+"other cool stuff"
+	protocols family	
+	quantum computing
+	error correcrint codes
+	fault tolerant quant. comp.
+	black holes?
+	random unitary?
+
+
+
+
+computational ex:
+	nansum(pw*log(pw))/sum(pwMAX*log(pwMAX))
+	Out[89]: 0.72154429145989374
+	nansum(pw*log(pw))
+	Out[90]: -7.4451406072083923
+	sum(pwMAX*log( pwMAX))
+	Out[91]: -10.318341777945065
+	log(len(d))
+	Out[93]: 10.318341777940978
+	
+	so what is going on....
+	if we had a bunch of symbols 
+	we have  30283 words, all of them equally likely
+	so we need symbols of length 
+	10.318341777940978*30283
+
+	not to be continued !
+

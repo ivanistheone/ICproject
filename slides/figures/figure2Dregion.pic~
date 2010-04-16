@@ -1,0 +1,155 @@
+%%Created by jPicEdt 1.4.1_02: mixed JPIC-XML/LaTeX format
+%%Fri Sep 14 13:52:13 EEST 2007
+%%Begin JPIC-XML
+%<?xml version="1.0" standalone="yes"?>
+%<jpic x-min="0" x-max="62" y-min="0" y-max="50" auto-bounding="true">
+%<multicurve right-arrow= "head"
+%	 points= "(2,4);(2,4);(62,4);(62,4)"
+%	 fill-style= "none"
+%	 />
+%<multicurve right-arrow= "head"
+%	 points= "(4,2);(4,2);(4,50);(4,50)"
+%	 fill-style= "none"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(62,0)"
+%	 text-hor-align= "center-h"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 >
+%$Q_\alpha$
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(0,50)"
+%	 text-hor-align= "center-h"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 >
+%$Q_\beta$
+%</text>
+%<multicurve points= "(20,50);(20,50);(20,32);(20,32)"
+%	 fill-style= "none"
+%	 />
+%<multicurve points= "(20,32);(20,32);(36,16);(36,16)"
+%	 fill-style= "none"
+%	 />
+%<multicurve points= "(36,16);(36,16);(52,16);(52,16)"
+%	 fill-style= "none"
+%	 />
+%<multicurve points= "(14,50);(14,50);(14,26);(14,26)"
+%	 fill-style= "none"
+%	 />
+%<multicurve points= "(14,26);(14,26);(30,10);(30,10)"
+%	 fill-style= "none"
+%	 />
+%<multicurve points= "(30,10);(30,10);(52,10);(52,10)"
+%	 fill-style= "none"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(16,8)"
+%	 text-hor-align= "center-h"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 >
+%Theorem \ref{thm:THM2}
+%</text>
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(38,46)"
+%	 text-hor-align= "center-h"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 >
+%Theorem \ref{thm:THM1}
+%</text>
+%<multicurve right-arrow= "head"
+%	 points= "(36,42);(36,42);(22,34);(22,34)"
+%	 fill-style= "none"
+%	 />
+%<multicurve right-arrow= "head"
+%	 points= "(16,12);(16,12);(18,20);(18,20)"
+%	 fill-style= "none"
+%	 />
+%<multicurve right-arrow= "head"
+%	 fill-color= "#0033cc"
+%	 points= "(60,22);(60,22);(53,14);(53,14)"
+%	 fill-style= "solid"
+%	 />
+%<multicurve stroke-color= "#0000ff"
+%	 fill-color= "#0033cc"
+%	 fill-hatch-color= "#0033ff"
+%	 points= "(17,50);(17,50);(17,30);(17,30)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve stroke-color= "#0000ff"
+%	 fill-color= "#0033cc"
+%	 fill-hatch-color= "#0033ff"
+%	 points= "(32,14);(32,14);(52,14);(52,14)"
+%	 fill-style= "vlines"
+%	 />
+%<multicurve stroke-color= "#0000ff"
+%	 points= "(17,30);(19,17);(32,14);(32,14);(32,14);(32,14);
+%	(32,14);(32,14);(32,14);(32,14);(32,14);(32,14);
+%	(32,14);(32,14);(32,14);(32,14);(32,14);(32,14);
+%	(32,14);(32,14);(32,14);(32,14);(32,14);(32,14);
+%	(32,14);(32,14);(32,14);(32,14);(32,14);(32,14);
+%	(32,14);(32,14);(32,14);(32,14);(32,14);(32,14);
+%	(32,14);(32,14);(32,14);(32,14)"
+%	 fill-style= "none"
+%	 />
+%<text text-vert-align= "center-v"
+%	 anchor-point= "(60,25)"
+%	 text-hor-align= "center-h"
+%	 text-frame= "noframe"
+%	 fill-style= "none"
+%	 >
+%The rate region boundary
+%</text>
+%</jpic>
+%%End JPIC-XML
+%PSTricks content-type (pstricks.sty package needed)
+%Add \usepackage{pstricks} in the preamble of your LaTeX file
+%You can rescale the whole picture (to 80% for instance) by using the command \def\JPicScale{0.8}
+\ifx\JPicScale\undefined\def\JPicScale{1}\fi
+\psset{unit=\JPicScale mm}
+\psset{linewidth=0.3,dotsep=1,hatchwidth=0.3,hatchsep=1.5,shadowsize=1,dimen=middle}
+\psset{dotsize=0.7 2.5,dotscale=1 1,fillcolor=black}
+\psset{arrowsize=1 2,arrowlength=1,arrowinset=0.25,tbarsize=0.7 5,bracketlength=0.15,rbracketlength=0.15}
+\begin{pspicture}(0,0)(62,50)
+\psline{->}(2,4)(62,4)
+\psline{->}(4,2)(4,50)
+\rput(62,0){$Q_\alpha$}
+\rput(0,50){$Q_\beta$}
+\psline(20,50)(20,32)
+\psline(20,32)(36,16)
+\psline(36,16)(52,16)
+\psline(14,50)(14,26)
+\psline(14,26)(30,10)
+\psline(30,10)(52,10)
+\rput(16,8){Theorem 4.1}
+\rput(38,46){Theorem 4.2}
+\psline{->}(36,42)(22,34)
+\psline{->}(16,12)(18,20)
+\newrgbcolor{userFillColour}{0 0.2 0.8}
+\psline[fillcolor=userFillColour,fillstyle=solid]{->}(60,22)(53,14)
+\newrgbcolor{userFillColour}{0 0.2 0.8}
+\newrgbcolor{userHatchColour}{0 0.2 1}
+\psline[linecolor=blue,fillcolor=userFillColour,fillstyle=vlines,hatchcolor=userHatchColour](17,50)(17,30)
+\newrgbcolor{userFillColour}{0 0.2 0.8}
+\newrgbcolor{userHatchColour}{0 0.2 1}
+\psline[linecolor=blue,fillcolor=userFillColour,fillstyle=vlines,hatchcolor=userHatchColour](32,14)(52,14)
+\pscustom[linecolor=blue]{\psbezier[liftpen=2](17,30)(19,17)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+\psbezier[liftpen=2](32,14)(32,14)(32,14)(32,14)
+}
+\rput(60,25){The rate region boundary}
+\end{pspicture}

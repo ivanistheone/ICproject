@@ -1,0 +1,91 @@
+This is e-TeX, Version 3.141592-2.2 (MiKTeX 2.4) (preloaded format=latex 2006.3.20)  10 DEC 2007 02:33
+entering extended mode
+**pstricksTOpdf.tex
+(pstricksTOpdf.tex
+LaTeX2e <2003/12/01>
+Babel <v3.8g> and hyphenation patterns for english, dumylang, nohyphenation, german, ngerman, french, loaded.
+(C:\texmf\tex\latex\base\minimal.cls
+Document Class: minimal 2001/05/25 Standard LaTeX minimal class
+) (C:\texmf\tex\latex\pstricks\pstricks.sty
+Package: pstricks 2005/12/19 v0.31 LaTeX wrapper for `PSTricks' (RN,HV)
+ (C:\texmf\tex\generic\pstricks\pstricks.tex
+`PSTricks' v1.14  <2005/12/22> (tvz)
+\pst@dima=\dimen102
+\pst@dimb=\dimen103
+\pst@dimc=\dimen104
+\pst@dimd=\dimen105
+\pst@dimg=\dimen106
+\pst@dimh=\dimen107
+\pst@hbox=\box26
+\pst@boxg=\box27
+\pst@cnta=\count79
+\pst@cntb=\count80
+\pst@cntc=\count81
+\pst@cntd=\count82
+\pst@cntg=\count83
+\pst@cnth=\count84
+\pst@toks=\toks14
+(C:\texmf\tex\generic\pstricks\pstricks.con)
+\psunit=\dimen108
+\psxunit=\dimen109
+\psyunit=\dimen110
+\pslinewidth=\dimen111
+\pst@customdefs=\toks15
+\pslinearc=\dimen112
+\everypsbox=\toks16
+\psframesep=\dimen113
+\pslabelsep=\dimen114
+\psk@shift=\dimen115
+\pst@shift=\dimen116
+\theoverlaybox=\box28
+)
+File: pstricks.tex 2005/12/22 v1.14 `PSTricks' (tvz)
+ (C:\texmf\tex\latex\xcolor\xcolor.sty
+Package: xcolor 2005/12/21 v2.09 LaTeX color extensions (UK)
+
+(C:\texmf\tex\latex\00miktex\color.cfg
+File: color.cfg 2005/12/29 v1.1 MiKTeX 'color' configuration
+)
+Package xcolor Info: Package option `override' ignored on input line 211.
+Package xcolor Info: Driver file: dvips.def on input line 220.
+ (C:\texmf\tex\latex\graphics\dvips.def
+File: dvips.def 1999/02/16 v3.0i Driver-dependant file (DPC,SPQR)
+)
+Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1328.
+Package xcolor Info: Model `RGB' extended on input line 1344.
+Package xcolor Info: Model `HTML' substituted by `rgb' on input line 1346.
+Package xcolor Info: Model `Hsb' substituted by `hsb' on input line 1347.
+Package xcolor Info: Model `tHsb' substituted by `hsb' on input line 1348.
+Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1349.
+Package xcolor Info: Model `Gray' substituted by `gray' on input line 1350.
+Package xcolor Info: Model `wave' substituted by `hsb' on input line 1351.
+)) (../include/header.tex)
+(pstricksTOpdf.aux)
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
+LaTeX Font Info:    ... okay on input line 10.
+ (figure2Dregion.pic
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 120.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 120.
+) [1] (pstricksTOpdf.aux) ) 
+Here is how much of TeX's memory you used:
+ 1569 strings out of 95901
+ 16331 string characters out of 1195329
+ 77465 words of memory out of 1081249
+ 4633 multiletter control sequences out of 60000
+ 3640 words of font info for 14 fonts, out of 1000000 for 2000
+ 14 hyphenation exceptions out of 4999
+ 30i,5n,37p,178b,200s stack positions out of 5000i,500n,10000p,200000b,32768s
+
+Output written on pstricksTOpdf.dvi (1 page, 6532 bytes).

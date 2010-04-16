@@ -1,0 +1,217 @@
+data/Huffman_coding/Data_compression_primer.txt.i
+data/Huffman_coding/compress.py.i
+data/Huffman_coding/compress.py.d
+data/Huffman_coding/compress.py.i
+data/Huffman_coding/lotsof.txt.i
+data/Huffman_coding/lotsof.txt.d
+data/Huffman_coding/lotsof.txt.i
+data/Huffman_coding/lotsof2.txt.gz.i
+data/Huffman_coding/lotsof2.txt.gz.d
+data/Huffman_coding/lotsof2.txt.gz.i
+data/Huffman_coding/lotsof3.txt.bz2.i
+data/Huffman_coding/lotsof3.txt.bz2.d
+data/Huffman_coding/lotsof3.txt.bz2.i
+data/Huffman_coding/word_huffman.py.i
+data/aa_plan (Autosaved).txt.i
+data/aa_plan.txt.i
+data/soutenance frederic/.DS_Store.i
+data/soutenance frederic/Nab.fig.i
+data/soutenance frederic/Nab.pdf.i
+data/soutenance frederic/Nab.pdf_t.i
+data/soutenance frederic/SAVE.fig.i
+data/soutenance frederic/UNab.fig.i
+data/soutenance frederic/UNab.pdf.i
+data/soutenance frederic/UNab.pdf_t.i
+data/soutenance frederic/canal-enc-dec.fig.i
+data/soutenance frederic/canal-enc-dec.pdf.i
+data/soutenance frederic/canal-enc-dec.pdf_t.i
+data/soutenance frederic/canal-formes.pdf.i
+data/soutenance frederic/canal-formes.svg.i
+data/soutenance frederic/canal-iid-enc-dec.fig.i
+data/soutenance frederic/canal-iid-enc-dec.pdf.i
+data/soutenance frederic/canal-iid-enc-dec.pdf_t.i
+data/soutenance frederic/canal-math.fig.i
+data/soutenance frederic/canal-math.fig.bak.i
+data/soutenance frederic/canal-math.pdf.i
+data/soutenance frederic/canal-math.pdf_t.i
+data/soutenance frederic/canal-quantique-formes.pdf.i
+data/soutenance frederic/canal-quantique-formes.svg.i
+data/soutenance frederic/channels-ent.fig.i
+data/soutenance frederic/channels-ent.pdf.i
+data/soutenance frederic/channels-ent.pdf_t.i
+data/soutenance frederic/channels.fig.i
+data/soutenance frederic/channels.pdf.i
+data/soutenance frederic/channels.pdf_t.i
+data/soutenance frederic/decoupling-thm.fig.i
+data/soutenance frederic/decoupling-thm.fig.bak.i
+data/soutenance frederic/decoupling-thm.pdf.i
+data/soutenance frederic/decoupling-thm.pdf_t.i
+data/soutenance frederic/decoupling-thm2-iid.fig.i
+data/soutenance frederic/decoupling-thm2-iid.fig.bak.i
+data/soutenance frederic/decoupling-thm2-iid.pdf.i
+data/soutenance frederic/decoupling-thm2-iid.pdf_t.i
+data/soutenance frederic/decoupling-thm2.fig.i
+data/soutenance frederic/decoupling-thm2.fig.bak.i
+data/soutenance frederic/decoupling-thm2.pdf.i
+data/soutenance frederic/decoupling-thm2.pdf_t.i
+data/soutenance frederic/decoupling.fig.i
+data/soutenance frederic/decoupling.pdf.i
+data/soutenance frederic/decoupling.pdf_t.i
+data/soutenance frederic/decoupling2.fig.i
+data/soutenance frederic/decoupling2.pdf.i
+data/soutenance frederic/decoupling2.pdf_t.i
+data/soutenance frederic/fqsw.fig.i
+data/soutenance frederic/fqsw.pdf.i
+data/soutenance frederic/fqsw.pdf_t.i
+data/soutenance frederic/general-setting.fig.i
+data/soutenance frederic/general-setting.pdf.i
+data/soutenance frederic/general-setting.pdf_t.i
+data/soutenance frederic/iid-channel-coding.fig.i
+data/soutenance frederic/iid-channel-coding.fig.bak.i
+data/soutenance frederic/iid-channel-coding.pdf.i
+data/soutenance frederic/iid-channel-coding.pdf_t.i
+data/soutenance frederic/locking1.fig.i
+data/soutenance frederic/locking1.pdf.i
+data/soutenance frederic/locking1.pdf_t.i
+data/soutenance frederic/locking2.fig.i
+data/soutenance frederic/locking2.fig.bak.i
+data/soutenance frederic/locking2.pdf.i
+data/soutenance frederic/locking2.pdf_t.i
+data/soutenance frederic/measurement.jpg.i
+data/soutenance frederic/merging.fig.i
+data/soutenance frederic/merging.fig.bak.i
+data/soutenance frederic/merging.pdf.i
+data/soutenance frederic/merging.pdf_t.i
+data/soutenance frederic/one-shot-channel-coding.eps.i
+data/soutenance frederic/one-shot-channel-coding.fig.i
+data/soutenance frederic/one-shot-channel-coding.fig.bak.i
+data/soutenance frederic/one-shot-channel-coding.pdf.i
+data/soutenance frederic/one-shot-channel-coding.pdf_t.i
+data/soutenance frederic/q.log.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur.fig.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur.fig.bak.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur.pdf.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur.pdf_t.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur2.fig.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur2.pdf.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur2.pdf_t.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur3.fig.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur3.fig.bak.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur3.pdf.i
+data/soutenance frederic/qcanal-enc-dec-phi-pur3.pdf_t.i
+data/soutenance frederic/qcanal-enc-dec-phi.fig.i
+data/soutenance frederic/qcanal-enc-dec-phi.pdf.i
+data/soutenance frederic/qcanal-enc-dec-phi.pdf_t.i
+data/soutenance frederic/qcanal-enc-dec.fig.i
+data/soutenance frederic/qcanal-enc-dec.pdf.i
+data/soutenance frederic/qcanal-enc-dec.pdf_t.i
+data/soutenance frederic/qcanal-ideal.fig.i
+data/soutenance frederic/qcanal-ideal.pdf.i
+data/soutenance frederic/qcanal-ideal.pdf_t.i
+data/soutenance frederic/side-info-coding.fig.i
+data/soutenance frederic/side-info-coding.fig.bak.i
+data/soutenance frederic/side-info-coding.pdf.i
+data/soutenance frederic/side-info-coding.pdf_t.i
+data/soutenance frederic/side-info-explain.fig.i
+data/soutenance frederic/side-info-explain.fig.bak.i
+data/soutenance frederic/side-info-explain.pdf.i
+data/soutenance frederic/side-info-explain.pdf_t.i
+data/soutenance frederic/soutenance.tar.gz.i
+data/soutenance frederic/soutenance.tar.gz.d
+data/soutenance frederic/soutenance.tar.gz.i
+data/soutenance frederic/talk.aux.i
+data/soutenance frederic/talk.log.i
+data/soutenance frederic/talk.nav.i
+data/soutenance frederic/talk.out.i
+data/soutenance frederic/talk.pdf.i
+data/soutenance frederic/talk.pdf.d
+data/soutenance frederic/talk.pdf.i
+data/soutenance frederic/talk.snm.i
+data/soutenance frederic/talk.synctex.gz.i
+data/soutenance frederic/talk.toc.i
+data/talk.aux.i
+data/talk.bbl.i
+data/talk.blg.i
+data/talk.log.i
+data/talk.nav.i
+data/talk.out.i
+data/talk.pdf.i
+data/talk.pdf.d
+data/talk.pdf.i
+data/talk.snm.i
+data/talk.tex.i
+data/talk.toc.i
+data/thesis.bib.i
+data/Binary_entropy_plot.png.i
+data/FIGVENN.pic.i
+data/Shannon.jpg.i
+data/canal-iid-enc-dec.pdf.i
+data/canal-iid-enc-dec.pdf_t.i
+data/iid-channel-coding.pdf_t.i
+data/soutenance frederic/talk.tex.i
+data/talk.synctex.gz.i
+data/winzip.jpg.i
+data/figures/Binary_entropy_plot.png.i
+data/figures/Copy of figureFWSQdiagram.pic.i
+data/figures/FIGVENN.pic.i
+data/figures/FQSWdiagramArrow.pdf.i
+data/figures/Multiport.PNG.i
+data/figures/Multiport.bmp.i
+data/figures/Multiport.jpg.i
+data/figures/Shannon.jpg.i
+data/figures/figure2Dregion.pic.i
+data/figures/figure2Dregion.pic~.i
+data/figures/figure3dregion.eps.i
+data/figures/figure3dregion.pdf.i
+data/figures/figureFWSQdiagram.pic.i
+data/figures/figureFWSQdiagram.pic~.i
+data/figures/figurempFQSWdiagram.pic.i
+data/figures/first.eps.i
+data/figures/first.pdf.i
+data/figures/firstArrow.eps.i
+data/figures/firstArrow.pdf.i
+data/figures/firstBlue.eps.i
+data/figures/firstBlue.pdf.i
+data/figures/football.JPG.i
+data/figures/newmpFQSW.pdf.i
+data/figures/original.eps.i
+data/figures/pstricksTOpdf.aux.i
+data/figures/pstricksTOpdf.bbl.i
+data/figures/pstricksTOpdf.blg.i
+data/figures/pstricksTOpdf.dvi.i
+data/figures/pstricksTOpdf.log.i
+data/figures/pstricksTOpdf.ps.i
+data/figures/pstricksTOpdf.tex.i
+data/figures/region.pdf.i
+data/figures/regionConv.pdf.i
+data/figures/regionDots.pdf.i
+data/figures/relayChannel.JPG.i
+data/figures/relayChannel.bmp.i
+data/figures/second.eps.i
+data/figures/second.pdf.i
+data/figures/secondArrow.eps.i
+data/figures/secondArrow.pdf.i
+data/figures/secondBlue.eps.i
+data/figures/secondBlue.pdf.i
+data/figures/squeeze.i
+data/figures/squeeze.pdf.i
+data/figures/struct.dot.i
+data/figures/struct.png.i
+data/figures/tree.eps.i
+data/figures/tree.pdf.i
+data/figures/winzip.jpg.i
+data/figures/x.pdf.i
+data/mark_diagrams/.DS_Store.i
+data/mark_diagrams/SchumacherDiagram.png.i
+data/mark_diagrams/mEchannelDmhat.png.i
+data/mark_diagrams/quantumCapacity.png.i
+data/quantum_people/.DS_Store.i
+data/quantum_people/Holevo,_Alexander2.jpg.i
+data/quantum_people/Lloyd_Seth.jpg.i
+data/quantum_people/SchumacherBE.jpg.i
+data/quantum_people/devetak.jpg.i
+data/quantum_people/mike_westmoreland.jpg.i
+data/quantum_people/shannon2.jpg.i
+data/quantum_people/shor-peter.jpg.i
+data/talk.synctex.gz.d
+data/Claude_Elwood_Shannon.jpg.i
