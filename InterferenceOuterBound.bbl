@@ -1,4 +1,5 @@
-\begin{thebibliography}{NEG07}
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{HHHH07}
 
 \bibitem[Ahl74]{Ahlswede1974}
 R.~Ahlswede.
@@ -6,15 +7,49 @@ R.~Ahlswede.
   receivers}.
 \newblock {\em The Annals of Probability}, 2(5):805--814, 1974.
 
+\bibitem[BBC{\etalchar{+}}93]{teleportation}
+C.~H. Bennett, G.~Brassard, C.~Cr\'epeau, R.~Jozsa, A.~Peres, and W.~K.
+  Wootters.
+\newblock Teleporting an unknown quantum state via dual classical and
+  einstein-podolsky-rosen channels.
+\newblock {\em Phys. Rev. Lett.}, 70:1895–1899, 1993.
+
+\bibitem[BW92]{superdense}
+C.~H. Bennett and S.~J. Wiesner.
+\newblock Communication via one- and two-particle operators on
+  einstein-podolsky-rosen states.
+\newblock {\em Phys. Rev. Lett.}, 69:2881–2884, 1992.
+
 \bibitem[Car83]{Carleial83}
 A.~Carleial.
 \newblock {Outer bounds on the capacity of interference channels (Corresp.)}.
 \newblock {\em IEEE transactions on information theory}, 29(4):602--606, 1983.
 
+\bibitem[HHHH07]{HHHH}
+R.~Horodecki, P.~Horodecki, M.~Horodecki, and K.~Horodecki.
+\newblock Quantum entanglement.
+\newblock 2007.
+\newblock arXiv:quant-ph/0702225.
+
+\bibitem[LR73]{LR73}
+E.~H. Lieb and M.~B. Ruskai.
+\newblock Proof of the strong subaddivity of quantum-mechanical entropy.
+\newblock {\em J. Math. Phys.}, 14:1938--1941, 1973.
+
+\bibitem[NC00]{NC04}
+M.~A. Nielsen and I.~L. Chuang.
+\newblock {\em Quantum computation and quantum information}.
+\newblock Cambridge University Press, 2000.
+
 \bibitem[NEG07]{Nair2006}
 C.~Nair and A.~El~Gamal.
 \newblock {An outer bound to the capacity region of the broadcast channel}.
 \newblock {\em IEEE Transactions on Information Theory}, 53(1):350--355, 2007.
+
+\bibitem[Sak94]{sakurai}
+J.J. Sakurai.
+\newblock {\em Modern quantum mechanics}.
+\newblock Addison-Wesley, 1994.
 
 \bibitem[Sat77]{Sato77}
 H.~Sato.
@@ -26,5 +61,11 @@ H.~Sato.
 \newblock {An outer bound to the capacity region of broadcast channels
   (Corresp.)}.
 \newblock {\em IEEE Transactions on Information Theory}, 24(3):374--377, 1978.
+
+\bibitem[VP98]{VP98}
+V.~Vedral and M.~B. Plenio.
+\newblock Entanglement measures and purification procedures.
+\newblock {\em Phys. Rev. A}, 57:1619, 1998.
+\newblock arXiv:quant-ph/9707035.
 
 \end{thebibliography}

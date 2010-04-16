@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.7)
+The top-level auxiliary file: InterferenceOuterBound.aux
+The style file: alpha.bst
+Database file #1: interferenceChannel.bib
+Warning--I didn't find a database entry for "shannon"
+Warning--empty journal in HHHH
+You've used 12 entries,
+            2543 wiz_defined-function locations,
+            645 strings with 6069 characters,
+and the built_in function-call counts, 4630 in all, are:
+= -- 461
+> -- 206
+< -- 5
++ -- 67
+- -- 67
+* -- 343
+:= -- 789
+add.period$ -- 38
+call.type$ -- 12
+change.case$ -- 71
+chr.to.int$ -- 12
+cite$ -- 13
+duplicate$ -- 174
+empty$ -- 340
+format.name$ -- 83
+if$ -- 920
+int.to.chr$ -- 1
+int.to.str$ -- 0
+missing$ -- 14
+newline$ -- 66
+num.names$ -- 36
+pop$ -- 56
+preamble$ -- 1
+purify$ -- 85
+quote$ -- 0
+skip$ -- 137
+stack$ -- 0
+substring$ -- 302
+swap$ -- 11
+text.length$ -- 5
+text.prefix$ -- 5
+top$ -- 0
+type$ -- 88
+warning$ -- 1
+while$ -- 45
+width$ -- 17
+write$ -- 159
+(There were 2 warnings)
