@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.1415926-1.40.9 (Web2C 7.5.7) (format=pdflatex 2008.12.28)  21 APR 2010 02:11
+This is pdfTeXk, Version 3.1415926-1.40.9 (Web2C 7.5.7) (format=pdflatex 2008.12.28)  21 APR 2010 14:41
 entering extended mode
 \write18 enabled.
  %&-line parsing enabled.
@@ -209,17 +209,7 @@ Package: ifthen 2001/05/26 v1.1c Standard LaTeX ifthen package (DPC)
 LaTeX Warning: Unused global option(s):
     [aps].
 
-(./InterferenceOuterBound.aux
-
-LaTeX Warning: Label `region:G_MAC1' multiply defined.
-
-
-LaTeX Warning: Label `Gmac1' multiply defined.
-
-
-LaTeX Warning: Label `region:G_MAC1' multiply defined.
-
-)
+(./InterferenceOuterBound.aux)
 \openout1 = `InterferenceOuterBound.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 141.
@@ -236,7 +226,8 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 141.
 LaTeX Font Info:    ... okay on input line 141.
 LaTeX Font Info:    Try loading font information for OT1+ppl on input line 141.
 
- (/usr/local/texlive/2008/texmf-dist/tex/latex/psnfss/ot1ppl.fd
+
+(/usr/local/texlive/2008/texmf-dist/tex/latex/psnfss/ot1ppl.fd
 File: ot1ppl.fd 2001/06/04 font definitions for OT1/ppl.
 )
 (/usr/local/texlive/2008/texmf-dist/tex/context/base/supp-pdf.tex
@@ -268,77 +259,76 @@ File: ulasy.fd 1998/08/17 v2.2e LaTeX symbol font definitions
 )
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <14.4> not available
 (Font)              Font shape `OT1/ppl/b/n' tried instead on input line 169.
-LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10.95> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 203.
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
  [1
 
 {/usr/local/texlive/2008/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 258.
-LaTeX Font Info:    Try loading font information for OMS+ppl on input line 328.
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 229.
+LaTeX Font Info:    Font shape `OT1/ppl/bx/n' in size <10.95> not available
+(Font)              Font shape `OT1/ppl/b/n' tried instead on input line 231.
+ [2] [3]
+LaTeX Font Info:    Try loading font information for OMS+ppl on input line 420.
 
 
 (/usr/local/texlive/2008/texmf-dist/tex/latex/psnfss/omsppl.fd
 File: omsppl.fd 
 )
 LaTeX Font Info:    Font shape `OMS/ppl/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 328.
- [2]
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 420.
+ [4]
 
-LaTeX Warning: Reference `r1-in-mmac-thm' on page 3 undefined on input line 368
+LaTeX Warning: Reference `r1-in-mmac-thm' on page 5 undefined on input line 455
 .
 
 
-LaTeX Warning: Reference `r1-in-mmac-thm' on page 3 undefined on input line 368
+LaTeX Warning: Reference `r1-in-mmac-thm' on page 5 undefined on input line 455
 .
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 394--395
+Underfull \hbox (badness 10000) in paragraph at lines 481--482
 
  []
 
-[3]
-Underfull \hbox (badness 10000) in paragraph at lines 440--442
+
+Underfull \hbox (badness 10000) in paragraph at lines 490--491
 
  []
 
-[4] [5] [6] [7] [8] [9]
-Underfull \hbox (badness 10000) in paragraph at lines 911--912
+[5] [6] [7] [8] [9] [10] [11] [12] [13] [14] [15] [16] [17] [18] [19]
 
- []
+LaTeX Warning: Reference `' on page 20 undefined on input line 1612.
 
-[10] [11] [12] [13] [14] [15] [16]
-
-LaTeX Warning: Reference `' on page 17 undefined on input line 1453.
-
-[17] (./InterferenceOuterBound.bbl
+(./InterferenceOuterBound.bbl [20]
 Missing character: There is no – in font pplr7t!
 Missing character: There is no – in font pplr7t!
- [18]
+
 Underfull \hbox (badness 7273) in paragraph at lines 82--86
 []\OT1/ppl/m/n/10.95 B. Schu-macher.  Quan-tum cod-ing.  \OT1/ppl/m/it/10.95 Ph
 ys. Rev. A\OT1/ppl/m/n/10.95 , 51:2738--2747, 1995.
  []
 
-
+[21]
 Underfull \hbox (badness 1360) in paragraph at lines 117--120
 []\OT1/ppl/m/n/10.95 Jon Yard, Patrick Hay-den, and Igor De-ve-tak.  Quan-tum b
 road-cast chan-nels.
  []
 
-) [19] (./InterferenceOuterBound.aux)
+) [22] (./InterferenceOuterBound.aux)
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: There were multiply-defined labels.
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 2731 strings out of 493876
- 31683 string characters out of 1150567
- 89031 words of memory out of 3000000
- 5928 multiletter control sequences out of 10000+50000
+ 2745 strings out of 493876
+ 31909 string characters out of 1150567
+ 88105 words of memory out of 3000000
+ 5942 multiletter control sequences out of 10000+50000
  30962 words of font info for 104 fonts, out of 3000000 for 5000
  714 hyphenation exceptions out of 8191
  30i,8n,22p,387b,207s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -357,16 +347,17 @@ type1/bluesky/cm/cmr9.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/blues
 ky/cm/cmsy10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cms
 y6.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmsy8.pfb></u
 sr/local/texlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmsy9.pfb></usr/local/t
-exlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmtt8.pfb></usr/local/texlive/200
-8/texmf-dist/fonts/type1/public/cmex/fmex8.pfb></usr/local/texlive/2008/texmf-d
-ist/fonts/type1/bluesky/ams/msam10.pfb></usr/local/texlive/2008/texmf-dist/font
-s/type1/bluesky/ams/msbm10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/
-urw/palatino/uplb8a.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/pal
-atino/uplr8a.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/palatino/u
-plri8a.pfb>
-Output written on InterferenceOuterBound.pdf (19 pages, 221738 bytes).
+exlive/2008/texmf-dist/fonts/type1/bluesky/cm/cmtt10.pfb></usr/local/texlive/20
+08/texmf-dist/fonts/type1/bluesky/cm/cmtt8.pfb></usr/local/texlive/2008/texmf-d
+ist/fonts/type1/public/cmex/fmex8.pfb></usr/local/texlive/2008/texmf-dist/fonts
+/type1/bluesky/ams/msam10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/b
+luesky/ams/msbm10.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/palat
+ino/uplb8a.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/palatino/upl
+r8a.pfb></usr/local/texlive/2008/texmf-dist/fonts/type1/urw/palatino/uplri8a.pf
+b>
+Output written on InterferenceOuterBound.pdf (22 pages, 235858 bytes).
 PDF statistics:
- 157 PDF objects out of 1000 (max. 8388607)
+ 170 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -171,15 +171,18 @@ abstract ?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-    The interference channel is a communication network where two transmitters try to send
+    The interference channel (IC) is a communication network where two transmitters try to send
     information to two receivers using a shared medium. 
     This communication scenario is one of the most general possible in multiuser information
     theory; it includes the multiple access channel (MAC) and the broadcast channel (BC)
     as special cases.
     
     The interference channel is an excellent model for many practical communication scenarios
-    where medium contention is an issue. This is why obtaining an expression for the capacity region
-    $\ICcap$ was a central in the 70 ties and more recently.
+    where medium contention is an issue. 
+    This is why obtaining an expression for the capacity region $\ICcap$ 
+    is of great central importance to theoretical and practical information theory.
+    %
+    %was of central interest for theoreticians in the 80s and most recently.
     %
     Despite the practical importance of the problem, there are very few results about 
     discrete memoryless interference channels (DMIC) to date.
@@ -188,24 +191,48 @@ abstract ?
     % the most important case: low / medium interference the capacity is not known...
     
 
-    Recently, quantum information theory ...
+    Recently, quantum information theory (QIT) has been a popular research area in physics,
+    computer science and mathematics. This new field of informaiton theory is firmly based
+    in Shannon's principle of informaiton-as-statistics, but studies underlying
+    systems that behave according to the laws of quantum mechanics.
+    The current state of QIT is similar to that of classical informaiton theory in the 80s,
+    when most single user problems had been solved and researchers were exploring new
+    grounds in multiuser informaiton theory.
+
     
     This paper will try to review classic results on the interference channel and
     define the problem in the quantum setting.
-    Specifically we will try to focus on the 
-    
-    
-    
-    
- \section{Preliminaries}
+    %Specifically we will try to focus on the 
+    In section \ref{Preliminaries} we will define the basic concepts related to
+    the classical interference channels.
+    Then in section \ref{section:lit-review} we will reproduce the main results
+    from a series of seminal classical papers on the interference channel.
+    Results relating to outer bounds on the IC capacity are collected together
+    in section  \ref{section:outer-bounds}.
+    The next seciton (seciton \ref{section:quantum}) deals with the quantum generalization of the
+    multiple access channel and broadcast channel. 
+    Readers not faimilar with quantum information theory are encouraged 
+    to consult appendix \ref{section:intro_to_qit}, which gives a brief introduction to the subject.
+    Finally we have a section of discussion and pointers to open problems in seciton  .
 
+    
+    
+    
+    
+ \section{Preliminaries}  \label{Preliminaries} 
+
+    In this seciton we introduce important notation and nomenclature which will
+    be used throughout this paper.
+    We also state some important results from multiuser information theory,
+    which we will need as building blocks.
+
+    \subsection{Definitions}
 	
         \begin{definition}[Interference network]
             A two party interference network $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$ 
-            is general model for communication networks with two inputs, two outputs and a probability transistion
+            is general model for communication networks with two inputs, two outputs and a probability transition
             matrix $p(y_1,y_2|x_1,x_2)$.
         \end{definition}
-        
         
 
         \begin{definition}[Interference channel]
@@ -215,303 +242,421 @@ abstract ?
             at rates $(R_1,R_2)$ with $Y_1,Y_2$ being the intended receiver.
         \end{definition}
 
-        another version -- II
-
-        
-        \begin{definition}[Achievable rate pair]
-            We say that a rate $(R_1,R_2)$ is achievable for a channel $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$
-            if there exists a code for $n$ uses of the channel where the messages taken from respective sets $\{1,2,\ldots,2^{nR_1} \}$ and
-             $\{1,2,\ldots,2^{nR_2} \}$ are transmitted with vanishing error probability.
+        \begin{definition}[Achievable rate pair]   \label{def:achievableICrates}
+            We say that a rate $(R_1,R_2)$ is achievable for a channel 
+            $(\cX_1 \otimes \cX_2, p(y_1,y_2|x_1,x_2), \cY_1 \otimes \cY_2)$
+            if there exists a code for $n$ uses of the channel where the messages 
+            taken from respective sets $\{1,2,\ldots,2^{nR_1} \}$ and
+             $\{1,2,\ldots,2^{nR_2} \}$ are transmitted with vanishing error probability
+             \be
+             	\Pr\left\{ M_1 \neq \hat{M}_1 \texttt{or}  M_2 \neq \hat{M}_2 \right\} \leq \epsilon.
+		\label{eqn:ICerrors}
+             \ee
         \end{definition}
-        
         
         \begin{definition}[Capacity]
-            The capacity region $\cC$ of is the closure of the set of achievable rates $(R_1,R_2)$.
+            The capacity region $\ICcap$ of is the convex hull of the closure of the set of achievable rate pairs $(R_1,R_2)$.
         \end{definition}
 
 
-        \begin{definition}[Degraded channel]
-            Let $Y \sim p_y(y|x_1,x_2)$ and $Z \sim p_z(z|x_1,x_2)$ be two conditional distributions.
-            We say Y is a \emph{degraded version} of Z ...
-            copy from \cite{Carleial83} II A.
+        \begin{definition}[Degraded channel] \label{def:degraded-channel}
+            Let $Y \sim p_y(y|x_1,x_2)$ and $Z \sim p_z(z|x_1,x_2)$ be two random variables 
+            defined in terms of $X_1,X_2$.
+            %
+            We say Y is a \emph{degraded version} of Z with respect to $(X_1,X_2)$ if
+            there exits $Y'$, defined on the same sample space as $Y$, such that 
+            $p_{y'}(y|x_1,x_2,z)=p_{y'}(y|z)$ and $p_{y'}(y'|x_1,x_2) = p_y(y|x_1,x_2)$.
         \end{definition}
+        
+        Another way to say the above is that $Y'$ is statistically equivalent to $Y$ and
+        that $(X_1,X_2) \to Z \to Y' $ for a Markov chain.
+        
+
+    \subsection{Convex sets, closures and optimization constraints}
+    	
+	Rate regions in multiuser information theory often stated in terms of constrained 
+	optimization problems over information theoretic quantities.
+	Furthermore, because of the \emph{time-sharing} principle, 
+	we can achieve any rate in the \emph{convex hull} of any other achievable rates.
+	
+	To rigorously state each capacity result can become overly wordy if we do not
+	find a compact notation to express the above notions.
+	Luckily, smarter people than us have already found such a compact notation \cite{Sato77}.
+	We illustrate is with a well known result \cite{S48}.
+	
+	The classical capacity of a single user channel $(\cX,p(y|x),\cY)$ is given by
+	\be
+		\mathcal{C} = \operatorname{conv} \bigcup_{p(x_1)} \{ R  \ | \ R \leq I(X;Y) \  \} .
+	\ee
+	Where the $p(x_1)$ which we are optimizing over should not be confused with 
+	the $p(y|x)$ associated with the channel.
+	The $\operatorname{conv}$ is not really necessary in this case.
+	
+	Technically speaking, the rate $R = I(X;Y)$ is not achievable for the single user channel,
+	but any rate $R-\epsilon$ is.
+	The rigorous way of saying this would be to refer to ``the closure of'' the set or rates 
+	$R < I(X;Y)$, but we will avoid this extra mathematical  kung fu and simply use the equalities 
+	$R \leq I(X;Y)$ for our rate inequalities.
 
 
+    \subsection{Multiple access channel}
 
+        The multiple access channel (MAC) is a special cases of the interference channel with a single 
+        receiver. 
+        It is therefore important to review briefly the known capacity result for the MAC.
 
-            Both only depend on marginals $p(y_1|x_1x_2)$ and $p(y_2|x_1x_2)$ since 
-            if we manage to get both decoding errors low then we manage to get the
-            error of the AND of the two events also. \comment{more details needed...}
+        \begin{definition}[MAC]
+            A multiple access channel is defined as $(\cX_1 \otimes \cX_2, p(y|x_1,x_2), \cY)$,
+            and models a communication network with two inputs and one output with 
+            the probability transition matrix $p(y|x_1,x_2)$.
+        \end{definition}
+        
+        The MAC channel is one of the few problems multiuser information theory for which
+        we know precisely the capacity region.
+        \be
+                \MACcap  = \operatorname{conv} \bigcup_{p(x_1)p(x_2)} 
+                		\{ (R_1,R_2) | \text{ Eqn. \eqref{Gmac1} } \}  \label{region:G_MAC}
+        \ee
+        \bea
+            R_1         &\leq&      I(X_1;Y|X_2), \nonumber \\
+            R_2         &\leq&      I(X_2;Y|X_1), \label{Gmac1} \\
+            R_1 +R_2    &\leq&      I(X_1X_2;Y). \nonumber
+        \eea 
 
+	The coding strategy that makes these rates possible is \emph{successive decoding}.
+	Each receiver first decodes one of the two messages, then decodes the second
+	message using the first as side information. 
+	The better rate is obtained for the second message, since we have side information.
+	
+
+    \subsection{Broadcast channel}
+        
+        While the capacity of the broadcast channel (BC) is not known in general,
+        there are several insights learned from the BC problem that also apply to the
+        study of interference channels.
+        
+        The first thing to notice is that the error criterion in equation \eqref{eqn:ICerrors}
+        of definition \ref{def:achievableICrates} only depend on marginals 
+        $p(y_1|x_1x_2)$ and $p(y_2|x_1x_2)$.
+        This is because if we manage to get both decoding errors low,
+        then we manage to get the error of the OR of the two events also.
+        
+        This observation leads us to the realization that all channels which have
+        the same marginals will have the same capacity. More formally, we will define
+        the class $K(p)$ of interference channel probability matrices 
+        that have marginals as $p(y_1,y_2|x_1x_2)$:
+        \be
+ 		\label{eqn:Kp}
+        		K(p) \triangleq \{ q(y_1,y_2|x_1,x_2) \  \big| \ q_1(y_1|x_1,x_2) = p_1(y_1|x_1,x_2) \ \texttt{and}  \
+					q_2(y_2|x_1,x_2) = p_2(y_2|x_1,x_2) \}.
+        \ee
+        
+        Thus the capacity region $\ICcap$ for an IC channel with probability $p$, is the 
+        same for all channels in $K(p)$.
+        In particular, we can define a particular member of $K(p)$ which might be simpler to analyse
         \begin{definition}[Independent channel]
-            Let $p(y_1|x_1,x_2)$ and $p(y_2|x_1,x_2)$ be the marginals of the associated
+            Let $p_1(y_1|x_1,x_2)$ and $p_2(y_2|x_1,x_2)$ be the marginals of the associated
             with some interference network $p(y_1,y_2|x_1,x_2)$.
-            We call the independent channel the interference network
+            We define the \emph{independent channel} the interference network with 
+            product probability transition matrix
             \be
-                p_i(y_1,y_2|x_1,x_2) = p(y_1|x_1x_2)p(y_2|x_1x_2).
+                p_i(y_1,y_2|x_1,x_2) = p_1(y_1|x_1x_2)p_2(y_2|x_1x_2).
             \ee
         \end{definition}
 
 
+    \subsection{Other uses of the interference network}
+
+        The interference channel is not the most general communication scenario
+        that we can consider using the the interference network.
+        One possibility is to require transmitters to send messages to both
+        receivers, which will make the channel more similar to a multiple-broadcast
+        channel.
+
+        Another generalization % that we will not be considered here is
+        of the IC problem is to allow for correlations between the channel inputs $X_1,X_2$.
+        To study this problem we must also be familiar with Slepian-Wolf
+        coding of correlated sources. 
+
+        We will briefly mention these and other generalization of the IC in the discussion
+        section at the end of this document.
+
         
 
-    \subsection{Relation to multiple access and broadcast channels}
-
-        We can think of the IC as either two multiple access channels or
-        two two broadcast channels.
         
-        It is therefore important to review briefly the known capacity results
-        for these simpler channels.
-
-%       \paragraph{Multiple access}
-%
-%        \comment{CAN BE SKIPPED ... }
-%            Let's say that using random coding to achieve the 
-%            multiple access rate $(R_1,R_2)$ to receiver Rx1.
-%            If you can also use random coding to acieve 
-%            rates $(R'_1,R'_2)$ for  multiple access communication to Rx2, 
-%            and if $R'_1 > R_1$ and $R'_2 > R_2$, then you can
-%            achieve the IC task at rate  $(R_1,R_2)$.
-%            
-%            Note however that the decomposition of the IC in terms of
-%            two multiple access channels is too restrictive,  since in fact
-%            Rx2 doesn't need to learn $M_2$ at all. 
-%            Sure it can be useful side informaiton, but it is not a requirement.
-%            
-%            A more direct generalization of MACs would be multiple multiple-access channels (MMAC)
-%            will be to require both messages $M_1$ and $M_2$ to be decodable
-%            at both receivers.
-%            The notion of interference will be then be much more interesting.
-%            In fact the code used for the Tx1-Rx1 communication will have to also
-%            be easily decodable at Rx2? Is it the same code? Surely with random
-%            coding it works, but what about more general inner-outer codes?
-            
-%            I wonder if there are no relations to network coding which we can do
-%            at this very low level of information theory. 
-
-            
-            Another generalization that we will not be considered here is
-            when the two inputs sources $X_1,X_2$ can be correlated.
-            To study this problem we must also be familiar with Slepian-Wolf
-            coding of correlated sources. In general the joint source-channel coding
-            is a very interesting problem that remains...
-            \comment{What can I say more precisely?}
-            
-            
 
 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Classical results on the Interference Channel}
+\section{Classical results on the Interference Channel}   \label{section:lit-review}
 
-    \subsection{Seminal papers}
     
+    In this section we present a literature review of important papers 
+    which deal with the interference channel and related problems.
+    
+
+    \subsection{Early papers}
+
+
         \paragraph{Ahlswede 1978: The capacity region of a channel with two senders and two receivers}
         
-        One of the earliest papers to appear on the topic of interference channels is by Rudolf Ahlswede \cite{Ahlswede1974}.
-        While the notions of entropy and mutual information were already well established by those days, the author prefers
-        to use the definitions of entropic quantities from first principles:
-        \be
-            R_1(p,q,Y_1) = 
-                \sum_{x_1, x_2, y_1} 
-                    p(x_1)p(x_2)p(y_1|x_1,x_2) 
-                    \log \frac{ p(y_1|x_1,x_2) }{ \sum_{x_1} p(x_1)p(y_1|x_1,x_2) } 
-            = I(X_1;Y_1|X_2).
-        \ee
+            One of the earliest papers to appear on the topic of interference channels is by Rudolf Ahlswede \cite{Ahlswede1974}.
+            While the notions of entropy and mutual information were already well established by those days, the author prefers
+            to use the definitions of entropic quantities from first principles:
+            \be
+                R_1(p,q,Y_1) = 
+                    \sum_{x_1, x_2, y_1} 
+                        p(x_1)p(x_2)p(y_1|x_1,x_2) 
+                        \log \frac{ p(y_1|x_1,x_2) }{ \sum_{x_1} p(x_1)p(y_1|x_1,x_2) } 
+                = I(X_1;Y_1|X_2).
+            \ee
 
-        The paper defines three communication problems that can be studied on the
-        interference network $p(y_1,y_2|x_1,x_2)$. 
+            The paper defines three communication problems that can be studied on the
+            interference network $p(y_1,y_2|x_1,x_2)$. 
 
-        \begin{itemize}
-            \item   The {\bf mariginal $Y_1$-MAC channel} where two inputs $X_1$ and $X_2$ 
-                    encode independent messages  $M_1,M_2$ at rates $R_1,R_2$, which 
-                    must be decoded  at $Y_1$. 
-                    The relevant probability distribution is $\sum_{y_2} p(y_1,y_2|x_1,x_2)$.
-                    Ahlswede calls this the $(p,T_{21},I)$ \emph{communication situaiton}.
+            \begin{itemize}
+                \item   The {\bf mariginal $Y_1$-MAC channel} where two inputs $X_1$ and $X_2$ 
+                        encode independent messages  $M_1,M_2$ at rates $R_1,R_2$, which 
+                        must be decoded  at $Y_1$. 
+                        The relevant probability distribution is $\sum_{y_2} p(y_1,y_2|x_1,x_2)$.
+                        Ahlswede calls this the $(p,T_{21},I)$ \emph{communication situaiton}.
 
-            \item   The {\bf IC} problem which we have defined above. In Ahlswede nomenclature
-                    this is a  $(p,T_{22},I)$ comunication situation.
+                \item   The {\bf IC} problem which we have defined above. In Ahlswede nomenclature
+                        this is a  $(p,T_{22},I)$ comunication situation.
 
-            \item   Finally there is the {\bf multiple MAC} (MMAC)  problem, where 
-                    messages $M_1$ and $M_2$ are to be decoded at both receivers.
-                    This is called the  $(p,T_{22},II)$  problem in the paper.
+                \item   Finally there is the {\bf multiple MAC} (MMAC)  problem, where 
+                        messages $M_1$ and $M_2$ are to be decoded at both receivers.
+                        This is called the  $(p,T_{22},II)$  problem in the paper.
 
-        \end{itemize}
+            \end{itemize}
 
-        The paper then proves the capacity of the $Y_1$ \emph{MAC} problem.
-        \be
-        		G_{MAC_1}  = \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmac1} } \}  \label{region:G_MAC1}
-        \ee
-        \bea
-            R_1         &\leq&      I(X_1;Y_1|X_2), \nonumber \\
-            R_2         &\leq&      I(X_2;Y_1|X_1), \label{Gmac1} \\
-            R_1 +R_2    &\leq&      I(X_1X_2;Y_1). \nonumber
-        \eea 
 
-        The author then uses the same argument to prove the capacity of the MMAC channel
-        when the two inputs $X_1$ and $X_2$ are allowed to be correlated.
+            The paper then proves the capacity of the $Y_1$ \emph{MAC} problem, which
+            we stated in the introduction \eqref{region:G_MAC}.
 
-        \be
-        		G_{MMAC}  = \operatorname{conv} \cup_{\mathbf{p(x_1,x_2)}} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmmac} } \} 
-        \ee
-        \bea
-            R_1         &\leq&      \min\{ I(X_1;Y_1|X_2), I(X_1;Y_2|X_2) \}, \nonumber  \\
-            R_2         &\leq&      \min\{ I(X_2;Y_1|X_1), I(X_2;Y_2|X_1) \}, \label{Gmmac} \\
-            R_1 +R_2    &\leq&      \min\{ I(X_1X_2;Y_1), I(X_1X_2;Y_2) \} \nonumber %\qquad \textrm{for some $p(x_1,x_2)$ }.   \nonumber 
-        \eea 
 
-        In the paper 
-        \comment{ Why need correlated sources? } \\
-        Let $\mathcal{R}_{p(x_1,x_2)}$ be the closure \comment{of the convex hull?} of rates $(R_1,R_2)$ which
-        satisfy equations  \eqref{r1-in-mmac-thm} through \eqref{r1-in-mmac-thm}.
-        And let $\mathcal{C}(p,T_{22},II)$ be the capacity of for the MMAC problem with correlated sources.
-        We want to show that $\mathcal{R}_{p(x_1,x_2)} = \mathcal{C}(p,T_{22},II)$.
+            The author then uses the same argument to prove the capacity of the MMAC channel
+            when the two inputs $X_1$ and $X_2$ are allowed to be correlated.
+
+            \be
+                    G_{MMAC}  = \operatorname{conv} \bigcup_{\mathbf{p(x_1,x_2)}} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmmac} } \} 
+            \ee
+            \bea
+                R_1         &\leq&      \min\{ I(X_1;Y_1|X_2), I(X_1;Y_2|X_2) \}, \nonumber  \\
+                R_2         &\leq&      \min\{ I(X_2;Y_1|X_1), I(X_2;Y_2|X_1) \}, \label{Gmmac} \\
+                R_1 +R_2    &\leq&      \min\{ I(X_1X_2;Y_1), I(X_1X_2;Y_2) \} \nonumber %\qquad \textrm{for some $p(x_1,x_2)$ }.   \nonumber 
+            \eea 
+
+            In the paper 
+            \comment{ Why need correlated sources? } \\
+            Let $\mathcal{R}_{p(x_1,x_2)}$ be the closure \comment{of the convex hull?} of rates $(R_1,R_2)$ which
+            satisfy equations  \eqref{r1-in-mmac-thm} through \eqref{r1-in-mmac-thm}.
+            And let $\mathcal{C}(p,T_{22},II)$ be the capacity of for the MMAC problem with correlated sources.
+            We want to show that $\mathcal{R}_{p(x_1,x_2)} = \mathcal{C}(p,T_{22},II)$.
 
 
 
-        \comment{ Is there an intuitive explanation why this is true? } \\
-        For the part $\mathcal{R}_{p(x_1,x_2)} \subseteq \mathcal{C}(p,T_{22},II)$ we have the following argument...
-        if you have some rates $R_1$ and $R_2$ that are feasibly for both the $Y_1$-MAC and the $Y_2$-MAC then
-        you must be able to do the MMAC problem too.
-        
-        The other direction $\mathcal{R}_{p(x_1,x_2)} \supseteq \mathcal{C}(p,T_{22},II)$  
+            \comment{ Is there an intuitive explanation why this is true? } \\
+            For the part $\mathcal{R}_{p(x_1,x_2)} \subseteq \mathcal{C}(p,T_{22},II)$ we have the following argument...
+            if you have some rates $R_1$ and $R_2$ that are feasibly for both the $Y_1$-MAC and the $Y_2$-MAC then
+            you must be able to do the MMAC problem too.
+            
+            The other direction $\mathcal{R}_{p(x_1,x_2)} \supseteq \mathcal{C}(p,T_{22},II)$  
 
 
-        \comment{ NOT CLEAR ... }
+            \comment{ NOT CLEAR ... }
 
-        This problem is connected to correlated sources coding. Slepian-Wolf etc...
+            This problem is connected to correlated sources coding. Slepian-Wolf etc...
 
 
-        The author then makes a remark that knowing the capacity of the MMAC problem
-        does not help us to find the IC problem.
-        
+            The author then makes a remark that knowing the capacity of the MMAC problem
+            does not help us to find the IC problem.
+            
 
 
 
 
         \paragraph{Sato 77: Two-user communication channels} \ \\
 
-        The next paper, and perhaps the most important paper on the interference channel is
-        by Hiroshi Sato \cite{Sato77}.
+            The next paper, and perhaps the most important paper on the interference channel is
+            by Hiroshi Sato \cite{Sato77}.
 
-        The 
+            The 
+            
+            three special relations to 
+
+        \paragraph{Carleil 78: Interference channels} \ \\
+
+
+
+
         
-        three special relations to 
+    \subsection{Han-Kobayashi / Cheng-Motani-Garg inner bound}
 
-        \paragraph{Han-Kobayashi / Cheng-Motani-Garg inner bound}
+        First appeared in ...
+
         \be
-        		G_{HK}  = \operatorname{conv} \cup_{\mathbf{p(x_1)p(x_2)}} \{ (R_1,R_2) | \text{ Eqn. \eqref{Rcmg} } \} 
+        		G_{HK}  = G_{CMG} \triangleq \operatorname{conv} \cup_{p(x_1|u_1)p(x_2|u_2)p(u_1)p(u_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Rcmg} } \} 
         \ee
-	\bea
-		R_1 		&\leq&	I(X_1;Y_1| U_2 Q) \nonumber \\
-		R_2 		&\leq&	I(X_2;Y_2| U_1 Q) \nonumber \\
-	R_1 + R_2	&\leq&	I(X_1U_2; Y_1|Q) + I (X_2; Y_2|U_1U_2Q) \nonumber \\
-	R_1 + R_2	&\leq&	I (X_1; Y_1|U_1U_2Q) + I (X_2U_1; Y_2|Q) \label{Rcmg}\\
-	R_1 + R_2	&\leq&	I (X_1U_2; Y_1|U_1Q) + I(X_2U_1; Y_2|U_2Q) \nonumber  \\
-	2R_1 + R_2	&\leq&	I (X_1U_2; Y_1|Q) + I (X_1; Y_1|U_1U_2Q) + I(X_2U_1;Y_2|U_2Q) \nonumber \\
-	R_1 + 2R_2	&\leq&	I (X_2; Y_2|U_1U_2Q) + I (X_2U_1; Y_2|Q) +  I (X_1U_2; Y_1|U_1Q) \nonumber 
-	\eea
-	
-
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Outer bounds on $\mcal{C}_{IC}$}
+        \bea
+            R_1 		&\leq&	I(X_1;Y_1| U_2 Q) \nonumber \\
+            R_2 		&\leq&	I(X_2;Y_2| U_1 Q) \nonumber \\
+            R_1 + R_2	&\leq&	I(X_1U_2; Y_1|Q) + I (X_2; Y_2|U_1U_2Q) \nonumber \\
+            R_1 + R_2	&\leq&	I (X_1; Y_1|U_1U_2Q) + I (X_2U_1; Y_2|Q) \label{Rcmg}\\
+            R_1 + R_2	&\leq&	I (X_1U_2; Y_1|U_1Q) + I(X_2U_1; Y_2|U_2Q) \nonumber  \\
+            2R_1 + R_2	&\leq&	I (X_1U_2; Y_1|Q) + I (X_1; Y_1|U_1U_2Q) + I(X_2U_1;Y_2|U_2Q) \nonumber \\
+            R_1 + 2R_2	&\leq&	I (X_2; Y_2|U_1U_2Q) + I (X_2U_1; Y_2|Q) +  I (X_1U_2; Y_1|U_1Q) \nonumber 
+        \eea
+        
 
         
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Outer bounds on $\mcal{C}_{IC}$}           \label{section:outer-bounds}
+
+    In this section we present the best known outer bounds on the capacity region,  $\mcal{C}_{IC}$,
+    of the classical inteference channel.
+
     \subsection{Naive bound}
         
-        Both broadcast channels and multiple access channel are special cases of the interference channel.
-        In particular we can think of the interference channel as two separate multiple access channels.
-        
-        We know that the region defined by
-         \be
-        		G_{Naive}  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gnaive} } \} 
+        The first bound, comes from the relationship to the multiple access channel.
+        In particular we can think of the interference channel as two separate MACs -- one with $Y_1$ as output
+        and another one with $Y_2$ as output.
+        The probability distributions for these MACs are $p(y_1|x_1,x_2) = \sum_{y_2} p(y_1,y_2|x_1,x_2)$ and 
+        $p(y_2|x_1,x_2) = \sum_{y_1} p(y_1,y_2|x_1,x_2)$ respectively.
+
+        Note that if some rate $R_1$ is achievable for the IC, then it must also be achievable for 
+        the $Y_1$-MAC channel since it is a special case of the IC. 
+        %
+        We define the following ``rectangle'' region:
+        \be
+        		\label{Gnaive}
+        		G_{Naive}  \triangleq \operatorname{conv} 
+			\cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{eqnsGnaive} } \}  
         \ee
         \bea \label{eqn:naive-bound}
             R_1     &\leq&    I(X_1;Y_2|X_2) \nonumber \\
-            R_2     &\leq&    I(X_2;Y_2|X_1) \label{Gnaive}
+            R_2     &\leq&    I(X_2;Y_2|X_1) \label{eqnsGnaive}
         \eea
         
-        Claim:  $\ICcap \subset G_{Naive}$. \\
-        \begin{proof}
-            We know from equation \eqref{region:G_MAC1} the capacity region
-            for the reduced $Y_1$ MAC channel is $G_{MAC_1} $.
-            Similarly, we can define the $Y_2$-marginal MAC which will have capacity $G_{MAC_2}$.
-            
-            Now, for contradiction,  suppose we can achieve the rate pair $(R_1,R_2)$ for the interference channel
-            with 
-            \be
-            	R_1 >  I(X_1;Y_2|X_2).
+        The region defined above forms our first outer bound on the IC rate region.
+        \begin{theorem}
+             The region $G_{Naive}$ defined in \eqref{Gnaive} is an outer bound on $\ICcap$, i.e.
+             \be
+                \ICcap \subset G_{Naive}.
             \ee
-            Since the $Y_1$ MAC channel is a special case of the IC, this means that we should
-            be have a rate pair $(R_1,*) \in  G_{MAC_1} $ also with  $R_1 >  I(X_1;Y_2|X_2)$.
-            But that is impossible.
+        \end{theorem}
+        \begin{proof}
+
+            Suppose, for contradiction, that some rate $R^*_1 > I(X_1;Y_2|X_2)$ is achievable for the IC.
+            As pointed out above, this means that it must also be achievable for the $Y_1$-MAC channel.
+
+            But we know from equation \eqref{region:G_MAC} the exact capacity region for the MAC channel,
+            and rate $R^*_1$ lies clearly outside of that region, so it must not have been achievable 
+            for the IC in the first place.
+
+            A similar argument can be applied for the second inequality in relation to the $Y_2$-MAC channel.
+
+            %for the reduced $Y_1$ MAC channel is $G_{MAC_1} $.
+            %Similarly, we can define the $Y_2$-marginal MAC which will have capacity $G_{MAC_2}$.
+            
+            %Now, for contradiction,  suppose we can achieve the rate pair $(R_1,R_2)$ for the interference channel
+            %with 
+            %\be
+            %	R_1 >  I(X_1;Y_2|X_2).
+            %\ee
             
         \end{proof}        
          
-        contains the capacity region $\cC$.
-        
-        This corresponds to a very loose rectangular bound on the true capacity region.
-        
+        This bound is in general very loose. Note however that this bound is achievable
+        for an IC that is independent, i.e. one with probability distribution
+        \be
+            p(y_1,y_2|x_1,x_2) = p_i(y_1,y_2|x_1,x_2) = p(y_1|x_1,x_2)p(y_2|x_1,x_2).
+        \ee
+
 
         
-    \subsection{Sato bound}
+    \subsection{Sato's BC bound}
         
-        We can describe a more precises outer bound to the capacity region by spcifying
-        an inequality on the sum rate $R_1+R_2$. This was done by Sato \cite{Sato1978}.
+        We can describe a more precise outer bound to the capacity region by specifying
+        an inequality on the sum rate $R_1+R_2$. 
+        This was done by Hiroshi Sato \cite{Sato77} by adapting his results on the 
+        broadcast channel \cite{Sato1978}.
         
-        The outer bound becomes:
+        Consider a IC with probability transition matrix $p(y_1,y_2|x_1,x_2)$, 
+        we define the Sato region associated with that channel as follows.
         \be
-        		G_{Sato}  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gsato} } \} 
+        		G_{Sato}(p)  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gsato} } \} 
+		\label{region:Gsato}
         \ee
         \bea \label{eqn:sato-outer-bound}
-            R_1             &\leq&    I(X_1;Y_2|X_2)  \nonumber \\
-            R_2             &\leq&    I(X_2;Y_2|X_1)  \label{Gsato} \\
-            R_1+R_2    &\leq&    I(X_1X_2;Y_1Y_2) \nonumber 
+            R_1             &\leq&    I(X_1;Y_1|X_2),  \nonumber \\
+            R_2             &\leq&    I(X_2;Y_2|X_1),  \label{Gsato} \\
+            R_1+R_2    &\leq&    I(X_1X_2;Y_1Y_2). \nonumber 
         \eea
         
-        
-        DEFINE $K(p)$ and then state properly ... XXXXXXXXXXXXXXXXX
-        
-        
-        \ifthenelse {\boolean{WITHPROOFS}} 
-        {
+        We now state two adaptations of the BC capacity outer bounds which apply directly 
+        to the interference channel as pointed out in \cite{Sato77}.
+                
+        \begin{theorem}[Theorem 1 in \cite{Sato77}]
+             The region $G_{Sato}$ defined in \eqref{region:Gsato} is an outer bound on $\ICcap$, i.e.
+             \be
+                \ICcap \subset G_{Sato}(p).
+            \ee
+        \end{theorem}        
         \begin{proof}
-            b
-        \end{proof}
-        }
-        {
+        		To obtain the first two inequalities, we use the same argument as in the proof of
+		$G_{Naive}$.
+		The third inequality follows from the consideration of a MAC channel
+		where the output is $Y=(Y_1,Y_2)$ which gives us the bound
+		$R_1+R_2 \leq I(X_1X_2;Y)$.
+		
+		Combining the two outputs $Y_1$ and $Y_2$ is equivalent to allowing 
+		joint decoding for the interference channel.
+		Since the joint-decoding channel is more powerful than the original IC,
+		any outer bound on the joint-decoding IC is also an outer bound on $\ICcap$.
+        \end{proof}        
+        
+        Furthermore, using the fact that the IC capacity $\ICcap$ is the same for all channels 
+        in the same-marginals class $K(p)$ defined in equation \eqref{eqn:Kp}, we can take
+        the intersection of $G_{Sato}$ over all channels in that class.
+        
+        \begin{theorem}[Theorem 2 in \cite{Sato77}]
+             \be
+                \ICcap \subset \bigcap_{q \in K(p)} G_{Sato}(q).
+            \ee
+        \end{theorem}        
         \begin{proof}
-            Proof available in extended version of this document.
-        \end{proof}
-        }
-
+            The IC capacity is the same for all channels in $K(p)$, so we might as well
+            pick the worst case in $K(p)$, which is exactly what the intersection operation accomplishes.
+        \end{proof}        
+        
 
 
     \subsection{Carleial}
 
-        A further development concerning an outer bound was obtained by Carleilal \cite{Carleial83}.
+        A further development concerning an outer bound was obtained by Carleial \cite{Carleial83}.
         
         Consider the two random variables $Z_1,Z_2$ such that 
         \bea
-            Y_1 &\textrm{ is a degraded version of }& Z_1 \\
-            Y_2 &\textrm{ is a degraded version of }& Z_2 \\        
-            Y_2 &\textrm{ is a degraded version of }& (X_1,Z_1) \\        
-            Y_1 &\textrm{ is a degraded version of }& (X_2,Z_2) 
+            Y_1 &\textrm{ is a degraded version of }& Z_1, \\
+            Y_2 &\textrm{ is a degraded version of }& Z_2, \\        
+            Y_2 &\textrm{ is a degraded version of }& (X_1,Z_1), \\        
+            Y_1 &\textrm{ is a degraded version of }& (X_2,Z_2),
         \eea
         
-        If we think of $Z_1,Z_2$ as the outputs of the channel, we can interpret the above
-        conditions as the following. 
-        Knowing the input and output of the other person's communication we can recover our own signal.
-        %
-        If we manage to decode our message correctly, then I can also simulate the output that the other
-        person has received -- i.e. I have a joint decoder on $(Y_1,Y_2)$.
-        
+	%        If we think of $Z_1,Z_2$ as the outputs of the channel, we can interpret the above
+	%        conditions as the following. 
+	%        Knowing the input and output of the other person's communication we can recover our own signal.
+	%        %
+	%        If we manage to decode our message correctly, then I can also simulate the output that the other
+	%        person has received -- i.e. I have a joint decoder on $(Y_1,Y_2)$.
+	%        
         
         then we have the following outer bound
         \be
@@ -520,10 +665,13 @@ abstract ?
         \bea
             R_1             &\leq&    I(X_1;Y_1|X_2)  \nonumber \\
             R_2             &\leq&    I(X_2;Y_2|X_1)   \label{Gcarl}\\
-            R_1+R_2     &\leq&   \min\!\left\{ I(X_1X_2;Z_1), I(X_1X_2;Z_2) \right\}             \nonumber 
+            R_1+R_2     &\leq&   \min\!\left\{ \ I(X_1X_2;Z_1) \ , \ I(X_1X_2;Z_2) \ \right\}             \nonumber 
             %R_1+R_2     &\leq&   I(X_1X_2;Z_1) \\
             %R_1+R_2     &\leq&    I(X_1X_2;Z_2) 
         \eea
+        
+        This bound can be shown to be strictly tighter than the Sato bound and is the best known outer bound
+        on the interference channel.
         
         
         
@@ -557,7 +705,7 @@ abstract ?
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Quantum multiuser information theory}
+\section{Quantum multiuser information theory}      \label{section:quantum}
 
 	Quantum information theory (QIT) has been one area of very active research in the past decade.
 	Ever since the B. Schumacher discovery that quantum information can be compressed\cite{Sc95},
@@ -643,11 +791,11 @@ abstract ?
 		The capacity of the quantum MAC $\mcal{M}$ to carry classical information is 
 		$\mcal{C}_{QMAC}(\mcal{M}) = \frac{1}{n} \cup_{n=1}^\infty \mcal{C}^{(1)}_{QMAC}(\mcal{M}^{\otimes n})$ where 
 	        \be
-	        		\mcal{C}^{(1)}_{QMAC}  = \operatorname{conv} \cup_{p(x_1)p(x_2)\sigma_x} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmac1} } \}  \label{region:G_MAC1}
+	        		\mcal{C}^{(1)}_{QMAC}  = \operatorname{conv} \cup_{p(x_1)p(x_2)\sigma_x} \{ (R_1,R_2) | \text{ Eqn. \eqref{qGmac1} } \}  \label{region:qG_MAC}
 	        \ee
 	        \bea
 	            R_1         &\leq&      I(A;C|B)_\theta, \nonumber \\
-	            R_2         &\leq&      I(B;C|A)_\theta, \label{Gmac1} \\
+	            R_2         &\leq&      I(B;C|A)_\theta, \label{qGmac1} \\
 	            R_1 +R_2    &\leq&      I(AB;C)_\theta, \nonumber
 	        \eea 
 	        where mutual informations are calculated with respect to 
@@ -906,10 +1054,14 @@ abstract ?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion and conclusion}
 
+    In this seciton we will make reference to some of the generalizations and open problems
+    associated with the study of interference channels.
 
 
-    \paragraph{Most general use of the interference network}  \ \\
+    What is the most general use of the interference network we can think of?
+
     	
+    six rates.... 
 
         The difference between the IC and the MMAC is that we guarantee
         that an extra ressource of "cross communication" is available.
@@ -921,7 +1073,6 @@ abstract ?
          \end{array} \right)
         \ee
         
-        six rates.... 
         
         
         The IC problem is basically a promise about $R_{11}$ and $R_{22}$,
@@ -932,16 +1083,24 @@ abstract ?
         and I feel they should be taken into account in general.
         (entanglement between receivers?)
 
+        
+        % correlated sources
+        In general the joint source-channel coding 
+        is a very interesting problem that remains...
 
 
-    open problems...
+        %Are the techniques of IC general enough to study this ?
+
+        open problems...
+
+
 
 
 
 \appendix
 
 
-\section{Introduction to QIT}
+\section{Introduction to QIT}           \label{section:intro_to_qit}
 
 
     \subsection{Informal introduction}
