@@ -25,11 +25,27 @@ A.~Carleial.
 \newblock {Outer bounds on the capacity of interference channels (Corresp.)}.
 \newblock {\em IEEE transactions on information theory}, 29(4):602--606, 1983.
 
+\bibitem[DH06]{DH2006}
+Fr\'{e}d\'{e}ric Dupuis and Patrick Hayden.
+\newblock A father protocol for quantum broadcast channels.
+\newblock arXiv:quant-ph/0612155, December 2006.
+
+\bibitem[HDW08]{Hsieh2008}
+Min-Hsiu Hsieh, Igor Devetak, and Andreas Winter.
+\newblock Entanglement-assisted capacity of quantum multiple-access channels.
+\newblock {\em IEEE Transactions on Information Theory}, 54(7):3078--3090,
+  2008.
+
 \bibitem[HHHH07]{HHHH}
 R.~Horodecki, P.~Horodecki, M.~Horodecki, and K.~Horodecki.
 \newblock Quantum entanglement.
 \newblock 2007.
 \newblock arXiv:quant-ph/0702225.
+
+\bibitem[HZH00]{huang2000classical}
+M.~Huang, Y.~Zhang, and G.~Hou.
+\newblock {Classical capacity of a quantum multiple-access channel}.
+\newblock {\em Physical Review A}, 62(5):52106, 2000.
 
 \bibitem[LR73]{LR73}
 E.~H. Lieb and M.~B. Ruskai.
@@ -62,10 +78,51 @@ H.~Sato.
   (Corresp.)}.
 \newblock {\em IEEE Transactions on Information Theory}, 24(3):374--377, 1978.
 
+\bibitem[Sch95]{Sc95}
+B.~Schumacher.
+\newblock Quantum coding.
+\newblock {\em Phys. Rev. A}, 51:2738--2747, 1995.
+\newblock doi:10.1103/PhysRevA.51.2738.
+
+\bibitem[Sch96]{EntFid}
+B.~Schumacher.
+\newblock Sending entanglement through noisy quantum channels.
+\newblock {\em Phys. Rev. A}, 54:2614--2628, 1996.
+\newblock arXiv:quant-ph/9604023.
+
+\bibitem[Sha48]{S48}
+C.~E. Shannon.
+\newblock A mathematical theory of communication.
+\newblock {\em Bell Sys. Tech. Journal}, 27:379--423,623--656, 1948.
+
 \bibitem[VP98]{VP98}
 V.~Vedral and M.~B. Plenio.
 \newblock Entanglement measures and purification procedures.
 \newblock {\em Phys. Rev. A}, 57:1619, 1998.
 \newblock arXiv:quant-ph/9707035.
+
+\bibitem[Win01]{winter2001capacity}
+A.~Winter.
+\newblock {The capacity of the quantum multiple-access channel}.
+\newblock {\em IEEE Transactions on Information Theory}, 47(7):3059--3065,
+  2001.
+
+\bibitem[YDH05]{yard2005capacity}
+J.~Yard, I.~Devetak, and P.~Hayden.
+\newblock {Capacity theorems for quantum multiple access channels}.
+\newblock In {\em Information Theory, 2005. ISIT 2005. Proceedings.
+  International Symposium on}, pages 884--888, 2005.
+
+\bibitem[YHD06]{YHD2006}
+Jon Yard, Patrick Hayden, and Igor Devetak.
+\newblock Quantum broadcast channels.
+\newblock arXiv:quant-ph/0603098, March 2006.
+
+\bibitem[YHD08]{Yard2008}
+Jon Yard, Patrick Hayden, and Igor Devetak.
+\newblock Capacity theorems for quantum multiple-access channels:
+  Classical-quantum and quantum-quantum capacity regions.
+\newblock {\em IEEE Transactions on Information Theory}, 54(7):3091--3113, July
+  2008.
 
 \end{thebibliography}
