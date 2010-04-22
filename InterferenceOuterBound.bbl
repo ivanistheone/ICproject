@@ -20,6 +20,11 @@ C.~H. Bennett and S.~J. Wiesner.
   einstein-podolsky-rosen states.
 \newblock {\em Phys. Rev. Lett.}, 69:2881–2884, 1992.
 
+\bibitem[Car78]{Carleial78}
+A.~Carleial.
+\newblock {Interference channels}.
+\newblock {\em IEEE Transactions on Information Theory}, 24(1):60--70, 1978.
+
 \bibitem[Car83]{Carleial83}
 A.~Carleial.
 \newblock {Outer bounds on the capacity of interference channels (Corresp.)}.

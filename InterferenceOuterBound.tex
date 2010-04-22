@@ -299,7 +299,7 @@ abstract ?
 	$R \leq I(X;Y)$ for our rate inequalities.
 
 
-    \subsection{Multiple access channel}
+    \subsection{Multiple access channel} \label{subseciton:MAC}
 
         The multiple access channel (MAC) is a special cases of the interference channel with a single 
         receiver. 
@@ -377,7 +377,7 @@ abstract ?
         of the IC problem is to allow for correlations between the channel inputs $X_1,X_2$.
         To study this problem we must also be familiar with Slepian-Wolf
         coding of correlated sources. 
-
+	%
         We will briefly mention these and other generalization of the IC in the discussion
         section at the end of this document.
 
@@ -394,17 +394,18 @@ abstract ?
 
     
     In this section we present a literature review of important papers 
-    which deal with the interference channel and related problems.
+    on the interference channel.
     
 
     \subsection{Early papers}
 
 
-        \paragraph{Ahlswede 1978: The capacity region of a channel with two senders and two receivers}
+        \paragraph{Ahlswede 74: The capacity region of a channel with two senders and two receivers} \ \\
         
             One of the earliest papers to appear on the topic of interference channels is by Rudolf Ahlswede \cite{Ahlswede1974}.
-            While the notions of entropy and mutual information were already well established by those days, the author prefers
-            to use the definitions of entropic quantities from first principles:
+            While the notions of entropy and mutual information were already well established by those days, 
+            the notation had not yet been standardized so the author uses the definitions of entropic 
+            quantities from first principles
             \be
                 R_1(p,q,Y_1) = 
                     \sum_{x_1, x_2, y_1} 
@@ -417,14 +418,12 @@ abstract ?
             interference network $p(y_1,y_2|x_1,x_2)$. 
 
             \begin{itemize}
-                \item   The {\bf mariginal $Y_1$-MAC channel} where two inputs $X_1$ and $X_2$ 
-                        encode independent messages  $M_1,M_2$ at rates $R_1,R_2$, which 
-                        must be decoded  at $Y_1$. 
-                        The relevant probability distribution is $\sum_{y_2} p(y_1,y_2|x_1,x_2)$.
-                        Ahlswede calls this the $(p,T_{21},I)$ \emph{communication situaiton}.
+                \item   The {\bf MAC}  to receiver $Y_1$ with probability
+                	    distribution is $\sum_{y_2} p(y_1,y_2|x_1,x_2)$.
+                        Ahlswede calls this the $(p,T_{21},I)$ \emph{communication situation}.
 
                 \item   The {\bf IC} problem which we have defined above. In Ahlswede nomenclature
-                        this is a  $(p,T_{22},I)$ comunication situation.
+                        this is a  $(p,T_{22},I)$ communication situation.
 
                 \item   Finally there is the {\bf multiple MAC} (MMAC)  problem, where 
                         messages $M_1$ and $M_2$ are to be decoded at both receivers.
@@ -432,64 +431,77 @@ abstract ?
 
             \end{itemize}
 
+            The first result in this paper is an alternate proof  of the capacity of the $Y_1$ \emph{MAC} problem.
+            We already stated capacity region $\MACcap$ in subsection \ref{subseciton:MAC}.
+            
 
-            The paper then proves the capacity of the $Y_1$ \emph{MAC} problem, which
-            we stated in the introduction \eqref{region:G_MAC}.
-
-
-            The author then uses the same argument to prove the capacity of the MMAC channel
+            The author then uses the same arguments to prove the capacity of the MMAC channel
             when the two inputs $X_1$ and $X_2$ are allowed to be correlated.
 
             \be
-                    G_{MMAC}  = \operatorname{conv} \bigcup_{\mathbf{p(x_1,x_2)}} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmmac} } \} 
+                    C_{MMAC}  = \operatorname{conv} \bigcup_{p(x_1,x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmmac} } \} 
             \ee
             \bea
                 R_1         &\leq&      \min\{ I(X_1;Y_1|X_2), I(X_1;Y_2|X_2) \}, \nonumber  \\
                 R_2         &\leq&      \min\{ I(X_2;Y_1|X_1), I(X_2;Y_2|X_1) \}, \label{Gmmac} \\
                 R_1 +R_2    &\leq&      \min\{ I(X_1X_2;Y_1), I(X_1X_2;Y_2) \} \nonumber %\qquad \textrm{for some $p(x_1,x_2)$ }.   \nonumber 
             \eea 
-
-            In the paper 
-            \comment{ Why need correlated sources? } \\
-            Let $\mathcal{R}_{p(x_1,x_2)}$ be the closure \comment{of the convex hull?} of rates $(R_1,R_2)$ which
-            satisfy equations  \eqref{r1-in-mmac-thm} through \eqref{r1-in-mmac-thm}.
-            And let $\mathcal{C}(p,T_{22},II)$ be the capacity of for the MMAC problem with correlated sources.
-            We want to show that $\mathcal{R}_{p(x_1,x_2)} = \mathcal{C}(p,T_{22},II)$.
-
-
-
-            \comment{ Is there an intuitive explanation why this is true? } \\
-            For the part $\mathcal{R}_{p(x_1,x_2)} \subseteq \mathcal{C}(p,T_{22},II)$ we have the following argument...
-            if you have some rates $R_1$ and $R_2$ that are feasibly for both the $Y_1$-MAC and the $Y_2$-MAC then
-            you must be able to do the MMAC problem too.
             
-            The other direction $\mathcal{R}_{p(x_1,x_2)} \supseteq \mathcal{C}(p,T_{22},II)$  
+            Note that the optimization is done over joint distributions $p(x_1,x_2)$ and thus
+            does not quite fit into the paradigm of independent messages which we 
+            are interested in.
+		%
+            Indeed, the author  makes a remark in the conclusion of the paper, that knowing the 
+            capacity of the MMAC problem does not help us directly to find the capacity of the IC channel.
+                        
+	%	            \comment{ Why need correlated sources? } \\
+	%            Let $\mathcal{R}_{p(x_1,x_2)}$ be the closure \comment{of the convex hull?} of rates $(R_1,R_2)$ which
+	%            satisfy equations  \eqref{r1-in-mmac-thm} through \eqref{r1-in-mmac-thm}.
+	%            And let $\mathcal{C}(p,T_{22},II)$ be the capacity of for the MMAC problem with correlated sources.
+	%            We want to show that $\mathcal{R}_{p(x_1,x_2)} = \mathcal{C}(p,T_{22},II)$.
 
+	%
 
-            \comment{ NOT CLEAR ... }
-
-            This problem is connected to correlated sources coding. Slepian-Wolf etc...
-
-
-            The author then makes a remark that knowing the capacity of the MMAC problem
-            does not help us to find the IC problem.
+	%            \comment{ Is there an intuitive explanation why this is true? } \\
+	%            For the part $\mathcal{R}_{p(x_1,x_2)} \subseteq \mathcal{C}(p,T_{22},II)$ we have the following argument...
+	%            if you have some rates $R_1$ and $R_2$ that are feasibly for both the $Y_1$-MAC and the $Y_2$-MAC then
+	%            you must be able to do the MMAC problem too.
             
+	%            The other direction $\mathcal{R}_{p(x_1,x_2)} \supseteq \mathcal{C}(p,T_{22},II)$  
 
 
 
 
         \paragraph{Sato 77: Two-user communication channels} \ \\
 
-            The next paper, and perhaps the most important paper on the interference channel is
+            Perhaps the most important of the early papers on the interference channel is 
             by Hiroshi Sato \cite{Sato77}.
-
-            The 
+            In this paper the IC problem is defined and the relations between it and the
+            MAC and BC are outlined.
             
-            three special relations to 
+            Using these relations, the author proves a several progressively stronger 
+            outer bounds the best of which is presented in equation \eqref{region:Gsato} in
+            the next section.
+            
+            % negative result using twin channel...
+            
+            This paper is where degraded IC are make their first appearance.
+            The author gives an inner bound $G_D$ for the degraded IC,
+            but this bound is not equal to the outer bound.
+            The Sato outer bound and the inner bound $G_D$ do coincide,
+            however, for the special case of degraded channel called a \emph{twin channel}.
+            
+            
 
-        \paragraph{Carleil 78: Interference channels} \ \\
+        \paragraph{Carleial 78: Interference channels} \ \\
 
-
+            The paper by Carleial is yet another comprehensive discussion 
+            on the interference channel \cite{Carleial78} problem.
+            
+            
+             
+	   
+	    
 
 
         

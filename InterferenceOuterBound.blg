@@ -3,45 +3,45 @@ The top-level auxiliary file: InterferenceOuterBound.aux
 The style file: alpha.bst
 Database file #1: interferenceChannel.bib
 Warning--empty journal in HHHH
-You've used 22 entries,
+You've used 23 entries,
             2543 wiz_defined-function locations,
-            709 strings with 7339 characters,
-and the built_in function-call counts, 8779 in all, are:
-= -- 885
-> -- 382
-< -- 10
-+ -- 128
-- -- 126
-* -- 653
-:= -- 1448
-add.period$ -- 70
-call.type$ -- 22
-change.case$ -- 132
-chr.to.int$ -- 22
-cite$ -- 23
-duplicate$ -- 322
-empty$ -- 657
-format.name$ -- 156
-if$ -- 1777
+            713 strings with 7388 characters,
+and the built_in function-call counts, 9117 in all, are:
+= -- 921
+> -- 390
+< -- 11
++ -- 130
+- -- 128
+* -- 678
+:= -- 1502
+add.period$ -- 73
+call.type$ -- 23
+change.case$ -- 137
+chr.to.int$ -- 23
+cite$ -- 24
+duplicate$ -- 337
+empty$ -- 685
+format.name$ -- 160
+if$ -- 1845
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 22
-newline$ -- 118
-num.names$ -- 66
-pop$ -- 106
+missing$ -- 23
+newline$ -- 123
+num.names$ -- 69
+pop$ -- 109
 preamble$ -- 1
-purify$ -- 156
+purify$ -- 162
 quote$ -- 0
-skip$ -- 270
+skip$ -- 281
 stack$ -- 0
-substring$ -- 609
-swap$ -- 31
-text.length$ -- 10
-text.prefix$ -- 9
+substring$ -- 635
+swap$ -- 32
+text.length$ -- 11
+text.prefix$ -- 10
 top$ -- 0
-type$ -- 168
+type$ -- 176
 warning$ -- 1
-while$ -- 83
-width$ -- 24
-write$ -- 291
+while$ -- 87
+width$ -- 25
+write$ -- 304
 (There was 1 warning)
