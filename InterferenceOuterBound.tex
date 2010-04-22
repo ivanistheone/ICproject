@@ -18,7 +18,7 @@
 %               right=5cm,
 %                bottom=3cm,
 %               ]{geometry}
-%\usepackage{hyperref}
+\usepackage{hyperref}
 
 
 %\usepackage{graphicx}
@@ -160,11 +160,15 @@
 
 
 
-%\begin{abstract}
-%	We present a literature review about discrete memoryless interference channels (DMIC),
-%	and how they are related to 	
-%\end{abstract}
-abstract ?
+\begin{abstract}
+	In the first part of this work, we present a comprehensive review of
+	results about discrete memoryless interference channels.
+	In the second part, we define the quantum  multiple access and 
+	broadcast channels and state some of the known results about them.
+	Finally we attempt to use these MAC and BC results to derive 
+	an outer bound on the quantum interference channel. 
+\end{abstract}
+
 
 \section{Introduction}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -180,24 +184,25 @@ abstract ?
     The interference channel is an excellent model for many practical communication scenarios
     where medium contention is an issue. 
     This is why obtaining an expression for the capacity region $\ICcap$ 
-    is of great central importance to theoretical and practical information theory.
+    is of central importance to theoretical and practical information theory.
     %
     %was of central interest for theoreticians in the 80s and most recently.
     %
-    Despite the practical importance of the problem, there are very few results about 
-    discrete memoryless interference channels (DMIC) to date.
-    Even the special case of Gaussian channels there the capacity region is not known.
+    Despite the numerous efforts, there are very few results about 
+    discrete memoryless interference channels (DMIC) known to date.
+    Even the special case of Gaussian interference channels there the capacity region is not known.
     % only have for degraded, high interference 
     % the most important case: low / medium interference the capacity is not known...
     
 
     Recently, quantum information theory (QIT) has been a popular research area in physics,
-    computer science and mathematics. This new field of informaiton theory is firmly based
-    in Shannon's principle of informaiton-as-statistics, but studies underlying
-    systems that behave according to the laws of quantum mechanics.
-    The current state of QIT is similar to that of classical informaiton theory in the 80s,
+    computer science and mathematics. This new field of information theory is firmly based
+    in Shannon's principle of information-as-statistics, but systems that behave 
+    according to the laws of quantum mechanics.
+    The current state of QIT is similar to that of classical information theory in the 80s,
     when most single user problems had been solved and researchers were exploring new
-    grounds in multiuser informaiton theory.
+    grounds in multiuser information theory.
+    It is therefore an appropriate time to study the quantum interference channel.
 
     
     This paper will try to review classic results on the interference channel and
@@ -209,19 +214,20 @@ abstract ?
     from a series of seminal classical papers on the interference channel.
     Results relating to outer bounds on the IC capacity are collected together
     in section  \ref{section:outer-bounds}.
-    The next seciton (seciton \ref{section:quantum}) deals with the quantum generalization of the
-    multiple access channel and broadcast channel. 
-    Readers not faimilar with quantum information theory are encouraged 
-    to consult appendix \ref{section:intro_to_qit}, which gives a brief introduction to the subject.
-    Finally we have a section of discussion and pointers to open problems in seciton  .
+    The following section (section \ref{section:quantum}) deals with the quantum generalization of the
+    multiple access and broadcast channels. 
+    	In order to make this work more self-contained, we have included
+	in appendix \ref{section:intro_to_qit} a detailed introduction to 
+	the ideas of quantum information theory.  Readers not familiar with quantum information theory are encouraged 
+    to consult appendix \ref{section:intro_to_qit} before diving reading section \ref{section:quantum}.
+    Finally we have a section of discussion and pointers to open problems in section  \ref{section:discussion}.
 
-    
     
     
     
  \section{Preliminaries}  \label{Preliminaries} 
 
-    In this seciton we introduce important notation and nomenclature which will
+    In this section we introduce important notation and nomenclature which will
     be used throughout this paper.
     We also state some important results from multiuser information theory,
     which we will need as building blocks.
@@ -249,7 +255,7 @@ abstract ?
             taken from respective sets $\{1,2,\ldots,2^{nR_1} \}$ and
              $\{1,2,\ldots,2^{nR_2} \}$ are transmitted with vanishing error probability
              \be
-             	\Pr\left\{ M_1 \neq \hat{M}_1 \texttt{or}  M_2 \neq \hat{M}_2 \right\} \leq \epsilon.
+             	\Pr\left\{ M_1 \neq \hat{M}_1 \text{ or }  M_2 \neq \hat{M}_2 \right\} \leq \epsilon.
 		\label{eqn:ICerrors}
              \ee
         \end{definition}
@@ -263,13 +269,13 @@ abstract ?
             Let $Y \sim p_y(y|x_1,x_2)$ and $Z \sim p_z(z|x_1,x_2)$ be two random variables 
             defined in terms of $X_1,X_2$.
             %
-            We say Y is a \emph{degraded version} of Z with respect to $(X_1,X_2)$ if
+            We say $Y$ is a \emph{degraded version} of $Z$ with respect to $(X_1,X_2)$ if
             there exits $Y'$, defined on the same sample space as $Y$, such that 
-            $p_{y'}(y|x_1,x_2,z)=p_{y'}(y|z)$ and $p_{y'}(y'|x_1,x_2) = p_y(y|x_1,x_2)$.
+            $p_{y'}(y'|x_1,x_2,z)=p_{y'}(y'|z)$ and $p_{y'}(y'|x_1,x_2) = p_y(y|x_1,x_2)$.
         \end{definition}
         
         Another way to say the above is that $Y'$ is statistically equivalent to $Y$ and
-        that $(X_1,X_2) \to Z \to Y' $ for a Markov chain.
+        that $(X_1,X_2) \to Z \to Y' $ form a Markov chain.
         
 
     \subsection{Convex sets, closures and optimization constraints}
@@ -282,26 +288,26 @@ abstract ?
 	To rigorously state each capacity result can become overly wordy if we do not
 	find a compact notation to express the above notions.
 	Luckily, smarter people than us have already found such a compact notation \cite{Sato77}.
-	We illustrate is with a well known result \cite{S48}.
+	We illustrate it with a well known result \cite{S48}.
 	
 	The classical capacity of a single user channel $(\cX,p(y|x),\cY)$ is given by
 	\be
-		\mathcal{C} = \operatorname{conv} \bigcup_{p(x_1)} \{ R  \ | \ R \leq I(X;Y) \  \} .
+		\mathcal{C} = \operatorname{conv} \bigcup_{p(x)} \{ R  \ | \ R \leq I(X;Y) \  \} .
 	\ee
-	Where the $p(x_1)$ which we are optimizing over should not be confused with 
+	Where the $p(x)$ which we are optimizing over should not be confused with 
 	the $p(y|x)$ associated with the channel.
 	The $\operatorname{conv}$ is not really necessary in this case.
 	
 	Technically speaking, the rate $R = I(X;Y)$ is not achievable for the single user channel,
 	but any rate $R-\epsilon$ is.
 	The rigorous way of saying this would be to refer to ``the closure of'' the set or rates 
-	$R < I(X;Y)$, but we will avoid this extra mathematical  kung fu and simply use the equalities 
-	$R \leq I(X;Y)$ for our rate inequalities.
+	$R < I(X;Y)$, but we will avoid this extra mathematical  kung fu and simply use equalities 
+	$R \leq I(X;Y)$ for our rate constraints.
 
 
     \subsection{Multiple access channel} \label{subseciton:MAC}
 
-        The multiple access channel (MAC) is a special cases of the interference channel with a single 
+        The multiple access channel (MAC) is a special case of the interference channel with a single 
         receiver. 
         It is therefore important to review briefly the known capacity result for the MAC.
 
@@ -324,34 +330,35 @@ abstract ?
         \eea 
 
 	The coding strategy that makes these rates possible is \emph{successive decoding}.
-	Each receiver first decodes one of the two messages, then decodes the second
+	The receiver first decodes one of the two messages, then decodes the second
 	message using the first as side information. 
 	The better rate is obtained for the second message, since we have side information.
-	
+	Note that the rates $R_1=I(X_1;Y|X_2)$ and $R_2=I(X_2;Y|X_1)$ are not simultaneously
+	achievable.
 
     \subsection{Broadcast channel}
         
         While the capacity of the broadcast channel (BC) is not known in general,
-        there are several insights learned from the BC problem that also apply to the
+        there are several insights learned from BCs that also apply to the
         study of interference channels.
         
-        The first thing to notice is that the error criterion in equation \eqref{eqn:ICerrors}
-        of definition \ref{def:achievableICrates} only depend on marginals 
-        $p(y_1|x_1x_2)$ and $p(y_2|x_1x_2)$.
+        The first thing to note is that the error criterion in equation \eqref{eqn:ICerrors}
+        of definition \ref{def:achievableICrates} only depends on the marginals 
+        $p_1(y_1|x_1x_2)$ and $p_2(y_2|x_1x_2)$.
         This is because if we manage to get both decoding errors low,
-        then we manage to get the error of the OR of the two events also.
+        then we manage to get the error of the union of the two events also.
         
-        This observation leads us to the realization that all channels which have
+        This observation leads us to the fact that all channels which have
         the same marginals will have the same capacity. More formally, we will define
         the class $K(p)$ of interference channel probability matrices 
-        that have marginals as $p(y_1,y_2|x_1x_2)$:
+        that have the same marginals as $p(y_1,y_2|x_1x_2)$:
         \be
  		\label{eqn:Kp}
-        		K(p) \triangleq \{ q(y_1,y_2|x_1,x_2) \  \big| \ q_1(y_1|x_1,x_2) = p_1(y_1|x_1,x_2) \ \texttt{and}  \
+        		K(p) \triangleq \{ q(y_1,y_2|x_1,x_2) \  \big| \ q_1(y_1|x_1,x_2) = p_1(y_1|x_1,x_2), \ 
 					q_2(y_2|x_1,x_2) = p_2(y_2|x_1,x_2) \}.
         \ee
         
-        Thus the capacity region $\ICcap$ for an IC channel with probability $p$, is the 
+        Thus the capacity region $\ICcap$ for an IC channel with probability transition matrix $p$, is the 
         same for all channels in $K(p)$.
         In particular, we can define a particular member of $K(p)$ which might be simpler to analyse
         \begin{definition}[Independent channel]
@@ -370,18 +377,17 @@ abstract ?
         The interference channel is not the most general communication scenario
         that we can consider using the the interference network.
         One possibility is to require transmitters to send messages to both
-        receivers, which will make the channel more similar to a multiple-broadcast
-        channel.
-
+        receivers.
+	%        , which will make the channel more similar to a multiple-broadcast
+	%        channel.
+	%
         Another generalization % that we will not be considered here is
         of the IC problem is to allow for correlations between the channel inputs $X_1,X_2$.
         To study this problem we must also be familiar with Slepian-Wolf
         coding of correlated sources. 
 	%
         We will briefly mention these and other generalization of the IC in the discussion
-        section at the end of this document.
-
-        
+        section (section  \ref{section:discussion}) at the end of this document.
 
         
 
@@ -403,16 +409,16 @@ abstract ?
         \paragraph{Ahlswede 74: The capacity region of a channel with two senders and two receivers} \ \\
         
             One of the earliest papers to appear on the topic of interference channels is by Rudolf Ahlswede \cite{Ahlswede1974}.
-            While the notions of entropy and mutual information were already well established by those days, 
+            While the notions of entropy and mutual information were already well established in those days, 
             the notation had not yet been standardized so the author uses the definitions of entropic 
-            quantities from first principles
+            quantities from first principles like this one
             \be
-                R_1(p,q,Y_1) = 
+                R_1(p,q,Y_1) \triangleq
                     \sum_{x_1, x_2, y_1} 
-                        p(x_1)p(x_2)p(y_1|x_1,x_2) 
-                        \log \frac{ p(y_1|x_1,x_2) }{ \sum_{x_1} p(x_1)p(y_1|x_1,x_2) } 
-                = I(X_1;Y_1|X_2).
+                        p(x_1)q(x_2)p(y_1|x_1,x_2) 
+                        \log \frac{ p(y_1|x_1,x_2) }{ \sum_{x_1} p(x_1)p(y_1|x_1,x_2) },
             \ee
+            which stands for $I(X_1;Y_1|X_2)$ in modern notation.
 
             The paper defines three communication problems that can be studied on the
             interference network $p(y_1,y_2|x_1,x_2)$. 
@@ -422,7 +428,7 @@ abstract ?
                 	    distribution is $\sum_{y_2} p(y_1,y_2|x_1,x_2)$.
                         Ahlswede calls this the $(p,T_{21},I)$ \emph{communication situation}.
 
-                \item   The {\bf IC} problem which we have defined above. In Ahlswede nomenclature
+                \item   The {\bf IC} problem which we have defined above. In Ahlswede's nomenclature
                         this is a  $(p,T_{22},I)$ communication situation.
 
                 \item   Finally there is the {\bf multiple MAC} (MMAC)  problem, where 
@@ -431,7 +437,7 @@ abstract ?
 
             \end{itemize}
 
-            The first result in this paper is an alternate proof  of the capacity of the $Y_1$ \emph{MAC} problem.
+            The first result in this paper is an alternate proof  of the $Y_1$-{MAC} capacity region.
             We already stated capacity region $\MACcap$ in subsection \ref{subseciton:MAC}.
             
 
@@ -444,7 +450,7 @@ abstract ?
             \bea
                 R_1         &\leq&      \min\{ I(X_1;Y_1|X_2), I(X_1;Y_2|X_2) \}, \nonumber  \\
                 R_2         &\leq&      \min\{ I(X_2;Y_1|X_1), I(X_2;Y_2|X_1) \}, \label{Gmmac} \\
-                R_1 +R_2    &\leq&      \min\{ I(X_1X_2;Y_1), I(X_1X_2;Y_2) \} \nonumber %\qquad \textrm{for some $p(x_1,x_2)$ }.   \nonumber 
+                R_1 +R_2    &\leq&      \min\{ I(X_1X_2;Y_1), I(X_1X_2;Y_2) \} \nonumber 
             \eea 
             
             Note that the optimization is done over joint distributions $p(x_1,x_2)$ and thus
@@ -485,18 +491,17 @@ abstract ?
             
             % negative result using twin channel...
             
-            This paper is where degraded IC are make their first appearance.
+            This paper is where degraded IC make their first appearance.
             The author gives an inner bound $G_D$ for the degraded IC,
             but this bound is not equal to the outer bound.
             The Sato outer bound and the inner bound $G_D$ do coincide,
-            however, for the special case of degraded channel called a \emph{twin channel}.
-            
+            however, for a special case of degraded channels called \emph{twin channels}.
             
 
         \paragraph{Carleial 78: Interference channels} \ \\
 
             The paper by Carleial is yet another comprehensive discussion 
-            on the interference channel \cite{Carleial78} problem.
+            on interference channels \cite{Carleial78}.
             
             
              
@@ -510,16 +515,16 @@ abstract ?
         First appeared in ...
 
         \be
-        		G_{HK}  = G_{CMG} \triangleq \operatorname{conv} \cup_{p(x_1|u_1)p(x_2|u_2)p(u_1)p(u_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Rcmg} } \} 
+        		G_{HK}  = G_{CMG} \triangleq \operatorname{conv} \bigcup_{p(x_1|u_1)p(x_2|u_2)p(u_1)p(u_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Rcmg} } \} 
         \ee
         \bea
-            R_1 		&\leq&	I(X_1;Y_1| U_2 Q) \nonumber \\
-            R_2 		&\leq&	I(X_2;Y_2| U_1 Q) \nonumber \\
-            R_1 + R_2	&\leq&	I(X_1U_2; Y_1|Q) + I (X_2; Y_2|U_1U_2Q) \nonumber \\
-            R_1 + R_2	&\leq&	I (X_1; Y_1|U_1U_2Q) + I (X_2U_1; Y_2|Q) \label{Rcmg}\\
-            R_1 + R_2	&\leq&	I (X_1U_2; Y_1|U_1Q) + I(X_2U_1; Y_2|U_2Q) \nonumber  \\
-            2R_1 + R_2	&\leq&	I (X_1U_2; Y_1|Q) + I (X_1; Y_1|U_1U_2Q) + I(X_2U_1;Y_2|U_2Q) \nonumber \\
-            R_1 + 2R_2	&\leq&	I (X_2; Y_2|U_1U_2Q) + I (X_2U_1; Y_2|Q) +  I (X_1U_2; Y_1|U_1Q) \nonumber 
+            R_1 		&\le&	I(X_1;Y_1| U_2 ) \nonumber \\
+            R_2 		&\le&	I(X_2;Y_2| U_1 ) \nonumber \\
+            R_1 + R_2	&\le&	I(X_1U_2; Y_1|) + I (X_2; Y_2|U_1U_2) \nonumber \\
+            R_1 + R_2	&\le&	I (X_1; Y_1|U_1U_2) + I (X_2U_1; Y_2|) \label{Rcmg}\\
+            R_1 + R_2	&\le&	I (X_1U_2; Y_1|U_1) + I(X_2U_1; Y_2|U_2) \nonumber  \\
+            2R_1 + R_2	&\le&	I (X_1U_2; Y_1|) + I (X_1; Y_1|U_1U_2) + I(X_2U_1;Y_2|U_2) \nonumber \\
+            R_1 + 2R_2	&\le&	I (X_2; Y_2|U_1U_2) + I (X_2U_1; Y_2|) +  I (X_1U_2; Y_1|U_1) \nonumber 
         \eea
         
 
@@ -531,9 +536,8 @@ abstract ?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Outer bounds on $\mcal{C}_{IC}$}           \label{section:outer-bounds}
 
-    In this section we present the best known outer bounds on the capacity region,  $\mcal{C}_{IC}$,
-    of the classical inteference channel.
-
+    In this section we present the best known outer bounds on the IC capacity region $\mcal{C}_{IC}$.
+    
     \subsection{Naive bound}
         
         The first bound, comes from the relationship to the multiple access channel.
@@ -549,11 +553,11 @@ abstract ?
         \be
         		\label{Gnaive}
         		G_{Naive}  \triangleq \operatorname{conv} 
-			\cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{eqnsGnaive} } \}  
+			\bigcup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{eqnsGnaive} } \}  
         \ee
         \bea \label{eqn:naive-bound}
-            R_1     &\leq&    I(X_1;Y_2|X_2) \nonumber \\
-            R_2     &\leq&    I(X_2;Y_2|X_1) \label{eqnsGnaive}
+            R_1     &\leq&    I(X_1;Y_2|X_2), \nonumber \\
+            R_2     &\leq&    I(X_2;Y_2|X_1). \label{eqnsGnaive}
         \eea
         
         The region defined above forms our first outer bound on the IC rate region.
@@ -571,18 +575,8 @@ abstract ?
             But we know from equation \eqref{region:G_MAC} the exact capacity region for the MAC channel,
             and rate $R^*_1$ lies clearly outside of that region, so it must not have been achievable 
             for the IC in the first place.
-
-            A similar argument can be applied for the second inequality in relation to the $Y_2$-MAC channel.
-
-            %for the reduced $Y_1$ MAC channel is $G_{MAC_1} $.
-            %Similarly, we can define the $Y_2$-marginal MAC which will have capacity $G_{MAC_2}$.
-            
-            %Now, for contradiction,  suppose we can achieve the rate pair $(R_1,R_2)$ for the interference channel
-            %with 
-            %\be
-            %	R_1 >  I(X_1;Y_2|X_2).
-            %\ee
-            
+		%
+            A similar argument is applied for the second inequality using the $Y_2$-MAC sub-channel.
         \end{proof}        
          
         This bound is in general very loose. Note however that this bound is achievable
@@ -603,7 +597,7 @@ abstract ?
         Consider a IC with probability transition matrix $p(y_1,y_2|x_1,x_2)$, 
         we define the Sato region associated with that channel as follows.
         \be
-        		G_{Sato}(p)  \triangleq \operatorname{conv} \cup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gsato} } \} 
+        		G_{Sato}(p)  \triangleq \operatorname{conv} \bigcup_{p(x_1)p(x_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gsato} } \} 
 		\label{region:Gsato}
         \ee
         \bea \label{eqn:sato-outer-bound}
@@ -613,7 +607,7 @@ abstract ?
         \eea
         
         We now state two adaptations of the BC capacity outer bounds which apply directly 
-        to the interference channel as pointed out in \cite{Sato77}.
+        to the interference channel.
                 
         \begin{theorem}[Theorem 1 in \cite{Sato77}]
              The region $G_{Sato}$ defined in \eqref{region:Gsato} is an outer bound on $\ICcap$, i.e.
@@ -687,30 +681,30 @@ abstract ?
         
         
         
-    \subsection{Nair - El Gamal outer bound}
-       
-        \comment{is this useful?}
-        
-        In a recent paper \cite{Nair2006}, Nair and El Gamal give the following outer bound on the BC
-        with independent messages $M_1,M_2$ encoded into $U,V$ respectively,
-        which are later \emph{jointly encoded} into an input symbol $X$ for the BC.
-        
-        \bea \label{eqn:nair-outer-bound}
-            R_1             &\leq&    I(U;Y_1) \\
-            R_2             &\leq&    I(V;Y_2) \\
-            R_1+R_2     &\leq&   I(U;Y_1) + I(V;Y_2 | U) \\
-            R_1+R_2     &\leq&   I(V;Y_2) + I(U;Y_1 | V) 
-        \eea        
-        for some choice of input distribution $p(u,v,x)=p(u,v)p(x|u,v)$. 
-        
-        The region defined above is an outer bound on the BC, which
-        involves joint encoding of the two sources $U,V$.
-        If we are dealing with the IC, we have a more restrictive scenario
-        since $U \to X_1$ and $V \to X_2$, i.e. we don't have joint encoding
-        of the two sources.
-        
-        It follows that the above region is also an outer bound on the IC cap region.
-        
+	%    \subsection{Nair - El Gamal outer bound}
+	%       
+	%        \comment{is this useful?}
+	%        
+	%        In a recent paper \cite{Nair2006}, Nair and El Gamal give the following outer bound on the BC
+	%        with independent messages $M_1,M_2$ encoded into $U,V$ respectively,
+	%        which are later \emph{jointly encoded} into an input symbol $X$ for the BC.
+	%        
+	%        \bea \label{eqn:nair-outer-bound}
+	%            R_1             &\leq&    I(U;Y_1) \\
+	%            R_2             &\leq&    I(V;Y_2) \\
+	%            R_1+R_2     &\leq&   I(U;Y_1) + I(V;Y_2 | U) \\
+	%            R_1+R_2     &\leq&   I(V;Y_2) + I(U;Y_1 | V) 
+	%        \eea        
+	%        for some choice of input distribution $p(u,v,x)=p(u,v)p(x|u,v)$. 
+	%        
+	%        The region defined above is an outer bound on the BC, which
+	%        involves joint encoding of the two sources $U,V$.
+	%        If we are dealing with the IC, we have a more restrictive scenario
+	%        since $U \to X_1$ and $V \to X_2$, i.e. we don't have joint encoding
+	%        of the two sources.
+	%        
+	%        It follows that the above region is also an outer bound on the IC cap region.
+	%        
 
 
 
@@ -719,41 +713,48 @@ abstract ?
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Quantum multiuser information theory}      \label{section:quantum}
 
-	Quantum information theory (QIT) has been one area of very active research in the past decade.
-	Ever since the B. Schumacher discovery that quantum information can be compressed\cite{Sc95},
+	Quantum information theory (QIT) has been an area of very active research in the past decade.
+	Ever since B. Schumacher's discovery that quantum information can be compressed 
+	just like its classical counterpart \cite{Sc95},
 	information theorists and physicists have been working hard to answer the basic questions
-	about source coding, channel capacity and efficient coding schemes. 
+	about source coding, channel capacity and efficient coding schemes for quantum system.
 	
 	QIT can be considered in some sense a direct extension of classical information theory.
-	It is not surprising then if many QIT results carry the same flavour the classical strategies.
-	Often times, the rates obtained in a quantum protocol will be of the same form, and
-	in fact the same expressions in terms of mutual information as 	the classical 
-	counterpart (or at least up to a constant $\frac{1}{2}$ factor).
+	It is not surprising then if many QIT results carry the same flavour as the classical counterpart.
+	Often times, the rates obtained in a quantum protocol will be bounded by the same expressions 
+	in terms of mutual information as in the classical result (up to a constant factor of $\frac{1}{2}$).
 	
-	This resemblance at the ``formula level'' is misleading, however, since the equations
+	This resemblance at the ``formula level'' is misleading, however, since very often the equations
 	come about for very different reasons.
 	Indeed, the properties of quantum information and the von Neumann entropy used
-	to measure it, have some very different characteristics compared to the classical data.
+	to measure it, have some very different characteristics compared to classical information.
 	
-	Here is a short list of a few of the particularities quantum information has to offer:
+	Here is a short list with a few of the particularities quantum information has to offer:
 	
 	\begin{itemize}
 		\item 	Quantum information cannot be copied. This is called the \emph{no-cloning} principle.
 		\item 	Quantum information cannot be destroyed. A quantum system only ``loses'' 
-				information in the sense that it gets mixed up in the environment.
+				information in the sense that it gets mixed up in the environment. 
+				This is in fact not strictly a quantum property, even classical laws of physics are 
+				reversible at the micro-level.
 		\item 	Entanglement can be used to increase the rates of certain protocols despite being
-				provably useless for communication resource by itself (no-signalling principle from Relativity).
-				(note that classically shared randomness cannot increase the rate of classical protocols)
-		\item 	von Neumann conditional entropy can be negative. 
-				$H(A|B)_\rho < 0$ also has an operational interpretation related to quantum Slepian-Wolf coding.
-		\item 	Monogamy of entanglement:  If we have some tripartite pure state on $ABC$ and we
-				can prove that the $A$-entanglement is not in system $B$, then it must be in system $C$ 
-				because it must be somewhere.
+				provably useless as a communication resource by itself (no-signalling principle from Special Relativity).
+				(note that classically shared randomness cannot increase the rate of IT protocols)
+		\item 	von Neumann conditional entropy can be negative,
+				$H(A|B)_\rho < 0$, and this has an operational interpretation related to quantum Slepian-Wolf coding.
+		\item 	Monogamy of entanglement:  If we have some tripartite pure state on $ABC$,
+				then the more entangled $A$ is with $B$, the less entangled it can be with $C$.
+		%	and we
+		%	can prove that the $A$-entanglement is not in system $B$, then it must be in system $C$ 
+		%	because it must be somewhere.
 		%				If a pure system $\ket{\psi}^{ABR}$ is such that 
 		%				the $A$ and $B$ subsystems are in a tensor product state $\psi_{AB}=\psi^{A}\otimes \psi^{B}$,
 		%				then the ``quantum information'' contained 
 		\item		Polygamy of purification: In a pure tripartite state on $ABC$, some subset $\hat{B} \subsetneq B $ can,
 				with hight probability, contain the purification of two \emph{both} $A$ and $C$.
+		\item		Quantum Error Correcting Codes exist. 
+				Despite the fact that quantum information is in some sense continuous,
+				we can still \emph{stabilize} it using a finite set of operations just like classical ECC.
 	\end{itemize}	
 
 	For a crash-course introduction to the subject, and in particular the notation
@@ -766,11 +767,11 @@ abstract ?
 	Before we get to that, we must discuss the kinds of rates that one might want to study.
 
 
-	\section{Communication tasks}
+	\subsection{Communication tasks}
 			
 		We can use a quantum channel to transmit classical or quantum information.
 		There are therefore two different communication tasks and different capacity regions
-		associated with each task on the same quantum channel $\mathcal{N}$.
+		associated with each task for the same quantum channel $\mathcal{N}$.
 		To complicate things further, we often consider coding strategies, which use an additional
 		communication resource of shared entanglement  between sender	and receiver.
 		
@@ -782,9 +783,12 @@ abstract ?
 			\item Entanglement-assisted quantum data: $\mathcal{Q}_{\texttt{E-A}}\!\left(\mathcal{N}\right)$
 		\end{itemize}
 	
+		Suppose we have coding strategy that makes $n$ uses of the channel $\mathcal{N}$.
 		A common but not universal convention is to denote rates for the communication
-		of classical information by the $R$-rates $R_1,R_2,\ldots$. 
-		Quantum rates will be written as  $Q$-rates.
+		of classical information by the letter $R$ (number of bits sent per channel use),
+		and the quantum rates by the letter $Q$. 
+		Quantum rates measure the dimension of the system $\psi$ that we managed
+		to send across the channel so $Q=\frac{1}{n}\log \dim \psi$.
 		In cases where we do not consider entanglement to be ``free'', we will 
 		denote by $E$ the rate at which entanglement is being used-up or generated
 		by the protocol.
@@ -801,9 +805,11 @@ abstract ?
 
 		\begin{theorem}[Theorem 10 in \cite{winter2001capacity}]
 		The capacity of the quantum MAC $\mcal{M}$ to carry classical information is 
-		$\mcal{C}_{QMAC}(\mcal{M}) = \frac{1}{n} \cup_{n=1}^\infty \mcal{C}^{(1)}_{QMAC}(\mcal{M}^{\otimes n})$ where 
+		$\mcal{C}_{QMAC}(\mcal{M}) = \frac{1}{n} \bigcup_{n=1}^\infty \mcal{C}^{(1)}_{QMAC}(\mcal{M}^{\otimes n})$ where 
 	        \be
-	        		\mcal{C}^{(1)}_{QMAC}  = \operatorname{conv} \cup_{p(x_1)p(x_2)\sigma_x} \{ (R_1,R_2) | \text{ Eqn. \eqref{qGmac1} } \}  \label{region:qG_MAC}
+	        		\mcal{C}^{(1)}_{QMAC}  = \operatorname{conv} 
+				\bigcup_{p(x_1)p(x_2)\sigma_{x_1}\sigma_{x_2}} 
+				\{ (R_1,R_2) | \text{ Eqn. \eqref{qGmac1} } \}  \label{region:qG_MAC}
 	        \ee
 	        \bea
 	            R_1         &\leq&      I(A;C|B)_\theta, \nonumber \\
@@ -827,7 +833,8 @@ abstract ?
 		The capacity of the quantum MAC $\mcal{M}$ to carry classical 
 		information \emph{when an additional resource of entanglement is available is} 
 	        \be
-	        		\mcal{C}_{\texttt{E-A}}  = \operatorname{conv} \cup_{p(x_1)p(x_2)\sigma_x} \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmac2} } \}  \label{region:G_MAC1}
+	        		\mcal{C}_{\texttt{E-A}}  = \operatorname{conv} \cup_{p(x_1)p(x_2)\varphi\varphi AAAA}
+				 \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmac2} } \}  \label{region:G_MAC1}
 	        \ee
 	        \bea
 	            R_1         &\leq&      I(A;C|B)_\theta, \nonumber \\
@@ -852,7 +859,7 @@ abstract ?
 		but also conceptual (defining the problem).
 		The classical broadcast problem defines three rates. 
 		Two personal rates  $R_1,R_2$ for messages intended for Rx1, Rx2 respectively
-		and a rate $R_0$ for messages $M_0$ recoverable at both receivers.
+		and a rate $R_0$ for message $M_0$ recoverable at both receivers.
 
 		In the quantum BC, we can define rates $Q_1,Q_2$ in analogy with their
 		classical counterparts but since we are not allowed to copy quantum information,
@@ -892,13 +899,7 @@ abstract ?
 		})^{\otimes n}.
 		\]
 
-		
-		trace norm $\left\Vert A\right\Vert _{1}\equiv$Tr$\left\{  \sqrt{A^{\dag}%
-		A}\right\}  $. Fidelity $F\left(  \rho,\sigma\right)  \equiv\left\Vert
-		\sqrt{\rho}\sqrt{\sigma}\right\Vert _{1}^{2}$.
-
-
-		    
+				    
 
 		
 
@@ -1026,45 +1027,11 @@ abstract ?
 		region in the $(Q_{1},Q_{2})$ space, containing all achievable rate pairs
 		$(Q_{1},Q_{2})$.
 
-		There is another way to depict an even more general protocol (that we
-		discussed in the group meeting). Figure~\ref{fig:interference-discussion}%
-		\ depicts this setting.%
-		%TCIMACRO{\FRAME{ftbpFU}{4.0421in}{2.9672in}{0pt}{\Qcb{(Color online)\ The
-		%above figure depicts the alternate setting that we had in our discussion. Each
-		%block in the figure is an isometric extension of the corresponding CPTP\ maps
-		%from the previous figure. Thus, the state is pure at each point in the
-		%protocol.}}{\Qlb{fig:interference-discussion}}%
-		%{interference-protocol-discussion.png}{\special{ language "Scientific Word";
-		%type "GRAPHIC";  maintain-aspect-ratio TRUE;  display "USEDEF";
-		%valid_file "F";  width 4.0421in;  height 2.9672in;  depth 0pt;
-		%original-width 8.2062in;  original-height 6.007in;  cropleft "0";
-		%croptop "1";  cropright "1";  cropbottom "0";
-		%filename 'figures/interference-protocol-discussion.png';file-properties "XNPEU";}%
-		%}}%
-		%BeginExpansion
-		\begin{figure}
-		[ptb]
-		\begin{center}
-		%\includegraphics[
-		%natheight=6.007000in,
-		%natwidth=8.206200in,
-		%height=2.9672in,
-		%width=4.0421in
-		%]%
-		%{figures/interference-protocol-discussion.png}%
-		\caption{(Color online)\ The above figure depicts the alternate setting that
-		we had in our discussion. Each block in the figure is an isometric extension
-		of the corresponding CPTP\ maps from the previous figure. Thus, the state is
-		pure at each point in the protocol.}%
-		\label{fig:interference-discussion}%
-		\end{center}
-		\end{figure}
-		%EndExpansion
 
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Discussion and conclusion}
+\section{Discussion and conclusion}		\label{section:discussion}
 
     In this seciton we will make reference to some of the generalizations and open problems
     associated with the study of interference channels.
