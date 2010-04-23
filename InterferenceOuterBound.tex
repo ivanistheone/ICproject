@@ -190,28 +190,28 @@
     %
     Despite the numerous efforts, there are very few results about 
     discrete memoryless interference channels (DMIC) known to date.
-    Even the special case of Gaussian interference channels there the capacity region is not known.
+    The capacity region is not known even for the special case of Gaussian interference channels.
     % only have for degraded, high interference 
     % the most important case: low / medium interference the capacity is not known...
     
 
     Recently, quantum information theory (QIT) has been a popular research area in physics,
     computer science and mathematics. This new field of information theory is firmly based
-    in Shannon's principle of information-as-statistics, but systems that behave 
+    in Shannon's principle of information-as-statistics, but studies systems that behave 
     according to the laws of quantum mechanics.
     The current state of QIT is similar to that of classical information theory in the 80s,
     when most single user problems had been solved and researchers were exploring new
-    grounds in multiuser information theory.
-    It is therefore an appropriate time to study the quantum interference channel.
+    grounds in multiuser scenarios.
+    It is therefore an appropriate time to attack the quantum interference channel.
 
     
     This paper will try to review classic results on the interference channel and
     define the problem in the quantum setting.
     %Specifically we will try to focus on the 
-    In section \ref{Preliminaries} we will define the basic concepts related to
-    the classical interference channels.
+    In section \ref{Preliminaries} we will define the basic concepts related to 
+    classical interference channels.
     Then in section \ref{section:lit-review} we will reproduce the main results
-    from a series of seminal classical papers on the interference channel.
+    from a series of seminal papers on the interference channel.
     Results relating to outer bounds on the IC capacity are collected together
     in section  \ref{section:outer-bounds}.
     The following section (section \ref{section:quantum}) deals with the quantum generalization of the
@@ -219,7 +219,7 @@
     	In order to make this work more self-contained, we have included
 	in appendix \ref{section:intro_to_qit} a detailed introduction to 
 	the ideas of quantum information theory.  Readers not familiar with quantum information theory are encouraged 
-    to consult appendix \ref{section:intro_to_qit} before diving reading section \ref{section:quantum}.
+    to consult appendix \ref{section:intro_to_qit} before reading section \ref{section:quantum}.
     Finally we have a section of discussion and pointers to open problems in section  \ref{section:discussion}.
 
     
@@ -280,7 +280,7 @@
 
     \subsection{Convex sets, closures and optimization constraints}
     	
-	Rate regions in multiuser information theory often stated in terms of constrained 
+	Rate regions in multiuser information theory are often stated in terms of constrained 
 	optimization problems over information theoretic quantities.
 	Furthermore, because of the \emph{time-sharing} principle, 
 	we can achieve any rate in the \emph{convex hull} of any other achievable rates.
@@ -294,7 +294,7 @@
 	\be
 		\mathcal{C} = \operatorname{conv} \bigcup_{p(x)} \{ R  \ | \ R \leq I(X;Y) \  \} .
 	\ee
-	Where the $p(x)$ which we are optimizing over should not be confused with 
+	The $p(x)$ which we are optimizing over should not be confused with 
 	the $p(y|x)$ associated with the channel.
 	The $\operatorname{conv}$ is not really necessary in this case.
 	
@@ -307,7 +307,7 @@
 
     \subsection{Multiple access channel} \label{subseciton:MAC}
 
-        The multiple access channel (MAC) is a special case of the interference channel with a single 
+        The multiple access channel (MAC) is a special case of the interference channel which has a single 
         receiver. 
         It is therefore important to review briefly the known capacity result for the MAC.
 
@@ -346,8 +346,8 @@
         of definition \ref{def:achievableICrates} only depends on the marginals 
         $p_1(y_1|x_1x_2)$ and $p_2(y_2|x_1x_2)$.
         This is because if we manage to get both decoding errors low,
-        then we manage to get the error of the union of the two events also.
-        
+        then we manage to get the error of the union of the two events low also.
+        %
         This observation leads us to the fact that all channels which have
         the same marginals will have the same capacity. More formally, we will define
         the class $K(p)$ of interference channel probability matrices 
@@ -360,7 +360,7 @@
         
         Thus the capacity region $\ICcap$ for an IC channel with probability transition matrix $p$, is the 
         same for all channels in $K(p)$.
-        In particular, we can define a particular member of $K(p)$ which might be simpler to analyse
+        In particular, we can define a particular member of $K(p)$ which might be simpler to analyze
         \begin{definition}[Independent channel]
             Let $p_1(y_1|x_1,x_2)$ and $p_2(y_2|x_1,x_2)$ be the marginals of the associated
             with some interference network $p(y_1,y_2|x_1,x_2)$.
@@ -418,7 +418,8 @@
                         p(x_1)q(x_2)p(y_1|x_1,x_2) 
                         \log \frac{ p(y_1|x_1,x_2) }{ \sum_{x_1} p(x_1)p(y_1|x_1,x_2) },
             \ee
-            which stands for $I(X_1;Y_1|X_2)$ in modern notation.
+            which stands for $I(X_1;Y_1|X_2)$ in modern notation. Seeing such notation makes
+            me glad I live in the modern era of information theory. 
 
             The paper defines three communication problems that can be studied on the
             interference network $p(y_1,y_2|x_1,x_2)$. 
@@ -484,7 +485,7 @@
             by Hiroshi Sato \cite{Sato77}.
             In this paper the IC problem is defined and the relations between it and the
             MAC and BC are outlined.
-            
+            %
             Using these relations, the author proves a several progressively stronger 
             outer bounds the best of which is presented in equation \eqref{region:Gsato} in
             the next section.
@@ -503,8 +504,7 @@
             The paper by Carleial is yet another comprehensive discussion 
             on interference channels \cite{Carleial78}. 
             This paper proves the naive outer bound on the IC (see equation \eqref{Gnaive} below),
-            and the Sato outer bound \eqref{region:Gsato} which is  better
-            because of the sum rate inequality.
+            and restates the Sato outer bound \eqref{region:Gsato} which is tighter.
 
             The author also proves an inner bound counterpart to the naive outer bound, 
             which we will call the naive inner bound
@@ -518,7 +518,7 @@
 	            P_2     &=&     (0, \ I(X_2;Y_2|X_1)), \nonumber \\
 	            O     &=&     (0,0). \nonumber 
 	        \eea            
-	   \begin{theorem}[Theorem 1 in \cite{Carleial78}]
+	   \begin{theorem}[Theorem 1 in \cite{Carleial78}] \label{thm:Carleial-inner-naive}
 	   	The capacity region $\ICcap$ satisfies $G_{ach}  \subseteq \ICcap$.
 	   \end{theorem}
 	   \begin{proof}
@@ -550,7 +550,7 @@
             %
             In the section dealing with Gaussian ICs, the author sows the seeds of two
             important ideas which would later be taken up by others and proven for general ICs.
-            The first of these ideas is the notion of successive decoding which would be
+            The first of these ideas is the notion of successive decoding which would 
             later be used by Han and Kobayashi for the general DMIC \cite{HK81}.
             The second idea is the notion of channels with \emph{strong interference} where the 
             interference in the channel is so bad that it is easier for a receiver to decode the interfering
@@ -668,7 +668,7 @@
         We now state two adaptations of the BC capacity outer bounds which apply directly 
         to the interference channel.
                 
-        \begin{theorem}[Theorem 1 in \cite{Sato77}]
+        \begin{theorem}[Theorem 1 in \cite{Sato77}] \label{thm:sato-weaker}
              The region $G_{Sato}$ defined in \eqref{region:Gsato} is an outer bound on $\ICcap$, i.e.
              \be
                 \ICcap \subset G_{Sato}(p).
@@ -779,7 +779,7 @@
 	about source coding, channel capacity and efficient coding schemes for quantum system.
 	
 	QIT can be considered in some sense a direct extension of classical information theory.
-	It is not surprising then if many QIT results carry the same flavour as the classical counterpart.
+	It is not surprising then if many QIT results carry the same flavour as their classical counterpart.
 	Often times, the rates obtained in a quantum protocol will be bounded by the same expressions 
 	in terms of mutual information as in the classical result (up to a constant factor of $\frac{1}{2}$).
 	
@@ -811,18 +811,18 @@
 		%				then the ``quantum information'' contained 
 		\item		Polygamy of purification: In a pure tripartite state on $ABC$, some subset $\hat{B} \subsetneq B $ can,
 				with hight probability, contain the purification of two \emph{both} $A$ and $C$.
-		\item		Quantum Error Correcting Codes exist. 
+		\item		Quantum Error Correcting Codes exist.
 				Despite the fact that quantum information is in some sense continuous,
 				we can still \emph{stabilize} it using a finite set of operations just like classical ECC.
 	\end{itemize}	
 
 	For a crash-course introduction to the subject, and in particular the notation
 	used the reader can consult Appendix A at this point.
-	For a more in depth introduction to the subject an excellent book is \cite{NC04}.
+	For a more in depth introduction to the subject see \cite{NC04}.
 
 
 	In this section we will review some of the known results in quantum information theory
-	that about the multiple access and broadcast channels. 
+	about the multiple access and broadcast channels. 
 	Before we get to that, we must discuss the kinds of rates that one might want to study.
 
 
@@ -863,8 +863,8 @@
 		 The quantum MAC was first studied in  \cite{huang2000classical}, 
 		 where the authors investigated the classical capacity.
 		 The authors, however, studied the classical capacity in 
-		 a paradigm in which allows for correlations between the quantum states
-		 input to the channel. This approach is similar to Ahlswede's correlated input approach
+		 a paradigm  which allows for correlations between the input states
+		 to the channel. This approach is similar to Ahlswede's correlated input approach
 		 to the MMAC problem \cite{Ahlswede1974}.
 		
 		
@@ -892,7 +892,7 @@
 		\end{theorem}    
 		This paper by Winter is also interesting for our purposes because it is the only place
 		in literature where the quantum interference channel is mentioned.
-		The author mentions that he is not sure how to extend his coding strategy to the
+		The author writes that he is not sure how to extend his coding strategy to the
 		case of multiple decoders. 
 		
 
@@ -909,7 +909,7 @@
 			$\mcal{Q}_{QMAC}(\mcal{M}) = \frac{1}{n} 
 				\bigcup_{n=1}^\infty \mcal{Q}^{(1)}_{QMAC}(\mcal{M}^{\otimes n})$ where 
 		        \be
-		        		\mcal{Q}^{(1)}_{QMAC}  = \operatorname{conv} 
+		        		\mcal{Q}^{(1)}_{QMAC}(\mcal{M})  = \operatorname{conv} 
 					\bigcup_{p(x_1)p(x_2)\sigma_{x_1}\sigma_{x_2}} 
 					\{ (Q_1,Q_2) | \text{ Eqn. \eqref{q2Gmac1} } \}  \label{region:q2G_MAC}
 		        \ee
@@ -933,7 +933,7 @@
 		Hsieh, Devetak and Winter in \cite{Hsieh2008}.
 		
 		
-		\begin{theorem}[Theorem 2 in \cite{Hsieh2008}]
+		\begin{theorem}[Theorem 2 in \cite{Hsieh2008}]  \label{thm:hsieh-devetak-winter}
 			Consider the quantum MAC $\mcal{M}^{A'B' \to C}$. For some states $\rho^{A'}_1$
 			and $\rho^{B'}_2$ define the output of the channel 
 			\be
@@ -1001,7 +1001,7 @@
 		The first result on the quantum BC is by Yard, Hayden and Devetak \cite{YHD2006}.
 		They define three problems and prove a multi-letter capacity region for each of them.
 		The first of these problems involves a special kind of channel that does not 
-		really fit well with the rest of QIT. This channel as a classical input and a quantum output.
+		really fit well with the rest of QIT. This channel has a classical input and a quantum output.
 		
 		The second result concerns the classical-quantum capacity $\mathcal{CQ}(\mcal{N})$
 		for a quantum channel $\mcal{N}^{A' \to BC}$ where the sender (Alice) wants to 
@@ -1028,14 +1028,14 @@
 		\ee
 		which are a form of tripartite entanglement.
 		At a later point in time, this communication resource can be used 
-		to establish quantum  communication between any two of three parties users.
+		to establish quantum  communication between any two of three parties.
 		Thus, generating this GHZ is equivalent to being able to communicate
 		with either of the two receivers (but not both) and we can decide whom
 		we wish to communicate with later on.
 		
 		
 		\bigskip
-		The second (and better) paper on the quantum broadcast channel is by 
+		The second paper on the quantum broadcast channel is by 
 		Dupuis\footnote{Fr\'ed\'eric Dupuis used to sit just across the room from me until last summer.} 
 		and Hayden \cite{DH2006}.
 		In this paper the authors reproduce the classical Marton achievable rates 
@@ -1055,7 +1055,7 @@
 		\end{theorem}
 		
 		The authors also prove a multi-letter converse for the same rate region
-		and also show how this result can be adapted to give an inner bound
+		and show how this result can be adapted to give an inner bound
 		for the quantum capacity $\mathcal{Q}\!\left(\mathcal{N}\right)$ without 
 		entanglement assistance.
 		
@@ -1106,7 +1106,7 @@
 
 		An $(n,Q_{1},Q_{2},\epsilon)$ \textit{entanglement-assisted quantum
 		interference channel code} (EAQIC) can be described in five steps: the inputs,
-		the encoding, the transmission, decoding and the error analysis.
+		the encoding, the transmission, the decoding and finally the error analysis.
 		We detail each of these steps below.
 		
 		\begin{enumerate}
@@ -1206,8 +1206,18 @@
 
 
 
-%		Now that we have all the formalities out of the way
-
+		While the current page length of this document prohibits me from
+		writing them down with details, it should be noted that
+		we can easily port two of the classical bounds to obtain
+		bounds on $\mathcal{C}^{QIC}_{\texttt{E-A}}\!\left(\mathcal{N}\right)$.
+		
+		Using the results of Theorem \ref{thm:hsieh-devetak-winter} for the 
+		entanglement-assisted classical capacity of the MAC $\mcal{C}_{\texttt{E-A}}(\mcal{M})$,
+		we can derive a quantum ``naive'' inner bound (Theorem \ref{thm:Carleial-inner-naive})
+		and the quantum Sato outer bound (Theorem \ref{thm:sato-weaker}).
+		Both of these theorems simply use the MAC result as a black box, so they can be ported.
+		
+		
 
 
 
@@ -1218,15 +1228,15 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion and conclusion}		\label{section:discussion}
 
-    In this section we will make reference to some of the generalizations and open problems
+    In this section we will make references to some of the generalizations and open problems
     associated with the study of interference channels.
     
     
 
 
     What is the most general use of the interference network we can think of?
-    The most general classical problem to consider involves six indpendent
-    messages: 3 starting at Tx1 and 3 starting at Tx2 with rates
+    The most general classical problem to consider involves six independent
+    messages: 3 starting at Tx1 and 3 starting at Tx2 with respective rates
     \be
     	\vec{R}	=	( R_{11}, R_{12}, R_{10},  \ R_{21}, R_{22}, R_{20} ),
     \ee
@@ -1253,8 +1263,8 @@
         model for the MAC and the IC in which the inputs are allowed to be correlated.
         %
         I think that understanding joint source-channel coding in the multiuser case
-        is a very interesting problem. Some early work on the subject \cite{cover1980multiple},
-        reveal that it depends on a polymatroid structure which is very interesting
+        is a very interesting problem. Some early work on the subject \cite{cover1980multiple}
+        reveals that it depends on a polymatroid structure which is very interesting
         since it connects with deeper notions about polytopes \cite{E69, poly}.
         
 
@@ -1264,7 +1274,7 @@
 
 	The fact that after so many years we still don't know $\ICcap$ begs 
 	an even more fundamental question. 
-	Are the techniques of information theory general enough to study such problem?
+	Are the techniques of information theory general enough to study such problems?
 	Perhaps an even more pressing question for quantum information theory is why are we only
 	able to prove multi-letter formulas for these channels.
 	Is there a fundamental paradigm shift that needs to happen in order to go further in information theory?
@@ -1280,7 +1290,7 @@
 	available on the back of an envelope, but to truly understand the implications of these
 	principles takes years of training and effort.
 	For a good book on quantum mechanics see \cite{sakurai}. 
-	For a book specifically on quantum information theory the reader can consult \cite{NC04} which
+	For a book specifically on quantum information theory the reader can consult \cite{NC04}, which
 	is the \emph{bible} of the field.
 
    
