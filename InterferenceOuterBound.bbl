@@ -1,5 +1,5 @@
 \newcommand{\etalchar}[1]{$^{#1}$}
-\begin{thebibliography}{HHHH07}
+\begin{thebibliography}{CMGEG08}
 
 \bibitem[Ahl74]{Ahlswede1974}
 R.~Ahlswede.
@@ -30,10 +30,28 @@ A.~Carleial.
 \newblock {Outer bounds on the capacity of interference channels (Corresp.)}.
 \newblock {\em IEEE transactions on information theory}, 29(4):602--606, 1983.
 
+\bibitem[CGS80]{cover1980multiple}
+T.M. Cover, AE~Gamal, and M.~Salehi.
+\newblock {Multiple access channels with arbitrarily correlated sources}.
+\newblock {\em IEEE Transactions on Information Theory}, 26(6):648--657, 1980.
+
+\bibitem[CMGEG08]{CMGE08}
+H-F. Chong, M.~Motani, H.~K. Garg, and H.~El~Gamal.
+\newblock On the {Han-Kobayashi} region for the interference channel.
+\newblock {\em IEEE Transactions on Information Theory}, 54(7):3188--3195,
+  2008.
+
 \bibitem[DH06]{DH2006}
 Fr\'{e}d\'{e}ric Dupuis and Patrick Hayden.
 \newblock A father protocol for quantum broadcast channels.
 \newblock arXiv:quant-ph/0612155, December 2006.
+
+\bibitem[Edm69]{E69}
+J.~Edmonds.
+\newblock Submodular functions, matroids, and certain polyhedra.
+\newblock {\em Proc. Calgary Int. Conf. Combinatorial Structures and
+  Algorithms}, pages 69--87, June 1969.
+\newblock (Reprinted in {\em LNCS} 2570:11--26, 2003).
 
 \bibitem[HDW08]{Hsieh2008}
 Min-Hsiu Hsieh, Igor Devetak, and Andreas Winter.
@@ -46,6 +64,18 @@ R.~Horodecki, P.~Horodecki, M.~Horodecki, and K.~Horodecki.
 \newblock Quantum entanglement.
 \newblock 2007.
 \newblock arXiv:quant-ph/0702225.
+
+\bibitem[HK81]{HK81}
+Te~Han and K.~Kobayashi.
+\newblock A new achievable rate region for the interference channel.
+\newblock {\em Information Theory, IEEE Transactions on}, 27(1):49--60, Jan
+  1981.
+
+\bibitem[HK07]{kobayashi2007further}
+TS~Han and K.~Kobayashi.
+\newblock {A further consideration on the HK and the CMG regions for the
+  interference channel}.
+\newblock In {\em Proc. Inf. Theory Applicat. Workshop}, 2007.
 
 \bibitem[HZH00]{huang2000classical}
 M.~Huang, Y.~Zhang, and G.~Hou.
@@ -61,11 +91,6 @@ E.~H. Lieb and M.~B. Ruskai.
 M.~A. Nielsen and I.~L. Chuang.
 \newblock {\em Quantum computation and quantum information}.
 \newblock Cambridge University Press, 2000.
-
-\bibitem[NEG07]{Nair2006}
-C.~Nair and A.~El~Gamal.
-\newblock {An outer bound to the capacity region of the broadcast channel}.
-\newblock {\em IEEE Transactions on Information Theory}, 53(1):350--355, 2007.
 
 \bibitem[Sak94]{sakurai}
 J.J. Sakurai.
@@ -129,5 +154,10 @@ Jon Yard, Patrick Hayden, and Igor Devetak.
   Classical-quantum and quantum-quantum capacity regions.
 \newblock {\em IEEE Transactions on Information Theory}, 54(7):3091--3113, July
   2008.
+
+\bibitem[Zie95]{poly}
+G.~M. Ziegler.
+\newblock {\em Lectures on polytopes}.
+\newblock Springer-Verlag, New York, 1995.
 
 \end{thebibliography}

@@ -6,8 +6,10 @@
 \BOOKMARK [2][-]{subsection.2.4}{Broadcast channel}{section.2}
 \BOOKMARK [2][-]{subsection.2.5}{Other uses of the interference network}{section.2}
 \BOOKMARK [1][-]{section.3}{Classical results on the Interference Channel}{}
-\BOOKMARK [2][-]{subsection.3.1}{Early papers}{section.3}
-\BOOKMARK [2][-]{subsection.3.2}{Han-Kobayashi / Cheng-Motani-Garg inner bound}{section.3}
+\BOOKMARK [2][-]{subsection.3.1}{Ahlswede 74: The capacity region of a channel with two senders and two receivers}{section.3}
+\BOOKMARK [2][-]{subsection.3.2}{Sato 77: Two-user communication channels}{section.3}
+\BOOKMARK [2][-]{subsection.3.3}{Carleial 78: Interference channels}{section.3}
+\BOOKMARK [2][-]{subsection.3.4}{Han-Kobayashi / Cheng-Motani-Garg inner bound}{section.3}
 \BOOKMARK [1][-]{section.4}{Outer bounds on CIC}{}
 \BOOKMARK [2][-]{subsection.4.1}{Naive bound}{section.4}
 \BOOKMARK [2][-]{subsection.4.2}{Sato's BC bound}{section.4}
@@ -17,15 +19,11 @@
 \BOOKMARK [2][-]{subsection.5.2}{Quantum multiple access channels}{section.5}
 \BOOKMARK [2][-]{subsection.5.3}{Quantum broadcast channels}{section.5}
 \BOOKMARK [2][-]{subsection.5.4}{Quantum interference channel}{section.5}
-\BOOKMARK [3][-]{subsubsection.5.4.1}{Definitions and Notation}{subsection.5.4}
 \BOOKMARK [1][-]{section.6}{Discussion and conclusion}{}
-\BOOKMARK [1][-]{appendix.A}{Introduction to QIT}{}
+\BOOKMARK [1][-]{appendix.A}{Introduction to quantum information theory}{}
 \BOOKMARK [2][-]{subsection.A.1}{Informal introduction}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.2}{Informal introduction}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.3}{Quantum states}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.4}{Quantum information theory}{appendix.A}
-\BOOKMARK [3][-]{subsubsection.A.4.1}{von Neumann entropy}{subsection.A.4}
-\BOOKMARK [2][-]{subsection.A.5}{Quantum operations}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.6}{Quantum resources}{appendix.A}
-\BOOKMARK [2][-]{subsection.A.7}{Error analysis}{appendix.A}
-\BOOKMARK [1][-]{appendix.B}{Compression}{}
+\BOOKMARK [2][-]{subsection.A.2}{Notation}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.3}{Quantum information theory}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.4}{Quantum operations}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.5}{Quantum resources}{appendix.A}
+\BOOKMARK [2][-]{subsection.A.6}{Error analysis}{appendix.A}

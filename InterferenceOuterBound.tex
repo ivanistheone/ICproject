@@ -403,10 +403,10 @@
     on the interference channel.
     
 
-    \subsection{Early papers}
+%    \subsection{Early papers}
 
 
-        \paragraph{Ahlswede 74: The capacity region of a channel with two senders and two receivers} \ \\
+        \subsection{Ahlswede 74: The capacity region of a channel with two senders and two receivers} \ \\
         
             One of the earliest papers to appear on the topic of interference channels is by Rudolf Ahlswede \cite{Ahlswede1974}.
             While the notions of entropy and mutual information were already well established in those days, 
@@ -478,7 +478,7 @@
 
 
 
-        \paragraph{Sato 77: Two-user communication channels} \ \\
+        \subsection{Sato 77: Two-user communication channels} \ \\
 
             Perhaps the most important of the early papers on the interference channel is 
             by Hiroshi Sato \cite{Sato77}.
@@ -498,38 +498,98 @@
             however, for a special case of degraded channels called \emph{twin channels}.
             
 
-        \paragraph{Carleial 78: Interference channels} \ \\
+        \subsection{Carleial 78: Interference channels} \ \\
 
             The paper by Carleial is yet another comprehensive discussion 
-            on interference channels \cite{Carleial78}.
-            
-            
-             
-	   
-	    
+            on interference channels \cite{Carleial78}. 
+            This paper proves the naive outer bound on the IC (see equation \eqref{Gnaive} below),
+            and the Sato outer bound \eqref{region:Gsato} which is  better
+            because of the sum rate inequality.
 
+            The author also proves an inner bound counterpart to the naive outer bound, 
+            which we will call the naive inner bound
+	        \be
+	        		\label{GnaiveINNER}
+	        		G_{ach}  \triangleq \left\{ (R_1,R_2) \in \operatorname{conv}  \{ P_1, P_2, O \}   \right\},
+	        \ee
+	        where the three points are defined as 
+	        \bea \label{eqn:naive-bound}
+	            P_1      &=&    (I(X_1;Y_2|X_2),\ 0), \nonumber \\
+	            P_2     &=&     (0, \ I(X_2;Y_2|X_1)), \nonumber \\
+	            O     &=&     (0,0). \nonumber 
+	        \eea            
+	   \begin{theorem}[Theorem 1 in \cite{Carleial78}]
+	   	The capacity region $\ICcap$ satisfies $G_{ach}  \subseteq \ICcap$.
+	   \end{theorem}
+	   \begin{proof}
+		Consider the $Y_1$-MAC sub-channel of the IC.
+		We know from the result on the MAC channel (equation \eqref{region:G_MAC}) 
+		that the rate $R_1 = I(X_1;Y_2|X_2)$ is achievable for the $Y_1$-MAC. 
+		Thus the point $P_1~=~(I(X_1;Y_2|X_2),\ 0)$ is achievable for the IC.
+		%
+		A similar argument is applied to show $P_2$ is achievable 
+		using the $Y_2$-MAC sub-channel. By the time sharing principle,
+		we can achieve any rate in the convex hull of these points.
+	   \end{proof}
+            
+            Carleial also generalizes the notion of  \emph{twin channels} which he calls
+            ``interference channels with statistically equivalent outputs'' for which he 
+            calculates the capacity region. 
+            These channels are simple to analyze because both receivers $Y_1$ and $Y_2$
+            obtain the same information and thus the IC problem reduces to the MAC problem.
 
+            Using his result on the twin channel he gives loose inner and outer bounds for  
+            degraded ICs. To get an inner bound, he creates a twin channel from the 
+            degraded channel by discarding part of the information at the better receiver.
+            To obtain the outer bound, he uses the reasoning that all degraded outputs
+            have less information than the best channel output, thus the capacity of the
+            twin channel with copies of the best output forms an outer bound on the degraded IC capacity.
+            
+            The paper then discusses some examples: binary ICs and Gaussian ICs.
+            Even for these simplistic examples of ICs we cannot calculate the capacity region.
+            %
+            In the section dealing with Gaussian ICs, the author sows the seeds of two
+            important ideas which would later be taken up by others and proven for general ICs.
+            The first of these ideas is the notion of successive decoding which would be
+            later be used by Han and Kobayashi for the general DMIC \cite{HK81}.
+            The second idea is the notion of channels with \emph{strong interference} where the 
+            interference in the channel is so bad that it is easier for a receiver to decode the interfering
+            message (intended for the other receiver) than the one intended for him.
+            
         
     \subsection{Han-Kobayashi / Cheng-Motani-Garg inner bound}
 
-        First appeared in ...
 
+        The best achievable region for the interference channel is due to Han and Kobayashi \cite{HK81}.
+        By splitting the message $M_1$ intended for Rx1 into public and personal parts, 
+        $M_{10}$ and $M_{11}$ respectively and using successive  decoding at the receivers
+        we can achieve a rate region $G_{HK}$ described by 14 inequalities.
+        
+        Recently Cheng, Motani and Garg simplified the H-K coding strategy and relaxed some 
+        of the decoding requirements in order to obtain a simpler achievable rate region where the rates
+        are bounded by only 7 inequalities \cite{CMGE08}.
+        A further contribution by Han and Kobayashi shows that the two regions are in fact 
+        equivalent \cite{kobayashi2007further}.
+        
+        Without further ado, we present the HK-CMG rate region, which we will call this way to give credit to all.
         \be
-        		G_{HK}  = G_{CMG} \triangleq \operatorname{conv} \bigcup_{p(x_1|u_1)p(x_2|u_2)p(u_1)p(u_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Rcmg} } \} 
+        		G_{HK}  = G_{CMG} \triangleq \operatorname{conv} 
+		\bigcup_{p(x_1|u_1)p(x_2|u_2)p(u_1)p(u_2)} \{ (R_1,R_2) | \text{ Eqn. \eqref{Rcmg} } \} 
         \ee
         \bea
             R_1 		&\le&	I(X_1;Y_1| U_2 ) \nonumber \\
             R_2 		&\le&	I(X_2;Y_2| U_1 ) \nonumber \\
-            R_1 + R_2	&\le&	I(X_1U_2; Y_1|) + I (X_2; Y_2|U_1U_2) \nonumber \\
-            R_1 + R_2	&\le&	I (X_1; Y_1|U_1U_2) + I (X_2U_1; Y_2|) \label{Rcmg}\\
+            R_1 + R_2	&\le&	I(X_1U_2; Y_1) + I (X_2; Y_2|U_1U_2) \nonumber \\
+            R_1 + R_2	&\le&	I (X_1; Y_1|U_1U_2) + I (X_2U_1; Y_2) \label{Rcmg}\\
             R_1 + R_2	&\le&	I (X_1U_2; Y_1|U_1) + I(X_2U_1; Y_2|U_2) \nonumber  \\
-            2R_1 + R_2	&\le&	I (X_1U_2; Y_1|) + I (X_1; Y_1|U_1U_2) + I(X_2U_1;Y_2|U_2) \nonumber \\
-            R_1 + 2R_2	&\le&	I (X_2; Y_2|U_1U_2) + I (X_2U_1; Y_2|) +  I (X_1U_2; Y_1|U_1) \nonumber 
+            2R_1 + R_2	&\le&	I (X_1U_2; Y_1) + I (X_1; Y_1|U_1U_2) + I(X_2U_1;Y_2|U_2) \nonumber \\
+            R_1 + 2R_2	&\le&	I (X_2; Y_2|U_1U_2) + I (X_2U_1; Y_2) +  I (X_1U_2; Y_1|U_1) \nonumber 
         \eea
         
-
         
-
+%	\subseciton{Other papers}
+%	
+%		We
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -568,7 +628,6 @@
             \ee
         \end{theorem}
         \begin{proof}
-
             Suppose, for contradiction, that some rate $R^*_1 > I(X_1;Y_2|X_2)$ is achievable for the IC.
             As pointed out above, this means that it must also be achievable for the $Y_1$-MAC channel.
 
@@ -739,7 +798,7 @@
 				reversible at the micro-level.
 		\item 	Entanglement can be used to increase the rates of certain protocols despite being
 				provably useless as a communication resource by itself (no-signalling principle from Special Relativity).
-				(note that classically shared randomness cannot increase the rate of IT protocols)
+				(classically shared randomness cannot increase the rate of IT protocols)
 		\item 	von Neumann conditional entropy can be negative,
 				$H(A|B)_\rho < 0$, and this has an operational interpretation related to quantum Slepian-Wolf coding.
 		\item 	Monogamy of entanglement:  If we have some tripartite pure state on $ABC$,
@@ -796,13 +855,22 @@
 		
 	\subsection{Quantum multiple access channels}
 	
-		 The quantum MAC problem was first approached in  \cite{huang2000classical}
-		
-		
-		 This work was followed by \cite{winter2001capacity}
+
+		 A quantum multiple access channel is a map $\mcal{M}^{A'B' \to C}$ that
+		 takes two quantum systems as inputs and produces a third quantum system.
 		 
-
-
+		 
+		 The quantum MAC was first studied in  \cite{huang2000classical}, 
+		 where the authors investigated the classical capacity.
+		 The authors, however, studied the classical capacity in 
+		 a paradigm in which allows for correlations between the quantum states
+		 input to the channel. This approach is similar to Ahlswede's correlated input approach
+		 to the MMAC problem \cite{Ahlswede1974}.
+		
+		
+		 The classical capacity  $\mathcal{C}_{QMAC}\!\left(\mathcal{M}\right)$ of the quantum MAC
+		 was not proven until one year later by Winter  \cite{winter2001capacity}.
+		 
 		\begin{theorem}[Theorem 10 in \cite{winter2001capacity}]
 		The capacity of the quantum MAC $\mcal{M}$ to carry classical information is 
 		$\mcal{C}_{QMAC}(\mcal{M}) = \frac{1}{n} \bigcup_{n=1}^\infty \mcal{C}^{(1)}_{QMAC}(\mcal{M}^{\otimes n})$ where 
@@ -818,36 +886,91 @@
 	        \eea 
 	        where mutual informations are calculated with respect to 
 		\be
-			\theta = \sum_x p(x_1)p(x_2) \ketbra{x_1}_A \otimes \ketbra{x_2}_B \otimes \mcal{M}\!({\sigma_{x_1}} \otimes \sigma_{x_2} )_C.
+			\theta = \sum_x p(x_1)p(x_2) \ketbra{x_1}_A \otimes 
+					\ketbra{x_2}_B \otimes \mcal{M}\!({\sigma_{x_1}} \otimes \sigma_{x_2} )_C.
 		\ee
 		\end{theorem}    
-	
-
-
-		Another set of contributions \cite{Yard2008} and the conference version \cite{yard2005capacity}.
-
-
-		Recently, the entanglement assisted capacity of the QMAC channel was proved in \cite{Hsieh2008}.
+		This paper by Winter is also interesting for our purposes because it is the only place
+		in literature where the quantum interference channel is mentioned.
+		The author mentions that he is not sure how to extend his coding strategy to the
+		case of multiple decoders. 
 		
-		\begin{theorem}[Hsieh, Devetak, Winter 05]
-		The capacity of the quantum MAC $\mcal{M}$ to carry classical 
-		information \emph{when an additional resource of entanglement is available is} 
-	        \be
-	        		\mcal{C}_{\texttt{E-A}}  = \operatorname{conv} \cup_{p(x_1)p(x_2)\varphi\varphi AAAA}
-				 \{ (R_1,R_2) | \text{ Eqn. \eqref{Gmac2} } \}  \label{region:G_MAC1}
-	        \ee
-	        \bea
-	            R_1         &\leq&      I(A;C|B)_\theta, \nonumber \\
-	            R_2         &\leq&      I(B;C|A)_\theta, \label{Gmac2} \\
-	            R_1 +R_2    &\leq&      I(AB;C)_\theta, \nonumber
-	        \eea 
-	        where mutual informations are calculated with respect to 
-		\be
-			WRONG
-			\theta = \sum_x p(x_1)p(x_2) \ketbra{x_1}_A \otimes \ketbra{x_2}_B \otimes \mcal{M}\!({\sigma_x})_C.
-		\ee
+
+		The next set of contributions on the quantum MAC problem are by Yard et al  \cite{Yard2008} 
+		and the conference version \cite{yard2005capacity}.
+		In these papers, the authors give regularized capacity regions for the 
+		classical-quantum capacity region  $\mathcal{CQ}(\mcal{M})$, where one of the inputs
+		to the MAC is classical and the other is quantum.
+		
+		The authors also give a multi-letter formula for $\mathcal{Q}(\mcal{M})$, 
+		the quantum capacity region for the MAC.
+		\begin{theorem}[Theorem 2 in \cite{yard2005capacity}]
+			The capacity of the quantum MAC $\mcal{M}^{A'B' \to C}$ to carry quantum information is 
+			$\mcal{Q}_{QMAC}(\mcal{M}) = \frac{1}{n} 
+				\bigcup_{n=1}^\infty \mcal{Q}^{(1)}_{QMAC}(\mcal{M}^{\otimes n})$ where 
+		        \be
+		        		\mcal{Q}^{(1)}_{QMAC}  = \operatorname{conv} 
+					\bigcup_{p(x_1)p(x_2)\sigma_{x_1}\sigma_{x_2}} 
+					\{ (Q_1,Q_2) | \text{ Eqn. \eqref{q2Gmac1} } \}  \label{region:q2G_MAC}
+		        \ee
+		        \bea
+		            Q_1         &\leq&      I_c(A \rangle BC)_\omega, \nonumber \\
+		            Q_2         &\leq&      I_c(B \rangle AC)_\omega, \label{q2Gmac1} \\
+		            Q_1 +Q_2    &\leq&      I_c(AB \rangle C)_\omega, \nonumber
+		        \eea 
+		        where mutual informations are calculated with respect to the state 
+			\be
+				\omega^{ABC} =  \id^{AB}\otimes\mcal{M}\!(\Psi_1 \otimes \Psi_2 ),
+			\ee
+			and the states $\ket{\Psi_1}^{AA'}$ and $\ket{\Psi_1}^{BB'}$ are pure.
+		\end{theorem}    
+		
+		
+		
+		\bigskip
+		
+		Recently, the entanglement assisted capacity of the QMAC channel was proved by
+		Hsieh, Devetak and Winter in \cite{Hsieh2008}.
+		
+		
+		\begin{theorem}[Theorem 2 in \cite{Hsieh2008}]
+			Consider the quantum MAC $\mcal{M}^{A'B' \to C}$. For some states $\rho^{A'}_1$
+			and $\rho^{B'}_2$ define the output of the channel 
+			\be
+				\theta^{ABC} = \id^{AB}\otimes\mcal{M}(\varphi_1^{AA'} \otimes \varphi_1^{BB'}  ),
+			\ee
+			where $\ket{\varphi_1}^{AA'}$ and $\ket{\varphi_1}^{BB'}$ are purifications of $\rho^{A'}_1$
+			and $\rho^{B'}_2$ respectively.
+			Define the two dimensional region 
+		        \be
+		        		\mcal{C}_{\texttt{E-A}}^{(1)}(\mcal{M})  = \operatorname{conv} \bigcup_{\rho_1, \rho_2 }
+					 \{ (R_1,R_2) | \text{ Eqn. \eqref{qGmac2} } \}  \label{region:G_MAC1}
+		        \ee
+		        \bea
+		            R_1         &\leq&      I(A;C|B)_\theta, \nonumber \\
+		            R_2         &\leq&      I(B;C|A)_\theta, \label{qGmac2} \\
+		            R_1 +R_2    &\leq&      I(AB;C)_\theta. \nonumber
+		        \eea 
+		        Then the entanglement-assisted capacity region $\mcal{C}_{\texttt{E-A}}(\mcal{M})$
+		        is given by the regularized expression 
+		        \be
+		        		\mcal{C}_{\texttt{E-A}}(\mcal{M}) = 
+					\overline{ 
+						\bigcup_{n=1}^\infty \mcal{C}_{\texttt{E-A}}^{(1)}(\mcal{M}^{\otimes n}) 
+						}.
+		        \ee
 		\end{theorem}    
 	
+		% single letter for sum rate 
+		
+		Note that by using the teleportation protocol we can obtain the quantum 
+		entanglement assisted rate region $\mcal{Q}_{\texttt{E-A}}(\mcal{M})$ 
+		which will be of the same form but each of the inequalities in \eqref{qGmac2}
+		will have a $\frac{1}{2}$ in front of it.
+		
+		
+		
+		
 
 		
 
@@ -864,18 +987,78 @@
 		In the quantum BC, we can define rates $Q_1,Q_2$ in analogy with their
 		classical counterparts but since we are not allowed to copy quantum information,
 		how could we possibly deliver a common quantum message $\ket{M_0}$ to both receivers?
-		
+		%
 		This problem of not being able to copy quantum information is not
 		unique in the BC case. 
 		In the study of quantum network coding, it is equally difficult to find a 
 		quantum analog of the multicast scenario which requires a common message
 		to to be delivered to multiple receivers.
 		
+		%	Thus it is not surprising then, if researchers choose to consider only 
+		%	the personal rates $Q_1,Q_2$ and mixed situations where some of the
+		%	broadcast information is classical.
+		
+		The first result on the quantum BC is by Yard, Hayden and Devetak \cite{YHD2006}.
+		They define three problems and prove a multi-letter capacity region for each of them.
+		The first of these problems involves a special kind of channel that does not 
+		really fit well with the rest of QIT. This channel as a classical input and a quantum output.
+		
+		The second result concerns the classical-quantum capacity $\mathcal{CQ}(\mcal{N})$
+		for a quantum channel $\mcal{N}^{A' \to BC}$ where the sender (Alice) wants to 
+		send quantum information to Rx1 (Bob) at a rate $Q$ while at the same time 
+		broadcasting a common message $M_0 \in \{ 1, 2, \ldots, 2^{nR_0} \}$ to both receivers.
+		The authors give a proof of a multi-letter capacity region for this problem.
+		%		The rates that are achievable are
+		%		\bea
+		%			Q 	&\leq&	\frac{1}{n} I(A \rangle B^nT)_\sigma,  \\
+		%			R_0	&\leq&	\frac{1}{n} \min \{  I(T; B^n)_\sigma,\ I(T; C^n)_\sigma \}, 
+		%		\eea
+		%		where the mutual informations are taken with respect to
+		%		\be
+		%			\sigma^{TAB^nC^n}	=	\bigoplus_t p(t)\mcal{N}^{\otimes n}\!\!\left( \phi_t^{A'^{n}} \right)^{B^nC^n},
+		%		\ee
+		%		which is the outcome of $n$-copies of the channel applied to the $A'$ part 
+		%		of some ensemble $\{p(t),\ \ket{\phi_t}^{AA'} \ \}$.
+		
+		The third result of that paper considers a true quantum broadcast scenario.
+		In order to circumvent the difficulties of copying quantum information outlined above,
+		the authors give a protocol which establishes GHZ states of the form
+		\be
+			\ket{GHZ}^{ABC}	=		\frac{1}{\sqrt{2}} \left( \ket{000}^{ABC} + \ket{111}^{ABC} \right),
+		\ee
+		which are a form of tripartite entanglement.
+		At a later point in time, this communication resource can be used 
+		to establish quantum  communication between any two of three parties users.
+		Thus, generating this GHZ is equivalent to being able to communicate
+		with either of the two receivers (but not both) and we can decide whom
+		we wish to communicate with later on.
 		
 		
-		\cite{YHD2006}
+		\bigskip
+		The second (and better) paper on the quantum broadcast channel is by 
+		Dupuis\footnote{Fr\'ed\'eric Dupuis used to sit just across the room from me until last summer.} 
+		and Hayden \cite{DH2006}.
+		In this paper the authors reproduce the classical Marton achievable rates 
+		for the entanglement assisted quantum capacity $\mathcal{Q}_{\texttt{E-A}}\!\left(\mathcal{N}\right)$.
 		
-		\cite{DH2006}.
+		\begin{theorem}[Theorem 2 in \cite{DH2006}]
+			Let $\mcal{N}^{A' \to B_1B_2}$ be a quantum broadcast channel. 
+			Then the following rate region is achievable for 
+			$\ket{\psi}^{A_1A_2B_1B_2DE} = U_{\mcal{N}}^{A' \to B_1B_2E}\ket{\phi}^{A_1A_2A'D}$,
+			where $\ket{\phi}$ is any pure state:
+			\bea
+				Q_1 	&\leq&	\frac{1}{2} I(A_1; B_1)_\psi,  \nonumber \\
+				Q_2	&\leq&	\frac{1}{2} I(A_2; B_2)_\psi,  \\ 
+			Q_1+Q_2	&\leq&	\frac{1}{2} \left[ I(A_1; B_1)_\psi + I(A_2; B_2)_\psi - I(A_1; A_2)_\psi \right].  \nonumber
+			\eea			
+			$Q_1$ is the rate at which Alice sends qubits to Bob 1, and likewise $Q_2$ for Bob 2.
+		\end{theorem}
+		
+		The authors also prove a multi-letter converse for the same rate region
+		and also show how this result can be adapted to give an inner bound
+		for the quantum capacity $\mathcal{Q}\!\left(\mathcal{N}\right)$ without 
+		entanglement assistance.
+		
 
 		
 
@@ -883,34 +1066,38 @@
 	
 	\subsection{Quantum interference channel}
 
-
-		The quantum version of the DMIC has not been studied yet in literature. 
-
-
-		\subsubsection{Definitions and Notation}
-
-		quantum interference channel $\mathcal{N}^{A_{1}^{\prime}A_{2}^{\prime
-		}\rightarrow B_{1}B_{2}}$ is a completely-positive trace-preserving map. Let
-		$\mathcal{N}^{A_{1}^{\prime n}A_{2}^{\prime n}\rightarrow B_{1}^{n}B_{2}^{n}}$
-		denote the IID\ version of this channel:%
-		\[
-		\mathcal{N}^{A_{1}^{\prime n}A_{2}^{\prime n}\rightarrow B_{1}^{n}B_{2}^{n}%
-		}\equiv(\mathcal{N}^{A_{1}^{\prime}A_{2}^{\prime}\rightarrow B_{1}B_{2}%
-		})^{\otimes n}.
-		\]
-
-				    
-
 		
-
-		We begin by outlining a general protocol for entanglement-assisted
-		transmission of quantum information over a quantum interference channel
-		$\mathcal{N}^{A_{1}^{\prime}A_{2}^{\prime}\rightarrow B_{1}B_{2}}$. Two
-		spatially separated senders control the respective input systems
+		In this section we will define clearly the quantum interference channel problem.
+		The quantum IC is an open problem in quantum information theory and has
+		not been attempted yet. 
+		Hopefully, this project will be the first setting stone in that direction.
+		
+		\begin{definition}
+			The quantum interference network $\mathcal{N}^{A_{1}^{\prime}A_{2}^{\prime}\rightarrow B_{1}B_{2}}$
+			is a completely-positive trace-preserving map that takes two quantum inputs 
+			and produces two quantum outputs.
+		\end{definition}
+		
+		\begin{definition}
+			The quantum interference channel problem with entanglement assistance 
+			is a particular use of the interference network 
+			$\mathcal{N}^{A_{1}^{\prime}A_{2}^{\prime}\rightarrow B_{1}B_{2}}$ such
+			that two independent quantum states $\psi^{A_1},\psi^{A_2}$ 
+			are transmitted faithfully to their respective receiver at rates $(Q_1,Q_2)$,
+			possibly using entanglement between sender and receiver in the process.
+		\end{definition}
+		
+		We will now outline a general protocol for entanglement-assisted
+		transmission of quantum information over the quantum interference network
+		$\mathcal{N}^{A_{1}^{\prime}A_{2}^{\prime}\rightarrow B_{1}B_{2}}$. 
+		%
+		Two spatially separated senders control the respective input systems
 		$A_{1}^{\prime}$ and $A_{2}^{\prime}$, and two spatially separated receivers
-		control the respective output systems $B_{1}$ and $B_{2}$. The channel has an
-		extension to an isometry $U_{\mathcal{N}}^{A_{1}^{\prime}A_{2}^{\prime
-		}\rightarrow B_{1}B_{2}E}$, where another party Eve has access to system $E$.
+		will be given the respective output systems $B_{1}$ and $B_{2}$. 
+		%
+		The channel has an	extension to an isometry $U_{\mathcal{N}}^{A_{1}^{\prime}A_{2}^{\prime
+		}\rightarrow B_{1}B_{2}E}$, where $E$ models the environment.
+		%
 		The task of sender $i$ is to transmit a $2^{nQ_{i}}$-dimensional quantum
 		system by exploiting some large number $n$ uses of the channel $\mathcal{N}$
 		and entanglement in the form of $2^{nE_{i}}$ ebits shared with receiver $i$,
@@ -918,23 +1105,24 @@
 		with high fidelity the quantum state that sender $i$ transmits.
 
 		An $(n,Q_{1},Q_{2},\epsilon)$ \textit{entanglement-assisted quantum
-		interference channel code} (EAQIC) consists of four steps: preparation,
-		channel coding, transmission, and channel decoding. We detail each of these
-		steps below.
+		interference channel code} (EAQIC) can be described in five steps: the inputs,
+		the encoding, the transmission, decoding and the error analysis.
+		We detail each of these steps below.
+		
+		\begin{enumerate}
 
-		\textbf{Preparation.} Each sender prepares a general quantum state in register
-		$A_{i}$ alongside a register $T_{A_{i}}$ that contains the entanglement shared
+		\item {\bf Input.} 
+		Each sender given the quantum state which is to be sent in register
+		$A_{i}$ alongside an auxiliary register $T_{A_{i}}$ that contains the entanglement shared
 		with receiver $i$. Let $R_{i}$ be a quantum register that contains the
-		purification of the state in register $A_{i}$. The overall state after
-		preparation is%
+		purification of the state in register $A_{i}$. The overall input state is%
 		\[
 		\psi^{R_{1}A_{1}}\otimes\Phi^{T_{A_{1}}T_{B_{1}}}\otimes\psi^{R_{2}A_{2}%
-		}\otimes\Phi^{T_{A_{2}}T_{B_{2}}},
+		}\otimes\Phi^{T_{A_{2}}T_{B_{2}}}.
 		\]
-		where it is implicit that the state $\psi^{R_{1}A_{1}}$ can be different from
-		$\psi^{R_{2}A_{2}}$ (the superscript labels uniquely identify the state).
 
-		\textbf{Channel Encoding.} Sender $i$\ encodes the registers $A_{i}$ and
+		\item \textbf{Encoding.} 
+		Sender $i$\ encodes the registers $A_{i}$ and
 		$T_{A_{i}}$ according to some CPTP\ encoding map $\mathcal{E}_{i}%
 		^{A_{i}T_{A_{i}}\rightarrow A_{i}^{\prime}}$. The state after the encoding
 		maps is%
@@ -952,8 +1140,9 @@
 		Observe that the state between $R_{1}A_{1}^{\prime n}T_{B_{1}}$ and
 		$R_{2}A_{2}^{\prime n}T_{B_{2}}$ is a product state.
 
-		\textbf{Transmission.} Both senders transmit their respective systems
-		$A_{1}^{\prime n}$ and $A_{2}^{\prime n}$ through the IID\ quantum
+		\item \textbf{Transmission.} 
+		Both senders input their respective systems
+		$A_{1}^{\prime n}$ and $A_{2}^{\prime n}$ into the quantum
 		interference channel $\mathcal{N}^{A_{1}^{\prime n}A_{2}^{\prime n}\rightarrow
 		B_{1}^{n}B_{2}^{n}}$. The resulting state is%
 		\[
@@ -962,10 +1151,9 @@
 		^{R_{1}A_{1}^{\prime n}T_{B_{1}}R_{2}A_{2}^{\prime n}T_{B_{2}}}).
 		\]
 		Observe that the state between registers $R_{1}B_{1}^{n}T_{B_{1}}$ and
-		$R_{2}B_{2}^{n}T_{B_{2}}$ is not a product state for general quantum
-		interference channels.
+		$R_{2}B_{2}^{n}T_{B_{2}}$ is not necessarily a product state.
 
-		\textbf{Channel Decoding.} The two receivers obtain the respective systems
+		\item \textbf{Decoding.} The two receivers obtain the respective systems
 		$B_{1}^{n}$ and $B_{2}^{n}$ from the output of the channel. Receiver $i$
 		performs a CPTP\ decoding map $\mathcal{D}_{i}^{B_{i}^{n}T_{B_{i}}%
 		\rightarrow\hat{A}_{i}}$ that combines the channel output $B_{i}^{n}$ with his
@@ -977,254 +1165,260 @@
 		}\rightarrow\hat{A}_{2}})(\omega^{R_{1}B_{1}^{n}T_{B_{1}}R_{2}B_{2}%
 		^{n}T_{B_{2}}}).
 		\]
-		Figure~\ref{fig:interference-protocol}\ depicts all of the above steps that
-		occur in a general entanglement-assisted quantum interference channel code.%
-		%TCIMACRO{\FRAME{ftbpFU}{4.0421in}{2.9672in}{0pt}{\Qcb{The steps in a general
-		%entanglement-assisted quantum interference channel code. In the above figure,
-		%we employ the shorthands $A_{1}^{\prime}\equiv A_{1}^{\prime n}$,
-		%$A_{2}^{\prime}\equiv A_{2}^{\prime n}$, $B_{1}\equiv B_{1}^{n}$, $B_{2}\equiv
-		%B_{2}^{n}$.}}{\Qlb{fig:interference-protocol}}{interference-protocol.png}%
-		%{\special{ language "Scientific Word";  type "GRAPHIC";
-		%maintain-aspect-ratio TRUE;  display "USEDEF";  valid_file "F";
-		%width 4.0421in;  height 2.9672in;  depth 0pt;  original-width 8.2062in;
-		%original-height 6.007in;  cropleft "0";  croptop "1";  cropright "1";
-		%cropbottom "0";
-		%filename 'figures/interference-protocol.png';file-properties "XNPEU";}}}%
-		%BeginExpansion
-		\begin{figure}
-		[ptb]
+		
+		
+		\item {\bf Error analysis.} 
+		The conditions for a good quantum code are that both receivers be
+		 able to decode the quantum states from the
+		respective senders with high fidelity:%
+		\[
+		F\left( \theta^{R_{1}\hat{A}_{1}R_{2}\hat{A}_{2}}, \  
+			\psi^{R_{1}A_{1}}\otimes\psi^{R_{2}A_{2}} \right) \geq 1- \epsilon.
+		\]
+		
+		\end{enumerate}
+		
+		Figure~\ref{fig:interference-protocol}\ depicts all of the above steps as
+		they would occur in any entanglement-assisted quantum interference channel code.
+		\begin{figure}[hptb]
 		\begin{center}
-		%\includegraphics[
-		%natheight=6.007000in,
-		%natwidth=8.206200in,
-		%height=2.9672in,
-		%width=4.0421in
-		%]%
-		%{figures/interference-protocol.png}%
-		\caption{The steps in a general entanglement-assisted quantum interference
-		channel code. In the above figure, we employ the shorthands $A_{1}^{\prime
-		}\equiv A_{1}^{\prime n}$, $A_{2}^{\prime}\equiv A_{2}^{\prime n}$,
-		$B_{1}\equiv B_{1}^{n}$, $B_{2}\equiv B_{2}^{n}$.}%
+		\includegraphics[width=5in]{interference-protocol.png}
+		\caption{The circuit diagram for an entanglement-assisted quantum interference
+		channel code. }%
 		\label{fig:interference-protocol}%
 		\end{center}
 		\end{figure}
 		%EndExpansion
 
 		
-		The conditions for a good entanglement-assisted quantum interference channel
-		code are that both receivers be able to decode the quantum states from the
-		respective senders with small trace distance:%
-		\[
-		\left\Vert \theta^{R_{1}\hat{A}_{1}R_{2}\hat{A}_{2}}-\psi^{R_{1}A_{1}}%
-		\otimes\psi^{R_{2}A_{2}}\right\Vert _{1}\leq\epsilon.
-		\]
+		\begin{definition}
+			A rate pair $(Q_{1},Q_{2})$ is \textit{achievable} if there exists an
+			$(n,Q_{1}-\delta,Q_{2}-\delta,\epsilon)$ entanglement-assisted quantum
+			interference channel code for any $\epsilon,\delta>0$ and sufficiently large
+			$n$.
+		\end{definition}
+
+		\begin{definition}
+			The capacity region
+			$\mathcal{C}^{QIC}_{\texttt{E-A}}\!\left(\mathcal{N}\right)$
+			is the closure of the set of all achievable rates $(Q_{1},Q_{2})$.
+		\end{definition}
+
+
+
+%		Now that we have all the formalities out of the way
+
+
+
 
 		
-		A rate pair $(Q_{1},Q_{2})$ is \textit{achievable} if there exists an
-		$(n,Q_{1}-\delta,Q_{2}-\delta,\epsilon)$ entanglement-assisted quantum
-		interference channel code for any $\epsilon,\delta>0$ and sufficiently large
-		$n$. The capacity region $C_{\text{QIC}}(\mathcal{N})$ is a two-dimensional
-		region in the $(Q_{1},Q_{2})$ space, containing all achievable rate pairs
-		$(Q_{1},Q_{2})$.
-
 
 		
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Discussion and conclusion}		\label{section:discussion}
 
-    In this seciton we will make reference to some of the generalizations and open problems
+    In this section we will make reference to some of the generalizations and open problems
     associated with the study of interference channels.
+    
+    
 
 
     What is the most general use of the interference network we can think of?
-
-    	
-    six rates.... 
-
-        The difference between the IC and the MMAC is that we guarantee
-        that an extra ressource of "cross communication" is available.
-        Wouldn't it be best to represent rates then as 4-tuples?
-        \be
-        \left( \begin{array}{cc}
-        R_{11}     &    R_{12}    \\
-        R_{21}     &    R_{22}    
-         \end{array} \right)
-        \ee
-        
-        
-        
-        The IC problem is basically a promise about $R_{11}$ and $R_{22}$,
-        and no statement about the cross rates.
-        
-        Are the cross rates not useful? 
-        These extra rates could be used to convert some other information 
-        and I feel they should be taken into account in general.
-        (entanglement between receivers?)
+    The most general classical problem to consider involves six indpendent
+    messages: 3 starting at Tx1 and 3 starting at Tx2 with rates
+    \be
+    	\vec{R}	=	( R_{11}, R_{12}, R_{10},  \ R_{21}, R_{22}, R_{20} ),
+    \ee
+    where $R_{ij}$ ($i,j \in \{1,2\}$) is the rate for the message from sender $i$
+    to receiver $j$ and $R_{k0}$ ($k \in \{1,2\}$) is a broadcast rate from sender $k$
+    to both receivers.
+    %
+    The interference channel problem cuts out the two dimensional $R_{11}$, $R_{22}$ plane
+    and ignores all the remaining rates.
+    The MMAC problem cuts out the $(R_{10}, R_{20})$  two dimensional region.
+    
+        Are these cross rates not useful? 
+        These extra rates could maybe be converted into some other information resource.
+        In the classical case, these extra messages could be used for some cooperative 
+        behaviour. 
+	In the quantum case, with the addition of entanglement between receivers they 
+	could perhaps be used with some post-processing to improve the direct
+	transmission rates $R_{11}$, $R_{22}$.
+        I feel these cross rates should be taken into account in general.
 
         
         % correlated sources
-        In general the joint source-channel coding 
-        is a very interesting problem that remains...
+        As mentioned several times in this paper, there exists an even more general
+        model for the MAC and the IC in which the inputs are allowed to be correlated.
+        %
+        I think that understanding joint source-channel coding in the multiuser case
+        is a very interesting problem. Some early work on the subject \cite{cover1980multiple},
+        reveal that it depends on a polymatroid structure which is very interesting
+        since it connects with deeper notions about polytopes \cite{E69, poly}.
+        
 
+        The capacity of the classical interference channel remains an open problem.
+        Furthermore we have added the new problem of finding the capacity of the
+        quantum interference channel. Which problem will be solved first?
 
-        %Are the techniques of IC general enough to study this ?
-
-        open problems...
-
-
-
+	The fact that after so many years we still don't know $\ICcap$ begs 
+	an even more fundamental question. 
+	Are the techniques of information theory general enough to study such problem?
+	Perhaps an even more pressing question for quantum information theory is why are we only
+	able to prove multi-letter formulas for these channels.
+	Is there a fundamental paradigm shift that needs to happen in order to go further in information theory?
 
 
 \appendix
 
 
-\section{Introduction to QIT}           \label{section:intro_to_qit}
+\section{Introduction to quantum information theory}           \label{section:intro_to_qit}
 
 
-    \subsection{Informal introduction}
+	The fundamental principles of quantum mechanics are simple enough to be explained in the space
+	available on the back of an envelope, but to truly understand the implications of these
+	principles takes years of training and effort.
+	For a good book on quantum mechanics see \cite{sakurai}. 
+	For a book specifically on quantum information theory the reader can consult \cite{NC04} which
+	is the \emph{bible} of the field.
 
-        A mixed quantum state, the most general kind of quantum state, is a
-        probability distributions over probability distributions.
-        The ``outer'' probability is the same as the probability $p(x)$ in describing 
-        an ``information source'' in classical information theory.
-        It reflects the probability that the source $S$ outputs symbol $x$.
+   
+	   \subsection{Informal introduction}
 
-        The inner probabilities are \emph{pure} quantum states 
-        which are just vectors in some normed complex vector spaces.
-        %space\footnote{Hilbert space = complex vector space with inner product}.
-        The two most important vector spaces to know about are  
-        \begin{itemize}
-            \item   The set of complex functions: $\psi \colon \mathbb{R} \to \mathbb{C} $,
-            \item   The set of $n$ dimensional vectors over the complex numbers $\c$.
-        \end{itemize}
-        %
-        The continuous \emph{wavefunction representaiton} of quantum mechanics is useful in optics,
-        atomic physics and solid state physics, where people calculate things by integrals in 
-        the position basis (Diract $\delta(x)$ functions),
-        and its fourier transform ($sin(\omega x),cos(\omega x)$) the momentum basis.
-        %to calculate things like  levels in semiconductors etc.
+	        A mixed quantum state, the most general kind of quantum state, is a
+	        probability distributions over probability distributions.
+	        The ``outer'' probability is the same as the probability $p(x)$ in describing 
+	        an ``information source'' in classical information theory.
+	        It reflects the probability that the source $S$ outputs symbol $x$.
 
-        The matrix representation, which we will focus on here,  is useful for describing 
-        phenomena like light polarizaiton, electron spin, angular momentum and other 
-        finite dimensional degrees of freedom.
-        It is also the basis of choice for the entire field of Quantum Information Science,
-        which comprises quantum information theory, quantum crypography, quantum error correcting codes, 
-        quantum computation and many others.
+	        The inner probabilities are \emph{pure} quantum states 
+	        which are just vectors in some normed complex vector spaces.
+	        %space\footnote{Hilbert space = complex vector space with inner product}.
+	        The two most important vector spaces to know about are  
+	        \begin{itemize}
+	            \item   The set of complex functions: $\psi \colon \mathbb{R} \to \mathbb{C} $,
+	            \item   The set of $n$ dimensional vectors over the complex numbers $\c$.
+	        \end{itemize}
+	        %
+	        The continuous \emph{wavefunction representaiton} of quantum mechanics is useful in optics,
+	        atomic physics and solid state physics, where people calculate things by integrals in 
+	        the position basis (Dirac $\delta(x)$ functions),
+	        and its Fourier transform ($sin(\omega x),cos(\omega x)$) the momentum basis.
+	        %to calculate things like  levels in semiconductors etc.
 
-        The basic informaiton carriers in QIT are \emph{qbits}, two dimensional quantum degrees
-        of freedom analogous to the classical bits. 
+	        The matrix representation, which we will focus on here,  is useful for describing 
+	        phenomena like light polarization, electron spin, angular momentum and other 
+	        finite dimensional degrees of freedom.
+	        It is also the representation of choice for the entire field of Quantum Information Science,
+	        which comprises quantum information theory, quantum cryptography, quantum error correcting codes, 
+	        quantum computation and many others.
 
-        \begin{definition}[qubit]
-            A qubit is a two dimensitonal quantum state $\vec{s}$ is a 
-            unit length vector in $\c^2 = \{(a,b)^T| a,b \in \c\}$.
-        \end{definition}
+	        The basic information carriers in QIT are \emph{qubits}, two dimensional quantum degrees
+	        of freedom analogous to the classical bits. 
 
-        For example, we can prepare a electron is a spin state which has spin up $\vec{s}=(1,0)^T$,
-        down $\vec{s}=(0,1)^T$ or a 50--50 \emph{superposition} of the up and down $\vec{s} = (\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})^T$.
+	        \begin{definition}[qubit]
+	            A qubit is a two dimensional quantum state $\vec{s}$ which is normalized, i.e.
+	            it is a unit length vector in $\c^2 = \{(a,b)^T| a,b \in \c\}$.
+	        \end{definition}
 
-        The description in words ``50 50 superposition'' is not rich enough to describe all possible superpositions since
-        the coefficients of the voctor are in general complex numbers. 
-        Here is another 50--50 quantum state: $\vec{s} = (\frac{1}{\sqrt{2}}, \frac{-i}{\sqrt{2}})^T$, in fact there is a
-        whole continuum of 50--50  states $\vec{s} = (\frac{1}{\sqrt{2}}, \frac{e^{i\theta}}{\sqrt{2}})^T$ .
+	        For example, we can prepare an electron in a spin up state $\vec{s}=(1,0)^T$,
+	        spin down state $\vec{s}=(0,1)^T$ or a 50--50 \emph{superposition} of the up and down states
+	        $\vec{s} = (\frac{1}{\sqrt{2}}, \frac{1}{\sqrt{2}})^T$.
+		%
+	        The description in words ``50 50 superposition'' is not rich enough to describe all possible superpositions since
+	        the coefficients of the voctor are in general complex numbers. 
+	        Here is another 50--50 quantum state: $\vec{s} = (\frac{1}{\sqrt{2}}, \frac{-i}{\sqrt{2}})^T$, in fact there is a
+	        whole continuum of 50--50  states $\vec{s} = (\frac{1}{\sqrt{2}}, \frac{e^{i\theta}}{\sqrt{2}})^T$ .
+		%
+	        Note however that the overall complex phase is not important $(1,0)^T= e^{i\theta}(1,0)^T$ so without loss
+	        of generality we can always assume that the first component of any quantum vector is real.
 
-        Note however that the global complex phase is not important $(1,0)^T= e^{i\theta}(1,0)^T$ so without loss
-        of generality we can always assume that the first component of any quantum vector is real.
-
-
-        % ADDD MORE HERE
-        %%%%%
-        %%%%%
-        %%%%%
-        %%%%%
-        %%%%%
-        %%%%%
-        %%%%%
-        An ensemble $\E=\{p_i, \ket{\psi_i} \}$ is a set of quantum states $\ket{\psi_i}$ which occur with 
-        probability $p_i$. 
-        One way to describe a quantum source is to specify the states $\ket{\psi_i}$ and the
-        corresponding probabilities $p_i$ associated with this source. 
-
-
-    \subsection{Informal introduction}
-
+	        An ensemble $\E=\{p(i), \vec{\psi}_i \}$ is a set of quantum states $\vec{\psi}_i$ which occur with 
+	        probability $p(i)$. 
+	        One way to describe a quantum source is to specify the states $\vec{\psi}_i$ and the
+	        corresponding probabilities $p_i$ associated with this source. 
+	        Quantum information deals with the compression, transmission and otherwise manipulation
+	        of quantum ensembles. 
+        
+	\subsection{Notation}
 		
-
-		\bigskip
-		\subsection{Quantum states}
-			
-			The fundamental principles of quantum mechanics are simple enough to be explained in the space
-			available on the back of an envelope, but to truly understand the implications of these
-			principles takes years of training and effort.
-			We assume the reader is familiar with basic notions of quantum mechanics \cite{sakurai,NC04}. 
-			%For the sake of brevity, we will not attempt to restate them here for the sake of brevity and also because
-			%this has been done  better elsewhere .
-			This section will focus on specific notions and notation that are used in quantum information theory.
-			
-			We will denote quantum systems by uppercase roman letters like $A,B,R$ and the corresponding 
-			Hilbert spaces as $\cH^A, \cH^B, \cH^R$ with respective dimensions $d_A,d_B,d_R$.
-		    We denote pure states of the system $A$ by \emph{ket}s: $\ket{\ph}^A$
-		    and \emph{density matrices} as $\ph^A$.		% = \proj{\ph}^A$.
-			Because of the probabilistic interpretation of quantum mechanics, all kets have unit norm and all
-			density matrices are positive and with unit trace.
-		    We will refer to both kets and density matrices as \emph{states}.
-		    
-			We use the partial trace operator to model partial knowledge of a state.
-			Given a bipartite state $\rho^{AB}$ shared between Alice and Bob, we say that Alice holds in her lab
-			the reduced density matrix: $\rho^A = \Tr_B\rho^{AB}$, where $\Tr_B$ denotes a partial trace over 
-			Bob's degrees of freedom.
-			In general the state produced in this manner will be \emph{mixed} -- a classical probability distribution
-			over states.
-			
-			Conversely, any mixed state $\sigma^A \in$\footnote{Strictly speaking, we should say 
-			$\sigma^A \in D(\cH^A)$ where $D(\cH^A)$ is the set of density matrices over $\cH^A$. 
-			We will use this economy of notation consistently.}$\cH^A$
-			 can be \emph{purified} to a fictitious 
-			larger Hilbert space. 
-			That is, we imagine a corresponding pure state $\ket{\sigma}^{AR} \in \cH^A \otimes \cH^R$
-			such that taking the partial trace over the $R$ system gives the original state: 
-			$\Tr_R\left(\proj{\sigma}^{AR}\right)=\sigma^A$. 
-			The purification procedure is often referred to as escaping to the \emph{Church of the larger
-			Hilbert space} in literature.
+		
+		This section will focus on specific notions and notation that are used in quantum information theory.
+		While quantum states really \emph{are} vectors, the customary notation for quantum states 
+		is using bra's and ket's instead of the arrow on top.
+		\be
+				\ket{\psi} \ 	\triangleq \ \vec{\psi}.
+		\ee
+		We will use this notation from here on to denote quantum states.
+		
+		
+		We will denote quantum systems by uppercase roman letters like $A,B,R$ and the corresponding 
+		Hilbert spaces as $\cH^A, \cH^B, \cH^R$ with respective dimensions $d_A,d_B,d_R$.
+	    We denote pure states of the system $A$ by \emph{ket}s: $\ket{\ph}^A$
+	    and \emph{density matrices} as $\ph^A$.		% = \proj{\ph}^A$.
+		Because of the probabilistic interpretation of quantum mechanics, all kets have unit norm and all
+		density matrices are positive and with unit trace.
+	    We will refer to both kets and density matrices as \emph{states}.
+	    
+		We use the partial trace operator to model partial knowledge of a state.
+		Given a bipartite state $\rho^{AB}$ shared between Alice and Bob, we say that Alice holds in her lab
+		the reduced density matrix: $\rho^A = \Tr_B\rho^{AB}$, where $\Tr_B$ denotes a partial trace over 
+		Bob's degrees of freedom.
+		In general the state produced in this manner will be \emph{mixed} -- a classical probability distribution
+		over states.
+		
+		Conversely, any mixed state $\sigma^A \in$\footnote{Strictly speaking, we should say 
+		$\sigma^A \in D(\cH^A)$ where $D(\cH^A)$ is the set of density matrices over $\cH^A$. 
+		We will use this economy of notation consistently.}$\cH^A$
+		 can be \emph{purified} to a fictitious 
+		larger Hilbert space. 
+		That is, we imagine a corresponding pure state $\ket{\sigma}^{AR} \in \cH^A \otimes \cH^R$
+		such that taking the partial trace over the $R$ system gives the original state: 
+		$\Tr_R\left(\proj{\sigma}^{AR}\right)=\sigma^A$. 
+		The purification procedure is often referred to as escaping to the \emph{Church of the larger
+		Hilbert space} in literature.
 
 		
 	\subsection{Quantum information theory}
+	
 		The fundamental ideas of quantum information theory are analogous to those of classical information theory. 
-		\subsubsection{von Neumann entropy}
+		We quantify the information content of quantum systems 
+		by using their entropy.
 		
-			Analogously to classical information theory, we quantify the information content of quantum systems 
-			by using an entropy function.
-			
-										\index{entropy!von-neumann-entropy@$H(A)_\rho$: von Neumann entropy}
-			\begin{definition}[von Neumann Entropy] 
-				Given the density matrix $\rho^A \in \cH^A$, the expression
-				\be
-					S(A)_\rho=-\Tr\left(\rho^A\log\rho^A\right)
-				\ee
-				is known as the \emph{von Neumann entropy} of the state $\rho^A$. 
-			\end{definition}
+		\begin{definition}[von Neumann Entropy] 
+			Given the density matrix $\rho^A \in \cH^A$, the expression
+			\be
+				S(A)_\rho=-\Tr\left(\rho^A\log\rho^A\right)
+			\ee
+			is known as the \emph{von Neumann entropy} of the state $\rho^A$. 
+		\end{definition}
 		
-            We often use the notation $H$ for entropy even in the quantum case because it is essentially
-            the same funciton; the von Neumann entropy of quantum state $\rho^A$ (density matrix) 
-            with spectral decomposition $\rho^A = \sum_i \lambda_i \proj{e_i}$, we 
-			can calculate $H(A)_\rho=-\Tr\left(\rho^A\log\rho^A\right) = - \sum_i \lambda_i \log \lambda_i$.
-			The von Neumann entropy of a pure state is zero, since it has only a single eigenvalue.
+	            We often use the notation $H$ for entropy even in the quantum case because it is essentially
+	            the same function.
+	            The von Neumann entropy of quantum state $\rho^A$ 
+	            with spectral decomposition $\rho^A = \sum_i \lambda_i \proj{e_i}$, is
+	            equal to the Shannon entropy of its eigenvalues.
+	            \be
+		            S(A)_\rho=-\Tr\left(\rho^A\log\rho^A\right) = - \sum_i \lambda_i \log \lambda_i = H(\{\lambda_i\})
+	            \ee
+  		   The von Neumann entropy of a pure state is zero, since it has only a single eigenvalue.
 
 			
 			For bipartite states $\rho^{AB}$ we can also define the quantum conditional entropy
 			\be
-				H(A|B)_\rho 	:= 		H(AB)_\rho - H(B)_\rho					\label{cond-entrpy} 
+				H(A|B)_\rho 	\triangleq 		H(AB)_\rho - H(B)_\rho					\label{cond-entrpy} 
 			\ee
 			where $H(B)_\rho = -\Tr\left(\rho^B\log\rho^B\right)$ is the entropy of the reduced density matrix
 			$\rho^B = \Tr_A\!\left( \rho^{AB}\right)$. In the same fashion we can also define the 
 			quantum mutual information information
 			\be
-				I(A;B)_\rho 	:=		H(A)_\rho + H(B)_\rho - H(AB)_\rho 
+				I(A;B)_\rho 	\triangleq		H(A)_\rho + H(B)_\rho - H(AB)_\rho 
 			\ee
 			and in the case of a tripartite system $\rho^{ABC}$ we define the conditional mutual information 
 			as 
 			\bea
-				I(A;B|C)_\rho 	&:=&	H(A|C)_\rho + H(B|C)_\rho - H(AB|C)_\rho \label{cond-mut-info} \\
+				I(A;B|C)_\rho 	&\triangleq&	H(A|C)_\rho + H(B|C)_\rho - H(AB|C)_\rho \label{cond-mut-info} \\
 								&=&		H(AC)_\rho + H(BC)_\rho - H(ABC)_\rho - H(C)_\rho.
 			\eea
 		    
@@ -1236,6 +1430,17 @@
 			This inequality, originally proved in \cite{LR73}, is called the \emph{strong subadditivity} of von Neumann 
 			entropy and forms an important building block of quantum information theory.
 			
+			
+			Furthermore, we define a purely quantum information theoretic quantity called \emph{coherent information}
+			which depending on the context will be expressed in one of two ways.
+			For a fixed joint state $\sigma^{AB}$, we write
+			$I_c(A\,\rangle B) \equiv H(B) - H(AB) = -H(A|B).$
+			Otherwise, if we are given a density matrix $\rho^{A'}$ and a channel $\mcal{N}^{A'\rightarrow B}$ which give rise to a joint state 
+			$(1^A\otimes \mcal{N})(\Phi_\rho)$,
+			where $\ket{\Phi_\rho}^{AA'}$ is any purification of $\rho$, we will often use the notation
+			\[I_c(A\,\rangle B) = I_c(\rho,\mcal{N}) = H(\mcal{N}(\rho)) - H((1\otimes\mcal{N})(\Phi_\rho)).\]  
+			It can be shown that this latter expression is independent of the particular purification $\ket{\Phi_\rho}$ that is chosen for $\rho$.
+
 			
 			On the surface, it may appear to the reader that quantum information theory has nothing new to offer except 
 			a rewriting of the classical formulas in a new context.
@@ -1358,7 +1563,7 @@
 			To render the resource picture generic, we always imagine a scenario in which two localized parties,
 			usually called Alice and Bob, want to perform a certain communication task.
 			Local computation will be regarded as free of cost in order to focus on the communication aspects 
-			of the task. 
+			of the problem. 
 			
 			An example of a classical communication resource is the \emph{noiseless channel} from 
 			Alice to Bob, denoted $[c\to c]$. 
@@ -1406,7 +1611,7 @@
 			Entanglement is a fundamental quantum resource because it cannot be generated by local operations and
 			classical communication (LOCC). 
 			The precise characterization of entanglement has been a great focal point of research in the last decade.
-			For an in depth review of the subject we refer the readers to the excellent papers \cite{VP98, HHHH}.
+			For an in depth review of the subject we refer the reader to the excellent papers \cite{VP98, HHHH}.
 			Entanglement forms a crucial building block for quantum information theory because it can be used 
 			to perform or assist with many communication tasks.
 
@@ -1560,86 +1765,86 @@
 			
 			
 			
+%
 
+%\section{Compression}
 
-\section{Compression}
+%The \emph{Typical Subspace} is the support of $P^{(n)}_\epsilon$ or equivalently, 
+%\mbox{$\textup{SPAN} \{ \ket{j^n}, j^n \in T^{(n)}_\epsilon  \}$}.
 
-The \emph{Typical Subspace} is the support of $P^{(n)}_\epsilon$ or equivalently, 
-\mbox{$\textup{SPAN} \{ \ket{j^n}, j^n \in T^{(n)}_\epsilon  \}$}.
+%	\be 
+%		\Tr\left[ \rho^{\otimes n} P^{(n)}_\epsilon \right] > 1 - \delta \qquad \forall \delta, \epsilon > 0, 
+%		\textrm{and } n \textrm{ sufficiently large.}  			
+%		\label{here_one}
+%	\ee
+%	\be
+%		\textup{rank} P^{(n)}_\epsilon = | T^{(n)}_\epsilon |
+%		\label{here_two}
+%	\ee
+%	\be
+%		\forall \epsilon >0, \quad |T^{(n)}_\epsilon| \leq 2^{n[H(\rho)+\epsilon]} 
+%		\label{here_three}
+%	\ee
+%	\be
+%		\forall \epsilon, \delta >0, \quad |T^{(n)}_\epsilon| \geq (1-\delta)2^{n[H(\rho)-\epsilon]} 
+%		\label{here_four}
+%	\ee
 
-	\be 
-		\Tr\left[ \rho^{\otimes n} P^{(n)}_\epsilon \right] > 1 - \delta \qquad \forall \delta, \epsilon > 0, 
-		\textrm{and } n \textrm{ sufficiently large.}  			
-		\label{here_one}
-	\ee
-	\be
-		\textup{rank} P^{(n)}_\epsilon = | T^{(n)}_\epsilon |
-		\label{here_two}
-	\ee
-	\be
-		\forall \epsilon >0, \quad |T^{(n)}_\epsilon| \leq 2^{n[H(\rho)+\epsilon]} 
-		\label{here_three}
-	\ee
-	\be
-		\forall \epsilon, \delta >0, \quad |T^{(n)}_\epsilon| \geq (1-\delta)2^{n[H(\rho)-\epsilon]} 
-		\label{here_four}
-	\ee
+%
+%\begin{proof}
+%The proof of (\ref{here_two}) is easy.\\
+%For (\ref{here_three}) we note $H(\rho) = H(r)$ and use the Typical Sequence Theorem \ref{} \comment{From Punit's part}.
+%The only thing one that is more interesting is (\ref{here_one}) for which we note:
+%\bea
+%\Tr\left[ \rho^{\otimes n} P^{(n)}_\epsilon \right] 	&=&	\sum_{j^n} \bra{j^n} \left(
+%										\sum_{k^n} r_{k^n}\ket{k^n}\bra{k^n}  \right)
+%										\sum_{l^n \in T^{(n)}_\epsilon} \ket{l^n}\bra{l^n}
+%												\ket{j^n}
+%\eea
 
+%
+%\end{proof}
 
-\begin{proof}
-The proof of (\ref{here_two}) is easy.\\
-For (\ref{here_three}) we note $H(\rho) = H(r)$ and use the Typical Sequence Theorem \ref{} \comment{From Punit's part}.
-The only thing one that is more interesting is (\ref{here_one}) for which we note:
-\bea
-\Tr\left[ \rho^{\otimes n} P^{(n)}_\epsilon \right] 	&=&	\sum_{j^n} \bra{j^n} \left(
-										\sum_{k^n} r_{k^n}\ket{k^n}\bra{k^n}  \right)
-										\sum_{l^n \in T^{(n)}_\epsilon} \ket{l^n}\bra{l^n}
-												\ket{j^n}
-\eea
+%
 
+%
 
-\end{proof}
+%    Holevo, Schumacher and Westmoreland  found a multiletter formula
+%    for the classical capacity  [H98,SW97].
 
+%	\begin{theorem}
+%		The classical capacity of a quantum channel $\mcal{N}$ is
+%		given by  $\mcal{C}(\mcal{N}) = \frac{1}{n} \cup_{n=1}^\infty C^{(1)}(\mcal{N}^{\otimes n})$ 
+%		where 
+%		\be
+%	       		C^{(1)}(\mcal{N}) = \max_\rho I(A;B) 
+%	    	\ee
+%		where $\rho$ is the output state 
+%		    \be
+%		        \rho = \sum_x p(x) \ketbra{x}_A \otimes \mcal{N}\!({\sigma_x})_B.
+%		    \ee
+%		    and $\{ p(x), \sigma_x\}$ is the input distribution.
+%	    \end{theorem}
 
-
-
-
-    Holevo, Schumacher and Westmoreland  found a multiletter formula
-    for the classical capacity  [H98,SW97].
-
-	\begin{theorem}
-		The classical capacity of a quantum channel $\mcal{N}$ is
-		given by  $\mcal{C}(\mcal{N}) = \frac{1}{n} \cup_{n=1}^\infty C^{(1)}(\mcal{N}^{\otimes n})$ 
-		where 
-		\be
-	       		C^{(1)}(\mcal{N}) = \max_\rho I(A;B) 
-	    	\ee
-		where $\rho$ is the output state 
-		    \be
-		        \rho = \sum_x p(x) \ketbra{x}_A \otimes \mcal{N}\!({\sigma_x})_B.
-		    \ee
-		    and $\{ p(x), \sigma_x\}$ is the input distribution.
-	    \end{theorem}
-
-		{\bf quantum capacity}
-	    Lloyd, Shor and Devetak independently proved a formula for the quantum capacity
-	    of a channels.
-	    
-	    \begin{theorem}[LSD Theorem]
-	    
-	    Consider the input state $\rho^{AA'}$, half of which is sent
-	    through the channel $\mcal{N}$ to obtain $w^{AB} = \mcal{N}^{A'\to B}(\rho^{AA'})$.
-	    Define the quantity 
-	    \be
-	        Q^{(1)}(\mcal{N}) = \max_\rho  (S(B)_w - S(AB)_w).
-	    \ee
-	    The quantum capacity $Q$ of the channel $\mcal{N}$ is given by the regularization 
-	    of the $Q^{(1)}$ quantity
-	    \be
-	        Q(\mcal{N}) = \lim_{n\to \infty} \frac{Q^{(1)}(\mcal{N}^{\otimes n} )}{n}.
-	    \ee 
-	    [L97, S00, D03]
-	    \end{theorem}
+%		{\bf quantum capacity}
+%	    Lloyd, Shor and Devetak independently proved a formula for the quantum capacity
+%	    of a channels.
+%	    
+%	    \begin{theorem}[LSD Theorem]
+%	    
+%	    Consider the input state $\rho^{AA'}$, half of which is sent
+%	    through the channel $\mcal{N}$ to obtain $w^{AB} = \mcal{N}^{A'\to B}(\rho^{AA'})$.
+%	    Define the quantity 
+%	    \be
+%	        Q^{(1)}(\mcal{N}) = \max_\rho  (S(B)_w - S(AB)_w).
+%	    \ee
+%	    The quantum capacity $Q$ of the channel $\mcal{N}$ is given by the regularization 
+%	    of the $Q^{(1)}$ quantity
+%	    \be
+%	        Q(\mcal{N}) = \lim_{n\to \infty} \frac{Q^{(1)}(\mcal{N}^{\otimes n} )}{n}.
+%	    \ee 
+%	    [L97, S00, D03]
+%	    \end{theorem}
 
 
 
